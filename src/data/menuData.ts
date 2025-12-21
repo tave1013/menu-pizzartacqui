@@ -344,7 +344,7 @@ export const menuCategories: Category[] = [
         price: 5.0,
         image: "/src/assets/food/menabrea.png",
         dietaryTags: ["vegan"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 333 1234566", mail: "info@newcastlepub.it" },
       },
       {
         id: "peroni",
