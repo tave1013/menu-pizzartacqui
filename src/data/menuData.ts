@@ -342,7 +342,7 @@ export const menuCategories: Category[] = [
         name: "Menabrea",
         desc: "Birra artigianale laziale, corpo pieno con note di malto e luppolo locale",
         price: 5.0,
-        image: "menabrea.png",
+        image: "/src/assets/food/menabrea.png",
         dietaryTags: ["vegan"],
         contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
       },
