@@ -64,7 +64,7 @@ export interface RestaurantInfo {
 }
 
 export const restaurantInfo: RestaurantInfo = {
-  name: "New Castle Pub",
+  name: "PizzArt",
   description: "Pub tradizionale con hamburger artigianali e birre selezionate dal 2015.",
   rating: 4.6,
   reviewCount: 387,
