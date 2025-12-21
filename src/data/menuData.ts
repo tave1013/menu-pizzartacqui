@@ -358,7 +358,7 @@ export const menuCategories: Category[] = [
         id: "guinness",
         name: "Guinness Draught",
         desc: "Birra stout irlandese cremosa con note di caffè e cioccolato",
-        price: 6.0,
+        price: 60.0,
         image: birra,
         dietaryTags: ["vegan"],
         contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
