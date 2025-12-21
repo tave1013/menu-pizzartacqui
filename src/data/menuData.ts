@@ -70,12 +70,12 @@ export const restaurantInfo: RestaurantInfo = {
   reviewCount: 387,
   priceRange: "€€",
   cuisine: "Hamburger • Pub • Birra artigianale",
-  address: "Via Cassarogna 64, 15011 Acqui Terme (AL)",
-  coordinates: { lat: 44.6750, lng: 8.4700 },
+  address: "Via Guglielmo Marconi, 18, 15011 Acqui Terme (AL)",
+  coordinates: { lat: 44.6765, lng: 8.4659 },
   heroImage: "",
   openingHours: "12:00 - 23:00",
   weeklyHours: [
-    { day: "Lunedì", hours: "12:00 - 14:30, 19:00 - 23:00" },
+    { day: "Lunedì", hours: "12:00 - 14:30" },
     { day: "Martedì", hours: "", closed: true },
     { day: "Mercoledì", hours: "12:00 - 14:30, 19:00 - 23:00" },
     { day: "Giovedì", hours: "12:00 - 14:30, 19:00 - 23:00" },
@@ -338,11 +338,11 @@ export const menuCategories: Category[] = [
     name: "Birre & Vini",
     items: [
       {
-        id: "lazio",
-        name: "Lazio",
+        id: "menabrea",
+        name: "Menabrea",
         desc: "Birra artigianale laziale, corpo pieno con note di malto e luppolo locale",
         price: 5.0,
-        image: "", // No image demo
+        image: "menabrea.png",
         dietaryTags: ["vegan"],
         contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
       },
