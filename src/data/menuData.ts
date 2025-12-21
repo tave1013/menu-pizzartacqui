@@ -346,9 +346,9 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 333 1234566", mail: "info@newcastlepub.it" },
       },
       {
-        id: "peroni",
+        id: "tuborg",
         name: "Peroni Nastro Azzurro",
-        desc: "Birra lager italiana premium, fresca e leggera con note di luppolo",
+        desc: "66 cl",
         price: 4.5,
         image: birra,
         dietaryTags: ["vegan"],
