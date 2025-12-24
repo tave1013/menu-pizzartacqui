@@ -107,7 +107,7 @@ const Index = () => {
           />
 
           <DesktopHeader
-            title="Newcastle Pub"
+            title="PizzArt"
             query={searchQuery}
             onQueryChange={handleDesktopQueryChange}
             onSearch={handleDesktopSearch}
