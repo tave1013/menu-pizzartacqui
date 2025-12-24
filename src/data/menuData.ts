@@ -124,7 +124,7 @@ export const menuCategories: Category[] = [
         id: "insuperabile",
         name: "Insuperabile",
         desc: "Pomodoro, mozzarella fiordilatte, prosciutto cotto insuperabile Barabino fuori cottura",
-        price: 10.5,
+        price: 120.5,
         image:"",
         allergens: ["Glutine", "Lattosio"],
         featured: true,
