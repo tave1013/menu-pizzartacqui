@@ -1,6 +1,6 @@
 import { Star, Clock, MapPin, Info, Calendar } from "lucide-react";
 import { RestaurantInfo } from "@/data/menuData";
-import heroImage from "@/assets/heropizzart.png";
+import heroImage from "../../assets/heropizzart.png";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { InfoModal } from "./InfoModal";
