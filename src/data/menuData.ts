@@ -1,30 +1,24 @@
-// Correzione degli import: puntano a src/assets/food/
-import burgerAmericano from "../assets/food/burger-americano.jpg";
-import burgerClassico from "../assets/food/burger-classico.jpg";
-import burgerBbq from "../assets/food/burger-bbq.jpg";
-import patatine from "../assets/food/patatine.jpg";
-import onionRings from "../assets/food/onion-rings.jpg";
-import insalata from "../assets/food/insalata.jpg";
-import birra from "../assets/food/birra.jpg";
-
-// Import per le pizze (usando l'alias @ che punta a src)
-import margheritaImg from "@/assets/food/Margherita.png";
-import caronteImg from "@/assets/food/Caronte.png";
-import formaggiImg from "@/assets/food/ai-formaggi.png";
-import reginaImg from "@/assets/food/la-regina.png";
-import raffinataImg from "@/assets/food/Raffinata.png";
-import anciovaImg from "@/assets/food/anciova.png";
-import monetImg from "@/assets/food/Monet.png";
-import picassoImg from "@/assets/food/Picasso.png";
-import renoirImg from "@/assets/food/Renoir.png";
-import chagallImg from "@/assets/food/Chagall.png";
-import cimabueImg from "@/assets/food/Cimabue.png";
-import vanGoghImg from "@/assets/food/van-gogh.png";
-import daliImg from "@/assets/food/Dalì.png";
-import michelangeloImg from "@/assets/food/Michelangelo.png";
-import daVinciImg from "@/assets/food/da-vinci.png";
-import sfiziosaImg from "@/assets/food/Sfiziosa.png";
-import zenaImg from "@/assets/food/Zena.png";
+// Percorsi pubblici per le immagini
+const burgerAmericano = "/assets/food/burger-americano.jpg";
+const burgerClassico = "/assets/food/burger-classico.jpg";
+const patatine = "/assets/food/patatine.jpg";
+const margheritaImg = "/assets/food/Margherita.png";
+const caronteImg = "/assets/food/Caronte.png";
+const formaggiImg = "/assets/food/ai-formaggi.png";
+const reginaImg = "/assets/food/la-regina.png";
+const raffinataImg = "/assets/food/Raffinata.png";
+const anciovaImg = "/assets/food/anciova.png";
+const monetImg = "/assets/food/Monet.png";
+const picassoImg = "/assets/food/Picasso.png";
+const renoirImg = "/assets/food/Renoir.png";
+const chagallImg = "/assets/food/Chagall.png";
+const cimabueImg = "/assets/food/Cimabue.png";
+const vanGoghImg = "/assets/food/van-gogh.png";
+const daliImg = "/assets/food/Dalì.png";
+const michelangeloImg = "/assets/food/Michelangelo.png";
+const daVinciImg = "/assets/food/da-vinci.png";
+const sfiziosaImg = "/assets/food/Sfiziosa.png";
+const zenaImg = "/assets/food/Zena.png";
 
 export type DietaryTag = "vegan" | "vegetarian" | "gluten-free";
 
@@ -300,7 +294,7 @@ export const menuCategories: Category[] = [
         id: "michelangelo",
         name: "Michelangelo",
         desc: "Crema di patate, fagiolini, stracciatella di burrata, pesto.",
-        price: 1700.0,
+        price: 1800.0,
         image: michelangeloImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
         dietaryTags: ["vegetarian"],

@@ -1,6 +1,6 @@
 import { Star, Clock, MapPin, Info, Calendar } from "lucide-react";
 import { RestaurantInfo } from "@/data/menuData";
-import heroImage from "../../assets/heropizzart.png";
+const heroImage = "/assets/heropizzart.png";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { InfoModal } from "./InfoModal";
@@ -17,20 +17,44 @@ function getTodayHours(weeklyHours: RestaurantInfo["weeklyHours"]) {
 
 function isCurrentlyOpen(todayHours: { hours: string; closed?: boolean }): boolean {
   if (todayHours.closed) return false;
-  
+
+  const hoursStr = (todayHours.hours || "").trim();
+  if (!hoursStr) return false;
+
   const now = new Date();
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
-  
-  const [openTime, closeTime] = todayHours.hours.split(" - ");
-  const [openH, openM] = openTime.split(":").map(Number);
-  const [closeH, closeM] = closeTime.split(":").map(Number);
-  
-  const openMinutes = openH * 60 + openM;
-  let closeMinutes = closeH * 60 + closeM;
-  
-  if (closeMinutes === 0) closeMinutes = 24 * 60;
-  
-  return currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+
+  // Support multiple intervals like "12:00 - 14:30, 19:00 - 23:00"
+  const intervals = hoursStr.split(",").map((s) => s.trim()).filter(Boolean);
+
+  for (const interval of intervals) {
+    const parts = interval.split(/\s*-\s*/);
+    if (parts.length !== 2) continue;
+    const [openTime, closeTime] = parts;
+    const [openH, openM] = openTime.split(":").map(Number);
+    const [closeH, closeM] = closeTime.split(":").map(Number);
+
+    if ([openH, openM, closeH, closeM].some((n) => Number.isNaN(n))) continue;
+
+    const openMinutes = openH * 60 + openM;
+    let closeMinutes = closeH * 60 + closeM;
+
+    // Treat "00:00" as end of day
+    if (closeMinutes === 0) closeMinutes = 24 * 60;
+
+    // If interval spans midnight, normalize closeMinutes to be > openMinutes
+    if (closeMinutes <= openMinutes) closeMinutes += 24 * 60;
+
+    // Check current time against interval, considering midnight wrap
+    if (
+      (currentMinutes >= openMinutes && currentMinutes < closeMinutes) ||
+      (currentMinutes + 24 * 60 >= openMinutes && currentMinutes + 24 * 60 < closeMinutes)
+    ) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export function RestaurantHero({ info }: RestaurantHeroProps) {
