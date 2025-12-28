@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Index from "./pages/Index";
 import MenuBase from "./pages/MenuBase";
 import ThankYou from "./pages/ThankYou";
@@ -20,7 +21,7 @@ import AdminHours from "./pages/admin/AdminHours";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminProfile from "./pages/admin/AdminProfile";
 import Login from "./pages/auth/Login";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -31,6 +32,7 @@ const App = () => (
           <TooltipProvider>
             <Toaster />
             <Sonner />
+            <SpeedInsights />
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
