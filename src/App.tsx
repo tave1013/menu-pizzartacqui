@@ -20,7 +20,7 @@ import AdminHours from "./pages/admin/AdminHours";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminProfile from "./pages/admin/AdminProfile";
 import Login from "./pages/auth/Login";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const queryClient = new QueryClient();
 
 const App = () => (

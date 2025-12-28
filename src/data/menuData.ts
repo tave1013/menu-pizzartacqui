@@ -104,11 +104,11 @@ export const restaurantInfo: RestaurantInfo = {
   rating: 4.6,
   reviewCount: 387,
   priceRange: "€€€",
-  cuisine: "Hamburger • Pub • Birra artigianale",
+  cuisine: "Pizzeria ad Acqui Terme",
   address: "Via Guglielmo Marconi, 18, 15011 Acqui Terme (AL)",
   coordinates: { lat: 44.6765, lng: 8.4659 },
   heroImage: "",
-  openingHours: "12:00 - 23:00",
+  openingHours: "18:00 - 22:30",
   weeklyHours: [
     { day: "Lunedì", hours: "18:30 - 22:30," },
     { day: "Martedì", hours: "", closed: true },
@@ -122,11 +122,11 @@ export const restaurantInfo: RestaurantInfo = {
   deliverooUrl: "https://deliveroo.it/it/menu/Alessandria/acqui-terme/pizzart-acqui-terme/?geohash=spyn0tjdewgp",
   bookingPhone: "+39 333 1234567",
   phone: "+39 0144 123456",
-  email: "info@newcastlepub.it",
-  facebookUrl: "https://facebook.com/newcastlepub",
-  facebookName: "New Castle Pub",
-  instagramUrl: "https://instagram.com/newcastlepub",
-  instagramHandle: "@newcastlepub",
+  email: "info@pizzartacquiterme.com",
+  facebookUrl: "https://www.facebook.com/profile.php?id=100083643546473",
+  facebookName: "PizzArt",
+  instagramUrl: "https://www.instagram.com/pizzartacquiterme/",
+  instagramHandle: "@pizzartacquiterme",
 };
 
 export const menuCategories: Category[] = [
@@ -242,6 +242,7 @@ export const menuCategories: Category[] = [
   {
     id: "pizart",
     name: "Pizzart",
+      description: "Pizze artistiche, con abbinamenti saporiti e particolari",
     items: [
       {
         id: "monet",
