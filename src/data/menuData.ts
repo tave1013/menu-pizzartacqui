@@ -110,16 +110,16 @@ export const restaurantInfo: RestaurantInfo = {
   heroImage: "",
   openingHours: "12:00 - 23:00",
   weeklyHours: [
-    { day: "Lunedì", hours: "12:00 - 14:30, 19:00 - 23:00" },
+    { day: "Lunedì", hours: "18:30 - 22:30," },
     { day: "Martedì", hours: "", closed: true },
-    { day: "Mercoledì", hours: "12:00 - 14:30, 19:00 - 23:00" },
-    { day: "Giovedì", hours: "12:00 - 14:30, 19:00 - 23:00" },
-    { day: "Venerdì", hours: "12:00 - 14:30, 19:00 - 00:00" },
-    { day: "Sabato", hours: "11:00 - 00:00" },
-    { day: "Domenica", hours: "11:00 - 22:00" },
+    { day: "Mercoledì", hours: "18:30 - 22:30," },
+    { day: "Giovedì", hours: "18:30 - 22:30," },
+    { day: "Venerdì", hours: "18:30 - 22:30," },
+    { day: "Sabato", hours: "18:30 - 22:30," },
+    { day: "Domenica", hours: "18:00 - 22:30" },
   ],
   deliveryTime: "25-40 min",
-  deliverooUrl: "https://deliveroo.it",
+  deliverooUrl: "https://deliveroo.it/it/menu/Alessandria/acqui-terme/pizzart-acqui-terme/?geohash=spyn0tjdewgp",
   bookingPhone: "+39 333 1234567",
   phone: "+39 0144 123456",
   email: "info@newcastlepub.it",
@@ -578,6 +578,7 @@ export const menuCategories: Category[] = [
       },
     ],
   },
+  /* CATEGORIA DOLCI RIMOSSA TEMPORANEAMENTE
   {
     id: "dolci",
     name: "Dolci & Dessert",
@@ -602,7 +603,7 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
       },
     ],
-  },
+  },*/
   {
     id: "bevande",
     name: "Bevande",
