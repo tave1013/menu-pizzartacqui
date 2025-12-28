@@ -7,6 +7,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index";
 import MenuBase from "./pages/MenuBase";
 import ThankYou from "./pages/ThankYou";
@@ -33,6 +34,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <SpeedInsights />
+            <Analytics />
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
