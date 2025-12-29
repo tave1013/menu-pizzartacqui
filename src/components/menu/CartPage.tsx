@@ -693,11 +693,14 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                   
                   <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-2">
                     {suggestedItems.map((item) => {
-                      // Trova se questo prodotto è già nel carrello (senza ingredienti rimossi)
-                      // L'ID per prodotti dall'upsell è `productId-` (array vuoto)
+                      // Trova tutti i cart items con questo productId e somma le quantità
+                      const totalQuantityInCart = items
+                        .filter(ci => ci.productId === item.id)
+                        .reduce((sum, ci) => sum + ci.quantity, 0);
+                      
+                      // Per modificare la quantità, usa il cart item senza ingredienti rimossi
                       const upsellCartId = `${item.id}-`;
                       const cartItem = items.find(ci => ci.id === upsellCartId);
-                      const quantityInCart = cartItem?.quantity || 0;
                       
                       return (
                         <div
@@ -718,14 +721,14 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                                 {formatPrice(item.price)}
                               </span>
                               
-                              {quantityInCart > 0 ? (
+                              {totalQuantityInCart > 0 && cartItem ? (
                                 <div className="flex items-center gap-1 flex-shrink-0">
                                   <button
                                     onClick={() => {
-                                      if (quantityInCart === 1) {
-                                        removeItem(cartItem!.id);
+                                      if (cartItem.quantity === 1) {
+                                        removeItem(cartItem.id);
                                       } else {
-                                        updateQuantity(cartItem!.id, quantityInCart - 1);
+                                        updateQuantity(cartItem.id, cartItem.quantity - 1);
                                       }
                                     }}
                                     className={cn(
@@ -737,15 +740,15 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                                     )}
                                     aria-label="Rimuovi uno"
                                   >
-                                    {quantityInCart === 1 ? (
+                                    {cartItem.quantity === 1 ? (
                                       <Trash2 className="w-3 h-3 text-muted-foreground" />
                                     ) : (
                                       <Minus className="w-3 h-3 text-muted-foreground" />
                                     )}
                                   </button>
-                                  <span className="text-sm font-medium w-4 text-center">{quantityInCart}</span>
+                                  <span className="text-sm font-medium w-4 text-center">{cartItem.quantity}</span>
                                   <button
-                                    onClick={() => updateQuantity(cartItem!.id, quantityInCart + 1)}
+                                    onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
                                     className={cn(
                                       "w-6 h-6 rounded-full",
                                       "flex items-center justify-center",
