@@ -242,9 +242,9 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             className={cn(
               "relative w-full",
-              // Mobile: in read-only mode modale più piccolo (70vh), altrimenti fullscreen
+              // Mobile: in read-only mode modale più piccolo (80vh), altrimenti fullscreen
               readOnlyMode 
-                ? "h-[70vh] max-h-[70vh] rounded-t-2xl" 
+                ? "h-[80vh] max-h-[80vh] rounded-t-2xl" 
                 : "h-[100dvh] max-h-[100dvh] rounded-t-2xl",
               // Desktop: dimensioni contenute
               "sm:h-auto sm:max-h-[85vh] sm:max-w-[720px] lg:max-w-[840px] sm:rounded-2xl",
@@ -271,9 +271,11 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
             </button>
 
             {/* Content - Scrollable area */}
-            <div className="overflow-y-auto flex-1 min-h-0 overscroll-contain">
+            <div className="overflow-y-auto flex-1 min-h-0 overscroll-none touch-pan-y">
               {/* Image / Fallback Cover */}
-              <ProductCover imageUrl={item.image} name={item.name} />
+              <div className="sticky top-0 z-10">
+                <ProductCover imageUrl={item.image} name={item.name} />
+              </div>
 
               {/* Details */}
               <div className="p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6">
