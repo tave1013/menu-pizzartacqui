@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" class="notranslate" translate="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate" />
     <title>Menu - PizzArt | Acqui Terme</title>
     <meta name="description" content="Scopri il menu di PizzArt a Acqui Terme. Assapora un'opera d'arte. Consulta i nostri piatti e ingredienti." />
     <meta name="author" content="PizzArt" />
@@ -18,72 +19,22 @@
 
     <link rel="icon" type="image/png" href="/favicon-pizzart.png" />
     
-    <!-- Google Translate -->
+    <!-- Google Translate - disabled automatic translation, using manual approach -->
     <style>
-      /* Hide Google Translate widget but keep it functional */
-      .goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame {
+      /* Hide Google Translate widget completely */
+      .goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame, .goog-te-gadget {
         display: none !important;
       }
       body { top: 0 !important; }
       .goog-text-highlight { background: none !important; box-shadow: none !important; }
+      /* Prevent Google Translate from adding font tags */
+      font { font-family: inherit !important; }
     </style>
   </head>
 
   <body>
     <div id="root"></div>
     
-    <!-- Hidden Google Translate element -->
-    <div id="google_translate_element" style="display: none;"></div>
-    
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Google Translate Script -->
-    <script>
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'it',
-          includedLanguages: 'it,en,fr,de,es',
-          autoDisplay: false,
-          multilanguagePage: true
-        }, 'google_translate_element');
-      }
-      
-      // Function to change language programmatically
-      window.changeGoogleTranslateLanguage = function(langCode) {
-        var frame = document.querySelector('.goog-te-menu-frame');
-        if (!frame) {
-          // Wait for Google Translate to load
-          setTimeout(function() { window.changeGoogleTranslateLanguage(langCode); }, 100);
-          return;
-        }
-        
-        var frameDoc = frame.contentWindow.document;
-        var langElements = frameDoc.querySelectorAll('.goog-te-menu2-item span.text');
-        
-        var langMap = {
-          'it': 'Italiano',
-          'en': 'English', 
-          'fr': 'Français',
-          'de': 'Deutsch',
-          'es': 'Español'
-        };
-        
-        langElements.forEach(function(el) {
-          if (el.textContent === langMap[langCode]) {
-            el.click();
-          }
-        });
-      };
-      
-      // Reset to original language
-      window.resetGoogleTranslate = function() {
-        var select = document.querySelector('.goog-te-combo');
-        if (select) {
-          select.value = '';
-          select.dispatchEvent(new Event('change'));
-        }
-      };
-    </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
 </html>
