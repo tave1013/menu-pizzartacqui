@@ -9,7 +9,8 @@ import {
   ExternalLink,
   Facebook,
   Instagram,
-  AlertTriangle
+  AlertTriangle,
+  Store
 } from "lucide-react";
 import { RestaurantInfo, DayHours } from "@/data/menuData";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -334,6 +335,24 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                         </div>
                         <span className="text-card-foreground group-hover:text-[#DD2A7B] transition-colors flex-1">
                           {restaurantInfo.instagramHandle || "Instagram"}
+                        </span>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground" />
+                      </a>
+                    )}
+                    
+                    {restaurantInfo.googleBusinessUrl && (
+                      <a 
+                        href={restaurantInfo.googleBusinessUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors group"
+                        aria-label={`Apri ${restaurantInfo.name} su Google`}
+                      >
+                        <div className="w-9 h-9 rounded-full bg-[#4285F4]/10 flex items-center justify-center">
+                          <Store className="w-4 h-4 text-[#4285F4]" />
+                        </div>
+                        <span className="text-card-foreground group-hover:text-[#4285F4] transition-colors flex-1">
+                          {restaurantInfo.name}
                         </span>
                         <ExternalLink className="w-4 h-4 text-muted-foreground" />
                       </a>

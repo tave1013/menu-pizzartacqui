@@ -96,6 +96,7 @@ export interface RestaurantInfo {
   facebookName?: string;
   instagramUrl?: string;
   instagramHandle?: string;
+  googleBusinessUrl?: string;
 }
 
 export const restaurantInfo: RestaurantInfo = {
@@ -127,6 +128,7 @@ export const restaurantInfo: RestaurantInfo = {
   facebookName: "PizzArt",
   instagramUrl: "https://www.instagram.com/pizzartacquiterme/",
   instagramHandle: "@pizzartacquiterme",
+  googleBusinessUrl: "https://g.page/pizzart-acqui-terme",
 };
 
 export const menuCategories: Category[] = [
