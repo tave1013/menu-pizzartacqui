@@ -691,42 +691,89 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                     Altri clienti hanno ordinato anche
                   </h2>
                   
-                  <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
-                    <div className="pl-4 flex-shrink-0" aria-hidden="true" />
-                    {suggestedItems.map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex flex-col flex-shrink-0 w-36 snap-start bg-card rounded-xl overflow-hidden"
-                      >
-                        <ProductImage
-                          src={item.image}
-                          alt={item.name}
-                          className="w-full aspect-square"
-                        />
-                        <div className="p-2">
-                          <p className="text-sm font-medium text-foreground truncate">{item.name}</p>
-                          <div className="flex items-center justify-between mt-1">
-                            <span className="text-sm font-semibold text-primary">
-                              {formatPrice(item.price)}
-                            </span>
-                            <button
-                              onClick={() => handleAddUpsell(item)}
-                              className={cn(
-                                "w-7 h-7 rounded-full",
-                                "flex items-center justify-center",
-                                "bg-primary text-primary-foreground",
-                                "hover:bg-primary/90",
-                                "transition-colors duration-160"
+                  <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide pl-4 pr-4">
+                    {suggestedItems.map((item) => {
+                      // Trova se questo prodotto è già nel carrello
+                      const cartItem = items.find(ci => ci.productId === item.id);
+                      const quantityInCart = cartItem?.quantity || 0;
+                      
+                      return (
+                        <div
+                          key={item.id}
+                          className="flex flex-col flex-shrink-0 w-36 snap-start bg-card rounded-xl overflow-hidden"
+                        >
+                          <ProductImage
+                            src={item.image}
+                            alt={item.name}
+                            className="w-full aspect-square"
+                          />
+                          <div className="p-2">
+                            <p className="text-sm font-medium text-foreground truncate">{item.name}</p>
+                            <div className="flex items-center justify-between mt-1">
+                              <span className="text-sm font-semibold text-primary">
+                                {formatPrice(item.price)}
+                              </span>
+                              
+                              {quantityInCart > 0 ? (
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    onClick={() => {
+                                      if (quantityInCart === 1) {
+                                        removeItem(cartItem!.id);
+                                      } else {
+                                        updateQuantity(cartItem!.id, quantityInCart - 1);
+                                      }
+                                    }}
+                                    className={cn(
+                                      "w-6 h-6 rounded-full",
+                                      "flex items-center justify-center",
+                                      "border border-border",
+                                      "hover:bg-muted",
+                                      "transition-colors duration-160"
+                                    )}
+                                    aria-label="Rimuovi uno"
+                                  >
+                                    {quantityInCart === 1 ? (
+                                      <Trash2 className="w-3 h-3 text-muted-foreground" />
+                                    ) : (
+                                      <Minus className="w-3 h-3 text-muted-foreground" />
+                                    )}
+                                  </button>
+                                  <span className="text-sm font-medium w-4 text-center">{quantityInCart}</span>
+                                  <button
+                                    onClick={() => updateQuantity(cartItem!.id, quantityInCart + 1)}
+                                    className={cn(
+                                      "w-6 h-6 rounded-full",
+                                      "flex items-center justify-center",
+                                      "bg-primary text-primary-foreground",
+                                      "hover:bg-primary/90",
+                                      "transition-colors duration-160"
+                                    )}
+                                    aria-label="Aggiungi uno"
+                                  >
+                                    <Plus className="w-3 h-3" />
+                                  </button>
+                                </div>
+                              ) : (
+                                <button
+                                  onClick={() => handleAddUpsell(item)}
+                                  className={cn(
+                                    "w-7 h-7 rounded-full",
+                                    "flex items-center justify-center",
+                                    "bg-primary text-primary-foreground",
+                                    "hover:bg-primary/90",
+                                    "transition-colors duration-160"
+                                  )}
+                                  aria-label={`Aggiungi ${item.name}`}
+                                >
+                                  <Plus className="w-4 h-4" />
+                                </button>
                               )}
-                              aria-label={`Aggiungi ${item.name}`}
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
-                    <div className="pr-4 flex-shrink-0" aria-hidden="true" />
+                      );
+                    })}
                   </div>
                 </section>
               )}
