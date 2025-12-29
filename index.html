@@ -1,9 +1,8 @@
 <!doctype html>
-<html lang="it" class="notranslate" translate="no">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google" content="notranslate" />
     <title>Menu - PizzArt | Acqui Terme</title>
     <meta name="description" content="Scopri il menu di PizzArt a Acqui Terme. Assapora un'opera d'arte. Consulta i nostri piatti e ingredienti." />
     <meta name="author" content="PizzArt" />
@@ -19,16 +18,99 @@
 
     <link rel="icon" type="image/png" href="/favicon-pizzart.png" />
     
-    <!-- Google Translate - disabled automatic translation, using manual approach -->
+    <!-- Google Translate - UI completamente nascosta -->
     <style>
-      /* Hide Google Translate widget completely */
-      .goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame, .goog-te-gadget {
+      /* ══════════════════════════════════════════════════════════════════════
+         GOOGLE TRANSLATE - NASCONDI TUTTI GLI ELEMENTI UI
+         Queste regole impediscono a Google Translate di alterare il layout
+         ══════════════════════════════════════════════════════════════════════ */
+      
+      /* Nascondi la barra superiore di Google Translate */
+      .goog-te-banner-frame,
+      .goog-te-banner-frame.skiptranslate,
+      #goog-gt-tt,
+      .goog-te-balloon-frame,
+      .goog-te-menu-frame,
+      .goog-te-spinner-pos,
+      .goog-tooltip,
+      .goog-tooltip:hover,
+      .goog-text-highlight {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        position: absolute !important;
+        top: -9999px !important;
+        left: -9999px !important;
+      }
+      
+      /* Nascondi il widget e il contenitore */
+      .goog-te-gadget,
+      .goog-te-gadget-simple,
+      .goog-te-combo,
+      #google_translate_element,
+      .skiptranslate,
+      [id^="goog-"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        top: -9999px !important;
+        left: -9999px !important;
+      }
+      
+      /* CRITICO: Impedisce lo spostamento del body verso il basso */
+      body {
+        top: 0 !important;
+        position: relative !important;
+      }
+      
+      /* Rimuovi evidenziazioni del testo tradotto */
+      .goog-text-highlight {
+        background: none !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      
+      /* Impedisci che font tags alterino lo stile */
+      font[style],
+      font {
+        font-family: inherit !important;
+        font-size: inherit !important;
+        background-color: transparent !important;
+      }
+      
+      /* Nascondi iframe di Google Translate */
+      iframe.goog-te-menu-frame,
+      iframe.goog-te-banner-frame,
+      iframe[src*="translate.google"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        border: none !important;
+        position: absolute !important;
+        top: -9999px !important;
+      }
+      
+      /* Fix per evitare margini extra sull'html */
+      html.translated-ltr,
+      html.translated-rtl {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+      
+      /* Previeni qualsiasi ::before/::after aggiunto */
+      body::before,
+      body::after,
+      html::before,
+      html::after {
         display: none !important;
       }
-      body { top: 0 !important; }
-      .goog-text-highlight { background: none !important; box-shadow: none !important; }
-      /* Prevent Google Translate from adding font tags */
-      font { font-family: inherit !important; }
     </style>
   </head>
 
