@@ -2,6 +2,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { restaurantInfo } from "@/data/menuData";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/contexts/CartContext";
+import { useReadOnlyMode } from "@/contexts/ReadOnlyModeContext";
 
 // Icone social custom (SVG inline per evitare dipendenze esterne)
 function FacebookIcon({ className }: { className?: string }) {
@@ -34,9 +35,10 @@ function GoogleIcon({ className }: { className?: string }) {
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const { totalItems } = useCart();
+  const { readOnlyMode } = useReadOnlyMode();
   
-  // Se c'è il carrello visibile, aggiungi padding extra in fondo
-  const hasCartBar = totalItems > 0;
+  // Se c'è il carrello visibile e NON siamo in read-only mode, aggiungi padding extra
+  const hasCartBar = !readOnlyMode && totalItems > 0;
   
   // Costruisci URL Google Maps
   const mapsUrl = restaurantInfo.googleMapsUrl || `https://maps.google.com/?cid=6898912612804395203`;
