@@ -60,11 +60,37 @@ interface ItemDetailModalProps {
 
 // Parse ingredients from description
 function parseIngredients(desc: string): string[] {
+  // Blacklist di parole che indicano che NON è un ingrediente
+  // (descrizioni di formato, quantità, tipi di prodotto)
+  const blacklistPatterns = [
+    /\d+\s*cl/i,           // 33 cl, 50cl, etc.
+    /\d+\s*ml/i,           // 500 ml, etc.
+    /\d+\s*l\b/i,          // 1 l, 0,5 l, etc.
+    /lattina/i,            // Lattina
+    /bottiglia/i,          // Bottiglia
+    /bottiglietta/i,       // Bottiglietta
+    /bicchiere/i,          // Bicchiere
+    /calice/i,             // Calice
+    /vino\s*(rosso|bianco|rosè)?/i,  // Vino rosso, Vino bianco
+    /spumante/i,           // Spumante
+    /piemontese/i,         // Vino piemontese (per vini)
+  ];
+
   // Split by comma and clean up
   return desc
     .split(",")
     .map((s) => s.trim())
-    .filter((s) => s.length > 0 && s.length < 50); // Filter out very long parts
+    .filter((s) => {
+      // Filtra stringhe vuote o troppo lunghe
+      if (s.length === 0 || s.length > 50) return false;
+      
+      // Filtra se contiene pattern della blacklist
+      for (const pattern of blacklistPatterns) {
+        if (pattern.test(s)) return false;
+      }
+      
+      return true;
+    });
 }
 
 export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: ItemDetailModalProps) {
