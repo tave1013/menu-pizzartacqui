@@ -378,7 +378,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                     style={{ border: 0 }}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:ChIJpWJ1WxfULRIRw4QE6qjMb18&zoom=16`}
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2823.5!2d8.4659474!3d44.67656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d2d54a5b7562a5%3A0x5fb75ca8ea4004c3!2sPizzArt!5e0!3m2!1sit!2sit!4v1703858400000!5m2!1sit!2sit"
                   />
                 </div>
                 
