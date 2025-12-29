@@ -2,9 +2,7 @@ import { createContext, useContext, useState, useCallback, useEffect, type React
 import { type Language, getInitialLanguage } from "@/i18n";
 import { 
   loadGoogleTranslateScript, 
-  initGoogleTranslate, 
-  setGoogleTranslateLanguage,
-  getCurrentGoogleTranslateLanguage 
+  setGoogleTranslateLanguage 
 } from "@/hooks/useGoogleTranslate";
 
 interface LanguageContextType {
@@ -20,44 +18,37 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [isTranslating, setIsTranslating] = useState(false);
   const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
 
-  // Carica Google Translate all'avvio
+  // Carica Google Translate all'avvio (una sola volta)
   useEffect(() => {
+    let mounted = true;
+    
     loadGoogleTranslateScript()
       .then(() => {
-        initGoogleTranslate();
-        setIsGoogleLoaded(true);
-        
-        // Sincronizza con la lingua salvata
-        const savedLang = getInitialLanguage();
-        if (savedLang !== "it") {
-          // Aspetta che Google Translate sia pronto
-          setTimeout(() => {
-            setGoogleTranslateLanguage(savedLang);
-          }, 1000);
+        if (mounted) {
+          setIsGoogleLoaded(true);
+          
+          // Se c'è una lingua salvata diversa da italiano, applica la traduzione
+          const savedLang = getInitialLanguage();
+          if (savedLang !== "it") {
+            setTimeout(() => {
+              setGoogleTranslateLanguage(savedLang);
+            }, 1000);
+          }
         }
       })
       .catch((err) => {
         console.warn("Google Translate non caricato:", err);
       });
-  }, []);
-
-  // Sincronizza con il cookie di Google Translate all'avvio
-  useEffect(() => {
-    const googleLang = getCurrentGoogleTranslateLanguage();
-    if (googleLang !== "it" && googleLang !== language) {
-      setLanguageState(googleLang);
-      localStorage.setItem("lang", googleLang);
-    }
+      
+    return () => { mounted = false; };
   }, []);
 
   const setLanguage = useCallback((lang: Language) => {
-    const previousLang = language;
-    
     // Aggiorna lo stato locale immediatamente
     setLanguageState(lang);
     localStorage.setItem("lang", lang);
     
-    // Aggiorna URL
+    // Aggiorna URL senza ricaricare
     const url = new URL(window.location.href);
     url.searchParams.set("lang", lang);
     window.history.replaceState({}, "", url.toString());
@@ -72,13 +63,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         setIsTranslating(false);
       }, 100);
     }
-  }, [language, isGoogleLoaded]);
-
-  useEffect(() => {
-    const initialLang = getInitialLanguage();
-    setLanguageState(initialLang);
-    localStorage.setItem("lang", initialLang);
-  }, []);
+  }, [isGoogleLoaded]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, isTranslating }}>
