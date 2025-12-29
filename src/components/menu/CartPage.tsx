@@ -80,19 +80,19 @@ function generateTimeSlots(): string[] {
 // ============================================
 // Per modificare i prodotti mostrati nella sezione "Altri clienti hanno ordinato anche":
 // 1. Aggiungi gli ID dei prodotti che vuoi mostrare nell'array UPSELL_PRODUCT_IDS
-// 2. Gli ID li trovi in menuData.ts (es: "coca-cola", "coca-zero", "tiramisu")
+// 2. Gli ID li trovi in menuData.ts (es: "coca-zero", "menabrea", "fanta")
 // 3. I prodotti verranno mostrati nell'ordine in cui li metti qui
 // ============================================
 const UPSELL_PRODUCT_IDS = [
-  "coca-zero",      // Coca Cola Zero
-  "coca-cola",      // Coca Cola
-  "fanta",          // Fanta
-  "sprite",         // Sprite
-  "acqua-nat",      // Acqua naturale
-  "acqua-friz",     // Acqua frizzante
-  "tiramisu",       // Tiramisù
-  "cheesecake",     // Cheesecake
-  "panna-cotta",    // Panna Cotta
+  "coca-zero",              // Coca Cola Zero
+  "coca",                   // Coca Cola
+  "fanta",                  // Fanta
+  "sprite",                 // Sprite
+  "estath-limone",          // Estathé Limone
+  "estath-pesca",           // Estathé Pesca
+  "menabrea",               // Birra Menabrea
+  "ichnusa-non-filtrata",   // Birra Ichnusa
+  "acqua-naturale",         // Acqua Naturale
 ];
 
 function getSuggestedItems(): MenuItem[] {
