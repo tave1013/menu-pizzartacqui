@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { MenuItem } from "@/data/menuData";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -133,13 +133,17 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
                 )}
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Minus button */}
+                {/* Minus/Trash button */}
                 <button
                   onClick={handleMinus}
                   className="flex items-center justify-center w-6 h-6 lg:w-7 lg:h-7 rounded-full text-primary hover:bg-primary/10 transition-colors"
-                  aria-label="Rimuovi dal carrello"
+                  aria-label={quantityInCart === 1 ? "Rimuovi dal carrello" : "Diminuisci quantità"}
                 >
-                  <Minus className="w-3.5 h-3.5 lg:w-4 lg:h-4" strokeWidth={3} />
+                  {quantityInCart === 1 ? (
+                    <Trash2 className="w-3.5 h-3.5 lg:w-4 lg:h-4" strokeWidth={2.5} />
+                  ) : (
+                    <Minus className="w-3.5 h-3.5 lg:w-4 lg:h-4" strokeWidth={3} />
+                  )}
                 </button>
                 
                 {/* Quantity */}

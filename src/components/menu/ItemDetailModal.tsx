@@ -24,8 +24,9 @@ function ProductCover({ imageUrl, name }: { imageUrl: string; name: string }) {
   return (
     <div 
       className={cn(
-        "relative w-full",
-        "h-[clamp(180px,32vh,260px)]",
+        "relative w-full flex-shrink-0",
+        // Mobile: altezza fissa più contenuta per lasciare spazio al contenuto
+        "h-[200px] sm:h-[clamp(200px,30vh,280px)]",
         "overflow-hidden",
         !showImage && "product-cover-fallback"
       )}
@@ -240,19 +241,23 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
             exit="hidden"
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             className={cn(
-              "relative w-full max-h-[100vh] sm:max-w-[720px] lg:max-w-[840px]",
-              "sm:max-h-[85vh]",
+              "relative w-full",
+              // Mobile: schermo intero con safe-area
+              "h-[100dvh] max-h-[100dvh]",
+              // Desktop: dimensioni contenute
+              "sm:h-auto sm:max-h-[85vh] sm:max-w-[720px] lg:max-w-[840px]",
               "bg-card rounded-t-2xl sm:rounded-2xl shadow-modal",
               "flex flex-col overflow-hidden"
             )}
           >
-            {/* Close Button */}
+            {/* Close Button - Fixed position on mobile */}
             <button
               ref={closeButtonRef}
               onClick={onClose}
               className={cn(
-                "absolute top-4 left-4 z-50",
-                "w-10 h-10 rounded-full bg-card/90 backdrop-blur-sm",
+                "absolute top-3 left-3 z-50",
+                "w-9 h-9 sm:w-10 sm:h-10 rounded-full",
+                "bg-card/95 backdrop-blur-sm shadow-sm",
                 "flex items-center justify-center",
                 "text-card-foreground hover:bg-secondary",
                 "transition-colors duration-160",
@@ -263,8 +268,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
               <X className="w-5 h-5" />
             </button>
 
-            {/* Content */}
-            <div className="overflow-y-auto flex-1 min-h-0">
+            {/* Content - Scrollable area */}
+            <div className="overflow-y-auto flex-1 min-h-0 overscroll-contain">
               {/* Image / Fallback Cover */}
               <ProductCover imageUrl={item.image} name={item.name} />
 
