@@ -123,8 +123,9 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
             className="w-full h-full object-cover transition-transform duration-500 lg:group-hover:scale-105"
           />
 
-          {(!readOnlyMode && isRestaurantOpen) && (
-            quantityInCart > 0 ? (
+          {/* Pulsante + sempre visibile (in read-only apre solo dettaglio) */}
+          {(isRestaurantOpen || readOnlyMode) && (
+            quantityInCart > 0 && !readOnlyMode ? (
               // Show - / quantity / + controls when item is in cart
               <div
                 className={cn(
