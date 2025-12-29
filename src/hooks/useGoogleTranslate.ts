@@ -62,10 +62,11 @@ export function loadGoogleTranslateScript(): Promise<void> {
       }
     };
 
-    // Crea e inserisci lo script
+    // Crea e inserisci lo script (usa https per Safari)
     const script = document.createElement("script");
-    script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
+    script.crossOrigin = "anonymous";
     script.onerror = () => {
       console.warn("Failed to load Google Translate");
       resolve();
@@ -113,18 +114,29 @@ export function setGoogleTranslateLanguage(lang: TranslateLanguage): void {
 
 /**
  * Rimuove la traduzione di Google Translate (torna all'italiano)
- * SENZA ricaricare la pagina se possibile
  */
 export function removeGoogleTranslation(): void {
   // Rimuovi i cookie
   document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
   document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
+  document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname}`;
   
-  // Seleziona "Select Language" nel dropdown (valore vuoto)
+  // Prova prima con il select
   const select = translateSelectElement || document.querySelector('.goog-te-combo') as HTMLSelectElement;
   if (select && select.value !== '') {
     select.value = '';
     select.dispatchEvent(new Event('change', { bubbles: true }));
+    
+    // Aspetta un po' e se non ha funzionato, ricarica
+    setTimeout(() => {
+      const stillTranslated = document.cookie.includes('googtrans=/it/');
+      if (stillTranslated) {
+        window.location.reload();
+      }
+    }, 500);
+  } else {
+    // Se non c'è il select o è già vuoto, ricarica per essere sicuri
+    window.location.reload();
   }
 }
 
