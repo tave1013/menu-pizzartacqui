@@ -46,10 +46,18 @@ const MenuBase = () => {
 
   // Redirect if trying to access cart/thank you pages from base mode
   useEffect(() => {
+    const isMenuLocale = location.pathname === "/menu-locale";
+    const isMenuBase = location.pathname === "/menu-base";
+    
     if (location.pathname === "/grazie" || location.pathname === "/carrello") {
       navigate(`/menu-base?lang=${language}`, { replace: true });
     }
-  }, [location.pathname, navigate, language]);
+    
+    // Redirect /menu-locale to /menu-locale with lang=it if no lang param
+    if (isMenuLocale && !location.search.includes("lang=")) {
+      navigate(`/menu-locale?lang=it`, { replace: true });
+    }
+  }, [location.pathname, location.search, navigate, language]);
 
   const handleItemClick = (item: MenuItem) => {
     setSelectedItem(item);
