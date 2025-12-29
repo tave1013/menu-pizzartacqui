@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import { MenuItem, menuCategories } from "@/data/menuData";
+import { MenuItem, menuCategories, findCategoryByItemId } from "@/data/menuData";
 import { cn } from "@/lib/utils";
 import { ProductImage } from "./ProductImage";
 
 interface FeaturedCarouselProps {
-  onItemClick: (item: MenuItem) => void;
+  onItemClick: (item: MenuItem, categoryId?: string) => void;
 }
 
 // Get featured items (those with featured=true, or fallback to first 8 items)
@@ -29,6 +29,11 @@ export function FeaturedCarousel({ onItemClick }: FeaturedCarouselProps) {
 
   if (featuredItems.length === 0) return null;
 
+  const handleItemClick = (item: MenuItem) => {
+    const categoryId = findCategoryByItemId(item.id);
+    onItemClick(item, categoryId);
+  };
+
   return (
     <section className="py-4 mb-6 lg:mb-8">
       <div className="container">
@@ -49,7 +54,7 @@ export function FeaturedCarousel({ onItemClick }: FeaturedCarouselProps) {
         {featuredItems.map((item) => (
           <button
             key={item.id}
-            onClick={() => onItemClick(item)}
+            onClick={() => handleItemClick(item)}
             className={cn(
               "flex flex-col flex-shrink-0 snap-start",
               // Mobile: 3 cards visible

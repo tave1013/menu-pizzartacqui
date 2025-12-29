@@ -30,6 +30,7 @@ const ItemDetailModal = lazy(() =>
 
 const Index = () => {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [editingCartItem, setEditingCartItem] = useState<CartItem | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
@@ -52,13 +53,15 @@ const Index = () => {
     }
   }, []);
 
-  const handleItemClick = (item: MenuItem) => {
+  const handleItemClick = (item: MenuItem, categoryId?: string) => {
     setSelectedItem(item);
+    setSelectedCategoryId(categoryId || null);
     setEditingCartItem(null);
   };
 
   const handleCloseModal = () => {
     setSelectedItem(null);
+    setSelectedCategoryId(null);
     setEditingCartItem(null);
   };
 
@@ -166,6 +169,7 @@ const Index = () => {
               isOpen={selectedItem !== null}
               onClose={handleCloseModal}
               editingCartItem={editingCartItem}
+              categoryId={selectedCategoryId || undefined}
             />
           </Suspense>
 

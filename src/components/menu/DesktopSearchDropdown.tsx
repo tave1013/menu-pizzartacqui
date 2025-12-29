@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { MenuItem, menuCategories } from "@/data/menuData";
+import { MenuItem, menuCategories, findCategoryByItemId } from "@/data/menuData";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { ProductImage } from "./ProductImage";
@@ -7,7 +7,7 @@ import { ProductImage } from "./ProductImage";
 interface DesktopSearchDropdownProps {
   query: string;
   isOpen: boolean;
-  onItemClick: (item: MenuItem) => void;
+  onItemClick: (item: MenuItem, categoryId?: string) => void;
   onShowAll: () => void;
 }
 
@@ -78,7 +78,7 @@ export function DesktopSearchDropdown({
         <>
           <ul className="divide-y divide-border/50">
             {results.map((item) => (
-              <DropdownItem key={item.id} item={item} onClick={() => onItemClick(item)} />
+              <DropdownItem key={item.id} item={item} onClick={() => onItemClick(item, findCategoryByItemId(item.id))} />
             ))}
           </ul>
           {totalResults > 8 && (

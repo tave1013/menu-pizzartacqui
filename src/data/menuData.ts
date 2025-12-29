@@ -778,3 +778,13 @@ export const menuCategories: Category[] = [
     ],
   },
 ];
+
+// Utility: trova la categoria di un item dato il suo ID
+export function findCategoryByItemId(itemId: string): string | undefined {
+  for (const category of menuCategories) {
+    if (category.items.some(item => item.id === itemId)) {
+      return category.id;
+    }
+  }
+  return undefined;
+}

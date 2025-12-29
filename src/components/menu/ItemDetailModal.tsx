@@ -56,27 +56,42 @@ interface ItemDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   editingCartItem?: CartItem | null;
+  categoryId?: string; // Opzionale: per escludere categorie senza ingredienti rimovibili
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CONFIGURAZIONE INGREDIENTI RIMOVIBILI
+// ═══════════════════════════════════════════════════════════════════════════
+// 
+// Per aggiungere nuove categorie da ESCLUDERE (senza rimozione ingredienti):
+// Aggiungi l'ID della categoria a questa lista:
+//
+const CATEGORIE_SENZA_INGREDIENTI = [
+  "bevande",    // Coca Cola, Fanta, Acqua, etc.
+  "birre",      // Menabrea, Tuborg, etc.
+  "vini",       // Nebbiolo, Arneis, etc.
+  // Aggiungi qui nuove categorie, es: "dolci", "gelati"
+];
+
+// Pattern per escludere descrizioni NON-ingredienti
+// (funziona automaticamente, non serve modificare di solito)
+const BLACKLIST_PATTERNS = [
+  /\d+\s*cl/i,           // 33 cl, 50cl, etc.
+  /\d+\s*ml/i,           // 500 ml, etc.
+  /\d+\s*l\b/i,          // 1 l, 0,5 l, etc.
+  /lattina/i,            // Lattina
+  /bottiglia/i,          // Bottiglia
+  /bottiglietta/i,       // Bottiglietta
+  /bicchiere/i,          // Bicchiere
+  /calice/i,             // Calice
+  /vino\s*(rosso|bianco|rosè)?/i,  // Vino rosso, Vino bianco
+  /spumante/i,           // Spumante
+  /piemontese/i,         // Vino piemontese (per vini)
+];
+// ═══════════════════════════════════════════════════════════════════════════
 
 // Parse ingredients from description
 function parseIngredients(desc: string): string[] {
-  // Blacklist di parole che indicano che NON è un ingrediente
-  // (descrizioni di formato, quantità, tipi di prodotto)
-  const blacklistPatterns = [
-    /\d+\s*cl/i,           // 33 cl, 50cl, etc.
-    /\d+\s*ml/i,           // 500 ml, etc.
-    /\d+\s*l\b/i,          // 1 l, 0,5 l, etc.
-    /lattina/i,            // Lattina
-    /bottiglia/i,          // Bottiglia
-    /bottiglietta/i,       // Bottiglietta
-    /bicchiere/i,          // Bicchiere
-    /calice/i,             // Calice
-    /vino\s*(rosso|bianco|rosè)?/i,  // Vino rosso, Vino bianco
-    /spumante/i,           // Spumante
-    /piemontese/i,         // Vino piemontese (per vini)
-  ];
-
-  // Split by comma and clean up
   return desc
     .split(",")
     .map((s) => s.trim())
@@ -85,7 +100,7 @@ function parseIngredients(desc: string): string[] {
       if (s.length === 0 || s.length > 50) return false;
       
       // Filtra se contiene pattern della blacklist
-      for (const pattern of blacklistPatterns) {
+      for (const pattern of BLACKLIST_PATTERNS) {
         if (pattern.test(s)) return false;
       }
       
@@ -93,7 +108,7 @@ function parseIngredients(desc: string): string[] {
     });
 }
 
-export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: ItemDetailModalProps) {
+export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, categoryId }: ItemDetailModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const prefersReduced = useReducedMotion();
@@ -109,10 +124,13 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: Item
   const [quantity, setQuantity] = useState(1);
   const [removedIngredients, setRemovedIngredients] = useState<Set<string>>(new Set());
 
+  // Controlla se la categoria è esclusa dalla rimozione ingredienti
+  const categoryHasIngredients = !categoryId || !CATEGORIE_SENZA_INGREDIENTI.includes(categoryId);
+
   const ingredients = useMemo(() => {
-    if (!item) return [];
+    if (!item || !categoryHasIngredients) return [];
     return parseIngredients(item.desc);
-  }, [item]);
+  }, [item, categoryHasIngredients]);
 
   const isEditing = !!editingCartItem;
 

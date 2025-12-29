@@ -24,6 +24,7 @@ const ItemDetailModal = lazy(() =>
 
 const MenuBase = () => {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
@@ -59,12 +60,14 @@ const MenuBase = () => {
     }
   }, [location.pathname, location.search, navigate, language]);
 
-  const handleItemClick = (item: MenuItem) => {
+  const handleItemClick = (item: MenuItem, categoryId?: string) => {
     setSelectedItem(item);
+    setSelectedCategoryId(categoryId || null);
   };
 
   const handleCloseModal = () => {
     setSelectedItem(null);
+    setSelectedCategoryId(null);
   };
 
   const handleOpenSearch = () => {
@@ -180,6 +183,7 @@ const MenuBase = () => {
             item={selectedItem}
             isOpen={selectedItem !== null}
             onClose={handleCloseModal}
+            categoryId={selectedCategoryId || undefined}
           />
         </Suspense>
 

@@ -3,10 +3,14 @@ import { MenuItemCard } from "./MenuItemCard";
 
 interface MenuSectionProps {
   category: Category;
-  onItemClick: (item: MenuItem) => void;
+  onItemClick: (item: MenuItem, categoryId?: string) => void;
 }
 
 export function MenuSection({ category, onItemClick }: MenuSectionProps) {
+  const handleItemClick = (item: MenuItem) => {
+    onItemClick(item, category.id);
+  };
+
   return (
     <section id={category.id} className="scroll-mt-36">
       <h2 className="text-xl font-bold text-foreground mb-4">
@@ -23,7 +27,7 @@ export function MenuSection({ category, onItemClick }: MenuSectionProps) {
             key={item.id}
             item={item}
             index={index}
-            onItemClick={onItemClick}
+            onItemClick={handleItemClick}
           />
         ))}
       </div>

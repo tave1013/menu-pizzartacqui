@@ -1,6 +1,6 @@
 import { useMemo, useState, useRef, useEffect, useCallback } from "react";
 import { Search, X, ArrowLeft } from "lucide-react";
-import { MenuItem, menuCategories } from "@/data/menuData";
+import { MenuItem, menuCategories, findCategoryByItemId } from "@/data/menuData";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -10,7 +10,7 @@ interface DesktopSearchResultsProps {
   isOpen: boolean;
   initialQuery: string;
   onClose: () => void;
-  onItemClick: (item: MenuItem) => void;
+  onItemClick: (item: MenuItem, categoryId?: string) => void;
   onQueryChange: (query: string) => void;
 }
 
@@ -116,7 +116,8 @@ export function DesktopSearchResults({
   };
 
   const handleItemClick = (item: MenuItem) => {
-    onItemClick(item);
+    const categoryId = findCategoryByItemId(item.id);
+    onItemClick(item, categoryId);
     onClose();
   };
 

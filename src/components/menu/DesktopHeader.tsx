@@ -12,7 +12,7 @@ interface DesktopHeaderProps {
   query: string;
   onQueryChange: (query: string) => void;
   onSearch: (query: string) => void;
-  onItemClick: (item: MenuItem) => void;
+  onItemClick: (item: MenuItem, categoryId?: string) => void;
   onShowAllResults: () => void;
 }
 
@@ -98,8 +98,8 @@ export function DesktopHeader({
     inputRef.current?.focus();
   }, [onQueryChange]);
 
-  const handleItemClick = (item: MenuItem) => {
-    onItemClick(item);
+  const handleItemClick = (item: MenuItem, categoryId?: string) => {
+    onItemClick(item, categoryId);
     setShowDropdown(false);
   };
 

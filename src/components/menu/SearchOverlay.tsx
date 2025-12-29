@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { ArrowLeft, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { MenuItem, menuCategories } from "@/data/menuData";
+import { MenuItem, menuCategories, findCategoryByItemId } from "@/data/menuData";
 import { motion, AnimatePresence } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { DietaryBadge } from "./DietaryBadge";
@@ -10,7 +10,7 @@ import { ProductImage } from "./ProductImage";
 interface SearchOverlayProps {
   isOpen: boolean;
   onClose: () => void;
-  onItemClick: (item: MenuItem) => void;
+  onItemClick: (item: MenuItem, categoryId?: string) => void;
 }
 
 function normalizeString(str: string): string {
@@ -110,7 +110,8 @@ export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayPro
   };
 
   const handleItemClick = (item: MenuItem) => {
-    onItemClick(item);
+    const categoryId = findCategoryByItemId(item.id);
+    onItemClick(item, categoryId);
     handleClose();
   };
 
