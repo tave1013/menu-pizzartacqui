@@ -13,11 +13,11 @@ export function MenuSection({ category, onItemClick }: MenuSectionProps) {
 
   return (
     <section id={category.id} className="scroll-mt-36">
-      <h2 className="text-xl font-bold text-foreground mb-4">
+      <h2 className="text-2xl lg:text-xl font-bold text-foreground mb-4">
         {category.name}
       </h2>
       {category.description && (
-        <p className="text-sm text-muted-foreground mb-4">
+        <p className="text-base lg:text-sm text-muted-foreground mb-4">
           {category.description}
         </p>
       )}
