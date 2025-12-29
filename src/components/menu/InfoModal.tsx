@@ -142,9 +142,10 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
     visible: { opacity: 1, scale: 1 },
   };
 
-  const googleMapsUrl = restaurantInfo.coordinates 
-    ? `https://www.google.com/maps/search/?api=1&query=${restaurantInfo.coordinates.lat},${restaurantInfo.coordinates.lng}`
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurantInfo.address)}`;
+  const googleMapsUrl = restaurantInfo.googleMapsUrl 
+    || (restaurantInfo.coordinates 
+      ? `https://www.google.com/maps/search/?api=1&query=${restaurantInfo.coordinates.lat},${restaurantInfo.coordinates.lng}`
+      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurantInfo.address)}`);
 
   return (
     <AnimatePresence>
@@ -377,7 +378,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                     style={{ border: 0 }}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(restaurantInfo.address)}&zoom=15`}
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:ChIJpWJ1WxfULRIRw4QE6qjMb18&zoom=16`}
                   />
                 </div>
                 
