@@ -26,7 +26,7 @@ function ProductCover({ imageUrl, name }: { imageUrl: string; name: string }) {
       className={cn(
         "relative w-full flex-shrink-0",
         // Mobile: altezza fissa più contenuta per lasciare spazio al contenuto
-        "h-[200px] sm:h-[clamp(200px,30vh,280px)]",
+        "h-[260px] sm:h-[clamp(240px,35vh,320px)]",
         "overflow-hidden",
         !showImage && "product-cover-fallback"
       )}
