@@ -316,12 +316,12 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
     localStorage.removeItem("cart-selected-time");
     localStorage.removeItem(PENDING_ORDER_KEY);
     onClose();
-    toast({ title: "Carrello svuotato" });
+    toast({ title: "Carrello svuotato", duration: 1500 });
   };
 
   const handleAddUpsell = (item: MenuItem) => {
     addItem(item, 1, []);
-    toast({ title: `${item.name} aggiunto` });
+    toast({ title: `${item.name} aggiunto`, duration: 1500 });
   };
 
   const findMenuItem = (productId: string): MenuItem | undefined => {
