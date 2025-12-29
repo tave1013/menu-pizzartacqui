@@ -702,13 +702,15 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                       return (
                         <div
                           key={item.id}
-                          className="flex flex-col flex-shrink-0 w-[144px] bg-card rounded-xl overflow-hidden"
+                          className="flex flex-col flex-shrink-0 w-[144px] bg-card rounded-xl"
                         >
-                          <ProductImage
-                            src={item.image}
-                            alt={item.name}
-                            className="w-full aspect-square"
-                          />
+                          <div className="rounded-t-xl overflow-hidden">
+                            <ProductImage
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full aspect-square"
+                            />
+                          </div>
                           <div className="p-2 min-h-[72px]">
                             <p className="text-sm font-medium text-foreground truncate">{item.name}</p>
                             <div className="flex items-center justify-between mt-1 h-7">
