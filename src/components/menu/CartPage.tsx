@@ -691,7 +691,8 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                     Altri clienti hanno ordinato anche
                   </h2>
                   
-                  <div className="flex gap-3 overflow-x-auto px-4 pb-2 snap-x snap-mandatory scrollbar-hide">
+                  <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
+                    <div className="pl-4 flex-shrink-0" aria-hidden="true" />
                     {suggestedItems.map((item) => (
                       <div
                         key={item.id}
@@ -725,6 +726,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                         </div>
                       </div>
                     ))}
+                    <div className="pr-4 flex-shrink-0" aria-hidden="true" />
                   </div>
                 </section>
               )}
