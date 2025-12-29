@@ -132,7 +132,7 @@ export const restaurantInfo: RestaurantInfo = {
   instagramHandle: "@pizzartacquiterme",
   googleBusinessUrl: "https://www.google.com/search?q=pizzart+acqui+terme",
   googleReviewUrl: "https://g.page/r/CcMEQOqoXLdfEBM/review",
-  googleMapsUrl: "https://maps.google.com/?cid=6898912612804395203",
+  googleMapsUrl: "https://www.google.com/maps?ll=44.67656,8.465947&z=15&t=m&hl=it&gl=IT&mapclient=embed&cid=6897083234895529155",
 };
 
 export const menuCategories: Category[] = [
