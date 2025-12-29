@@ -691,9 +691,9 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                     Altri clienti hanno ordinato anche
                   </h2>
                   
-                  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide overflow-y-visible">
                     {/* Spacer sinistro */}
-                    <div className="w-4 flex-shrink-0" />
+                    <div className="w-2 flex-shrink-0" />
                     {suggestedItems.map((item) => {
                       // Trova se questo prodotto è già nel carrello
                       const cartItem = items.find(ci => ci.productId === item.id);
@@ -777,7 +777,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                       );
                     })}
                     {/* Spacer destro */}
-                    <div className="w-4 flex-shrink-0" />
+                    <div className="w-2 flex-shrink-0" />
                   </div>
                 </section>
               )}
