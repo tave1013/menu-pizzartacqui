@@ -1,6 +1,7 @@
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { restaurantInfo } from "@/data/menuData";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/contexts/CartContext";
 
 // Icone social custom (SVG inline per evitare dipendenze esterne)
 function FacebookIcon({ className }: { className?: string }) {
@@ -21,6 +22,10 @@ function InstagramIcon({ className }: { className?: string }) {
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { totalItems } = useCart();
+  
+  // Se c'è il carrello visibile, aggiungi padding extra in fondo
+  const hasCartBar = totalItems > 0;
   
   // Costruisci URL Google Maps
   const mapsUrl = restaurantInfo.coordinates 
@@ -28,7 +33,10 @@ export function Footer() {
     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurantInfo.address)}`;
 
   return (
-    <footer className="bg-card border-t border-border mt-auto">
+    <footer className={cn(
+      "bg-card border-t border-border mt-auto",
+      hasCartBar && "pb-20" // Padding extra quando c'è la barra carrello
+    )}>
       <div className="container py-8 lg:py-12">
         {/* Grid principale */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -105,7 +113,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Colonna 4: Social & Link */}
+          {/* Colonna 4: Social */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-card-foreground uppercase tracking-wide">
               Seguici
@@ -146,31 +154,32 @@ export function Footer() {
                 </a>
               )}
             </div>
-            
-            {/* Link rapidi */}
-            <div className="pt-2">
-              <a
-                href={mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-              >
-                <MapPin className="w-4 h-4" />
-                Dove siamo
-              </a>
-            </div>
           </div>
         </div>
 
-        {/* Divider */}
+        {/* Divider e sezione legale */}
         <div className="border-t border-border mt-8 pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs text-muted-foreground">
               © {currentYear} {restaurantInfo.name}. Tutti i diritti riservati.
             </p>
-            <p className="text-xs text-muted-foreground">
-              {restaurantInfo.address}
-            </p>
+            
+            {/* Link legali */}
+            <div className="flex items-center gap-4">
+              <a 
+                href="/privacy-policy" 
+                className="text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <span className="text-muted-foreground/50">|</span>
+              <a 
+                href="/cookie-policy" 
+                className="text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                Cookie Policy
+              </a>
+            </div>
           </div>
         </div>
       </div>
