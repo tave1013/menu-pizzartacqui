@@ -156,13 +156,32 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
       if (e.key === "Escape") onClose();
     };
 
+    // Salva la posizione scroll corrente
+    const scrollY = window.scrollY;
+    
     document.addEventListener("keydown", handleKeyDown);
+    
+    // Blocca scroll del body (fix per iOS)
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
     document.body.style.overflow = "hidden";
+    
     closeButtonRef.current?.focus();
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      
+      // Ripristina scroll del body
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
       document.body.style.overflow = "";
+      
+      // Ripristina posizione scroll
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen, onClose]);
 
