@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 import { restaurantInfo } from "@/data/menuData";
 import { motion, AnimatePresence } from "framer-motion";
 import { FullscreenCalendar } from "@/components/menu/FullscreenCalendar";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useBookingTranslations } from "@/i18n/bookingTranslations";
 
 type Step = 1 | 2 | 3;
 
@@ -126,6 +128,8 @@ function isDateValid(dateStr: string, today: Date, maxDate: Date): boolean {
 
 export default function Prenota() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = useBookingTranslations(language);
   const [step, setStep] = useState<Step>(1);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [showPendingModal, setShowPendingModal] = useState(false);
@@ -433,20 +437,20 @@ export default function Prenota() {
       <Dialog open={showPendingModal} onOpenChange={setShowPendingModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Hai inviato il messaggio?</DialogTitle>
+            <DialogTitle>{t.dialogTitle}</DialogTitle>
             <DialogDescription>
-              Conferma se hai completato l'invio su WhatsApp.
+              {t.dialogDescription}
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-3 pt-4">
             <Button onClick={handleConfirmSent} className="w-full">
-              ✅ Sì, ho inviato su WhatsApp
+              ✅ {t.confirmSent}
             </Button>
             <Button variant="outline" onClick={handleReopenWhatsApp} className="w-full">
-              🔁 Riapri WhatsApp
+              🔁 {t.reopenWhatsApp}
             </Button>
             <Button variant="ghost" onClick={handleModifyBooking} className="w-full">
-              ✏️ Modifica prenotazione
+              ✏️ {t.modifyBooking}
             </Button>
           </div>
         </DialogContent>
@@ -460,12 +464,12 @@ export default function Prenota() {
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded p-1"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span className="sr-only sm:not-sr-only text-sm font-medium">Indietro</span>
+            <span className="sr-only sm:not-sr-only text-sm font-medium">{t.back}</span>
           </button>
           <h1 className="flex-1 text-center font-semibold text-foreground">
-            {step === 1 && "Seleziona data"}
-            {step === 2 && "Dettagli prenotazione"}
-            {step === 3 && "I tuoi dati"}
+            {step === 1 && t.step1Title}
+            {step === 2 && t.step2Title}
+            {step === 3 && t.step3Title}
           </h1>
           <div className="w-10" />
         </div>
@@ -491,12 +495,12 @@ export default function Prenota() {
             >
               {/* Info text */}
               <p className="text-xs text-muted-foreground text-center py-2">
-                È possibile prenotare fino a 20 giorni in anticipo.
+                {t.bookingInfo}
               </p>
               
               {/* Selected date display */}
               <p className="text-sm text-center pb-2">
-                <span className="text-muted-foreground">Data selezionata: </span>
+                <span className="text-muted-foreground">{t.selectedDate} </span>
                 <span className="font-medium text-foreground">
                   {bookingData.date ? formatDateItalian(bookingData.date) : "—"}
                 </span>
@@ -535,7 +539,7 @@ export default function Prenota() {
             >
               {/* Adults selector */}
               <div className="space-y-3">
-                <Label className="text-base font-medium">Adulti</Label>
+                <Label className="text-base font-medium">{t.adults}</Label>
                 <div className="flex items-center gap-4">
                   <Button
                     type="button"
@@ -565,7 +569,7 @@ export default function Prenota() {
 
               {/* Children selector */}
               <div className="space-y-3">
-                <Label className="text-base font-medium">Bambini</Label>
+                <Label className="text-base font-medium">{t.children}</Label>
                 <div className="flex items-center gap-4">
                   <Button
                     type="button"
@@ -595,7 +599,7 @@ export default function Prenota() {
 
               {/* Time slots */}
               <div className="space-y-3">
-                <Label className="text-base font-medium">Seleziona orario</Label>
+                <Label className="text-base font-medium">{t.selectTime}</Label>
                 <div className="grid grid-cols-4 gap-2">
                   {TIME_SLOTS.map((slot) => {
                     const isAvailable = availableSlots.includes(slot);
@@ -624,7 +628,7 @@ export default function Prenota() {
 
               {/* Notes */}
               <div className="space-y-3">
-                <Label htmlFor="notes" className="text-base font-medium">Aggiungi note</Label>
+                <Label htmlFor="notes" className="text-base font-medium">{t.addNotes}</Label>
                 <Textarea
                   id="notes"
                   value={bookingData.notes}
@@ -633,7 +637,7 @@ export default function Prenota() {
                       setBookingData(prev => ({ ...prev, notes: e.target.value }));
                     }
                   }}
-                  placeholder="Es. 2 persone intolleranti al glutine; seggiolino per bambino"
+                  placeholder={t.notesPlaceholder}
                   className="min-h-[100px] resize-none"
                   maxLength={300}
                 />
@@ -657,31 +661,31 @@ export default function Prenota() {
             >
               {/* Name */}
               <div className="space-y-2">
-                <Label htmlFor="firstName">Nome *</Label>
+                <Label htmlFor="firstName">{t.firstName} {t.required}</Label>
                 <Input
                   id="firstName"
                   value={bookingData.firstName}
                   onChange={(e) => setBookingData(prev => ({ ...prev, firstName: e.target.value }))}
-                  placeholder="Mario"
+                  placeholder={t.namePlaceholder}
                   className="h-11"
                 />
               </div>
 
               {/* Surname */}
               <div className="space-y-2">
-                <Label htmlFor="lastName">Cognome *</Label>
+                <Label htmlFor="lastName">{t.lastName} {t.required}</Label>
                 <Input
                   id="lastName"
                   value={bookingData.lastName}
                   onChange={(e) => setBookingData(prev => ({ ...prev, lastName: e.target.value }))}
-                  placeholder="Rossi"
+                  placeholder={t.surnamePlaceholder}
                   className="h-11"
                 />
               </div>
 
               {/* Phone */}
               <div className="space-y-2">
-                <Label htmlFor="phone">Telefono *</Label>
+                <Label htmlFor="phone">{t.phone} {t.required}</Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -696,17 +700,17 @@ export default function Prenota() {
                       setErrors(prev => ({ ...prev, phone: "" }));
                     }
                   }}
-                  placeholder="+39 333 1234567"
+                  placeholder={t.phonePlaceholder}
                   className={cn("h-11", errors.phone && "border-destructive")}
                 />
                 {errors.phone && (
-                  <p className="text-xs text-destructive">{errors.phone}</p>
+                  <p className="text-xs text-destructive">{t.invalidPhone}</p>
                 )}
               </div>
 
               {/* Email */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email *</Label>
+                <Label htmlFor="email">{t.email} {t.required}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -721,11 +725,11 @@ export default function Prenota() {
                       setErrors(prev => ({ ...prev, email: "" }));
                     }
                   }}
-                  placeholder="mario.rossi@email.it"
+                  placeholder={t.emailPlaceholder}
                   className={cn("h-11", errors.email && "border-destructive")}
                 />
                 {errors.email && (
-                  <p className="text-xs text-destructive">{errors.email}</p>
+                  <p className="text-xs text-destructive">{t.invalidEmail}</p>
                 )}
               </div>
 
@@ -740,7 +744,7 @@ export default function Prenota() {
                     className="mt-0.5 rounded-sm"
                   />
                   <span className="text-sm text-muted-foreground">
-                    Ho letto e accetto l'Informativa Privacy. *
+                    {t.privacyConsent} {t.required}
                   </span>
                 </label>
                 <label className="flex items-start gap-3 cursor-pointer">
@@ -752,15 +756,10 @@ export default function Prenota() {
                     className="mt-0.5 rounded-sm"
                   />
                   <span className="text-sm text-muted-foreground">
-                    Acconsento a essere ricontattato per la conferma della prenotazione. *
+                    {t.contactConsent} {t.required}
                   </span>
                 </label>
               </div>
-
-              {/* Info text */}
-              <p className="text-xs text-muted-foreground pt-2">
-                La prenotazione verrà confermata dal nostro staff via telefono o WhatsApp entro 24 ore.
-              </p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -775,7 +774,7 @@ export default function Prenota() {
               disabled={!canProceedStep1}
               className="w-full h-12 text-base font-semibold"
             >
-              Avanti
+              {t.next}
             </Button>
           )}
           {step === 2 && (
@@ -784,7 +783,7 @@ export default function Prenota() {
               disabled={!canProceedStep2}
               className="w-full h-12 text-base font-semibold"
             >
-              Avanti
+              {t.next}
             </Button>
           )}
           {step === 3 && (
@@ -794,7 +793,7 @@ export default function Prenota() {
               className="w-full h-12 text-base font-semibold"
             >
               <CalendarDays className="w-5 h-5 mr-2" />
-              Prenota tavolo
+              {t.sendWhatsApp}
             </Button>
           )}
         </div>
