@@ -97,6 +97,7 @@ export interface RestaurantInfo {
   instagramUrl?: string;
   instagramHandle?: string;
   googleBusinessUrl?: string;
+  googleReviewUrl?: string;
 }
 
 export const restaurantInfo: RestaurantInfo = {
@@ -129,6 +130,7 @@ export const restaurantInfo: RestaurantInfo = {
   instagramUrl: "https://www.instagram.com/pizzartacquiterme/",
   instagramHandle: "@pizzartacquiterme",
   googleBusinessUrl: "https://www.google.com/search?q=pizzart+acqui+terme",
+  googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJqwPkZhzYhkcRQJQYgMi4EM4",
 };
 
 export const menuCategories: Category[] = [

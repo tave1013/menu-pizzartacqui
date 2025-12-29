@@ -20,6 +20,7 @@ import { ClosedBanner } from "@/components/menu/ClosedBanner";
 import { ClosedPopup } from "@/components/menu/ClosedPopup";
 import { FeaturedCarousel } from "@/components/menu/FeaturedCarousel";
 import { Footer } from "@/components/menu/Footer";
+import ReviewBanner from "@/components/menu/ReviewBanner";
 
 const ItemDetailModal = lazy(() =>
   import("@/components/menu/ItemDetailModal").then((mod) => ({
@@ -140,6 +141,9 @@ const Index = () => {
           </div>
 
           <ClosedBanner />
+
+          {/* Google Reviews Banner */}
+          <ReviewBanner className="mt-6" />
 
           {/* Featured Section - I più amati */}
           <FeaturedCarousel onItemClick={handleItemClick} />

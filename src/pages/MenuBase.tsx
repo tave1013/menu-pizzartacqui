@@ -15,6 +15,7 @@ import { DesktopSearchResults } from "@/components/menu/DesktopSearchResults";
 import { InfoModal } from "@/components/menu/InfoModal";
 import { FeaturedCarousel } from "@/components/menu/FeaturedCarousel";
 import { Footer } from "@/components/menu/Footer";
+import ReviewBanner from "@/components/menu/ReviewBanner";
 
 const ItemDetailModal = lazy(() =>
   import("@/components/menu/ItemDetailModal").then((mod) => ({
@@ -140,6 +141,9 @@ const MenuBase = () => {
         <div className="lg:pt-16">
           <RestaurantHero info={restaurantInfo} />
         </div>
+
+        {/* Google Reviews Banner */}
+        <ReviewBanner className="mt-6" />
 
         {/* Featured Section - I più amati */}
         <FeaturedCarousel onItemClick={handleItemClick} />
