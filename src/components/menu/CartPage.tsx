@@ -75,18 +75,55 @@ function generateTimeSlots(): string[] {
   return slots.slice(0, 8); // Max 8 slots
 }
 
-// Get suggested items for upsell (contorni, bevande, dolci)
+// ============================================
+// 🛒 UPSELL PRODUCTS - MODIFICA QUI I PRODOTTI SUGGERITI
+// ============================================
+// Per modificare i prodotti mostrati nella sezione "Altri clienti hanno ordinato anche":
+// 1. Aggiungi gli ID dei prodotti che vuoi mostrare nell'array UPSELL_PRODUCT_IDS
+// 2. Gli ID li trovi in menuData.ts (es: "coca-cola", "coca-zero", "tiramisu")
+// 3. I prodotti verranno mostrati nell'ordine in cui li metti qui
+// ============================================
+const UPSELL_PRODUCT_IDS = [
+  "coca-zero",      // Coca Cola Zero
+  "coca-cola",      // Coca Cola
+  "fanta",          // Fanta
+  "sprite",         // Sprite
+  "acqua-nat",      // Acqua naturale
+  "acqua-friz",     // Acqua frizzante
+  "tiramisu",       // Tiramisù
+  "cheesecake",     // Cheesecake
+  "panna-cotta",    // Panna Cotta
+];
+
 function getSuggestedItems(): MenuItem[] {
   const suggestions: MenuItem[] = [];
-  const targetCategories = ["contorni", "bevande", "dolci"];
   
-  for (const category of menuCategories) {
-    if (targetCategories.includes(category.id)) {
-      suggestions.push(...category.items.slice(0, 2));
+  // Prima cerca i prodotti specificati manualmente
+  for (const productId of UPSELL_PRODUCT_IDS) {
+    for (const category of menuCategories) {
+      const item = category.items.find(i => i.id === productId);
+      if (item) {
+        suggestions.push(item);
+        break;
+      }
     }
   }
   
-  return suggestions.slice(0, 6);
+  // Se non ci sono abbastanza prodotti, fallback alle categorie
+  if (suggestions.length < 6) {
+    const targetCategories = ["bevande", "dolci", "contorni"];
+    for (const category of menuCategories) {
+      if (targetCategories.includes(category.id)) {
+        for (const item of category.items) {
+          if (!suggestions.find(s => s.id === item.id)) {
+            suggestions.push(item);
+          }
+        }
+      }
+    }
+  }
+  
+  return suggestions.slice(0, 9); // Mostra max 9 prodotti
 }
 
 // Validate Italian phone number
