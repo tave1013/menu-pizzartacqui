@@ -136,7 +136,7 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
               {info.deliverooUrl && (
                 <Button
                   asChild
-                  className="bg-[#00CCBC] hover:bg-[#00b8a9] text-white font-semibold"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
                 >
                   <a href={info.deliverooUrl} target="_blank" rel="noopener noreferrer">
                     <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -148,7 +148,7 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
               )}
               <Button
                 variant="outline"
-                className="font-semibold"
+                 className="font-semibold hover:bg-primary hover:border-primary hover:text-primary-foreground transition-colors"
                 onClick={() => navigate('/prenota')}
               >
                 <Calendar className="w-4 h-4 mr-2" />
@@ -162,7 +162,7 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
               className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
             >
               <Info className="w-4 h-4" />
-              Info e allergeni
+              Info e Dettagli
             </button>
           </div>
         </div>

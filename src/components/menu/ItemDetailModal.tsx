@@ -211,7 +211,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: Item
               ref={closeButtonRef}
               onClick={onClose}
               className={cn(
-                "absolute top-4 left-4 z-10",
+                "absolute top-4 left-4 z-50",
                 "w-10 h-10 rounded-full bg-card/90 backdrop-blur-sm",
                 "flex items-center justify-center",
                 "text-card-foreground hover:bg-secondary",
@@ -224,7 +224,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: Item
             </button>
 
             {/* Content */}
-            <div className={cn("overflow-y-auto flex-1", showOrderingControls && (isRestaurantOpen ? "pb-40" : "pb-28"))}>
+            <div className="overflow-y-auto flex-1">
               {/* Image / Fallback Cover */}
               <ProductCover imageUrl={item.image} name={item.name} />
 
@@ -340,10 +340,10 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: Item
             {showOrderingControls && isRestaurantOpen && (
               <div
                 className={cn(
-                  "absolute bottom-0 left-0 right-0",
+                  "flex-shrink-0",
                   "bg-card border-t border-border",
                   "p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]",
-                  "space-y-2.5"
+                  "space-y-2"
                 )}
               >
                 {/* Quantity selector */}
@@ -409,7 +409,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: Item
             {showOrderingControls && !isRestaurantOpen && (
               <div
                 className={cn(
-                  "absolute bottom-0 left-0 right-0",
+                  "flex-shrink-0",
                   "bg-card border-t border-border",
                   "p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]",
                   "text-center"

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import { motion } from "framer-motion";
 import { MenuItem } from "@/data/menuData";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -20,15 +20,34 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
-  const { items } = useCart();
+  const { items, removeItem, updateQuantity } = useCart();
   const { readOnlyMode } = useReadOnlyMode();
 
   const openState = useOptionalOpenState();
   const isRestaurantOpen = openState?.isOpen ?? true;
 
-  const quantityInCart = items
-    .filter((cartItem) => cartItem.productId === item.id)
-    .reduce((sum, cartItem) => sum + cartItem.quantity, 0);
+  // Get all cart items for this product
+  const cartItemsForProduct = items.filter((cartItem) => cartItem.productId === item.id);
+  const quantityInCart = cartItemsForProduct.reduce((sum, cartItem) => sum + cartItem.quantity, 0);
+
+  // Handle minus click - decrease quantity or remove
+  const handleMinus = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (cartItemsForProduct.length > 0) {
+      const lastItem = cartItemsForProduct[cartItemsForProduct.length - 1];
+      if (lastItem.quantity > 1) {
+        updateQuantity(lastItem.id, lastItem.quantity - 1);
+      } else {
+        removeItem(lastItem.id);
+      }
+    }
+  };
+
+  // Handle plus click - open modal to add/customize
+  const handlePlus = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onItemClick(item);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -105,19 +124,50 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
           />
 
           {(readOnlyMode || isRestaurantOpen) && (
-            <div
-              className={cn(
-                "absolute bottom-2 right-2 flex items-center justify-center rounded-full shadow-md",
-                "w-7 h-7 lg:w-9 lg:h-9",
-                quantityInCart > 0 ? "bg-primary text-primary-foreground" : "bg-white/90 backdrop-blur-sm text-primary",
-              )}
-            >
-              {quantityInCart > 0 ? (
-                <span className="text-xs font-bold">{quantityInCart}</span>
-              ) : (
+            quantityInCart > 0 ? (
+              // Show - / quantity / + controls when item is in cart
+              <div
+                className={cn(
+                  "absolute bottom-2 right-2 flex items-center gap-1 rounded-full shadow-md bg-white/95 backdrop-blur-sm",
+                  "h-7 lg:h-9 px-1"
+                )}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Minus button */}
+                <button
+                  onClick={handleMinus}
+                  className="flex items-center justify-center w-6 h-6 lg:w-7 lg:h-7 rounded-full text-primary hover:bg-primary/10 transition-colors"
+                  aria-label="Rimuovi dal carrello"
+                >
+                  <Minus className="w-3.5 h-3.5 lg:w-4 lg:h-4" strokeWidth={3} />
+                </button>
+                
+                {/* Quantity */}
+                <span className="text-xs lg:text-sm font-bold text-primary min-w-[16px] text-center">
+                  {quantityInCart}
+                </span>
+                
+                {/* Plus button */}
+                <button
+                  onClick={handlePlus}
+                  className="flex items-center justify-center w-6 h-6 lg:w-7 lg:h-7 rounded-full text-primary hover:bg-primary/10 transition-colors"
+                  aria-label="Aggiungi al carrello"
+                >
+                  <Plus className="w-3.5 h-3.5 lg:w-4 lg:h-4" strokeWidth={3} />
+                </button>
+              </div>
+            ) : (
+              // Show + button when item is not in cart
+              <div
+                className={cn(
+                  "absolute bottom-2 right-2 flex items-center justify-center rounded-full shadow-md",
+                  "w-7 h-7 lg:w-9 lg:h-9",
+                  "bg-white/90 backdrop-blur-sm text-primary",
+                )}
+              >
                 <Plus className="w-4 h-4 lg:w-5 lg:h-5" strokeWidth={3} />
-              )}
-            </div>
+              </div>
+            )
           )}
         </div>
       </button>

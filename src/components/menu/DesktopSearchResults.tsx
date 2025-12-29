@@ -45,6 +45,8 @@ export function DesktopSearchResults({
 }: DesktopSearchResultsProps) {
   const [query, setQuery] = useState(initialQuery);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+  const [showAllCategory, setShowAllCategory] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -81,6 +83,12 @@ export function DesktopSearchResults({
     });
   }, [query, activeFilters, allItems]);
 
+  // Reset selected category when query or filters change
+  useEffect(() => {
+    setSelectedCategoryId(null);
+    setShowAllCategory(false);
+  }, [query, activeFilters]);
+
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
@@ -114,9 +122,24 @@ export function DesktopSearchResults({
 
   // Suggested categories when no results
   const suggestedCategories = menuCategories.map((cat) => ({
+    id: cat.id,
     label: cat.name,
-    query: cat.name.toLowerCase(),
   }));
+
+  // Category-based results when a suggested category is selected
+  const categoryResults = useMemo(() => {
+    if (!selectedCategoryId) return [];
+    const cat = menuCategories.find((c) => c.id === selectedCategoryId);
+    const items = cat?.items ?? [];
+    return showAllCategory ? items : items.slice(0, 10);
+  }, [selectedCategoryId, showAllCategory]);
+
+  // Total items in selected category
+  const totalCategoryItems = useMemo(() => {
+    if (!selectedCategoryId) return 0;
+    const cat = menuCategories.find((c) => c.id === selectedCategoryId);
+    return cat?.items.length ?? 0;
+  }, [selectedCategoryId]);
 
   return (
     <AnimatePresence>
@@ -200,6 +223,28 @@ export function DesktopSearchResults({
                   ))}
                 </div>
               </>
+            ) : categoryResults.length > 0 ? (
+              <>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Mostro {categoryResults.length} di {totalCategoryItems} prodotti da «
+                  <span className="font-medium text-foreground">
+                    {menuCategories.find((c) => c.id === selectedCategoryId)?.name}
+                  </span>»
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {categoryResults.map((item) => (
+                    <ResultCard key={item.id} item={item} onClick={() => handleItemClick(item)} />
+                  ))}
+                </div>
+                {!showAllCategory && totalCategoryItems > 10 && (
+                  <button
+                    onClick={() => setShowAllCategory(true)}
+                    className="w-full mt-6 py-3 text-sm font-medium text-primary hover:bg-secondary/50 rounded-lg transition-colors"
+                  >
+                    Vedi tutte ({totalCategoryItems})
+                  </button>
+                )}
+              </>
             ) : query.length >= 2 || activeFilters.length > 0 ? (
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <Search className="w-16 h-16 text-muted-foreground/30 mb-4" />
@@ -212,12 +257,14 @@ export function DesktopSearchResults({
                   <div className="flex flex-wrap justify-center gap-2">
                     {suggestedCategories.map((cat) => (
                       <button
-                        key={cat.query}
-                        onClick={() => {
-                          setQuery(cat.query);
-                          onQueryChange(cat.query);
-                        }}
-                        className="px-4 py-2 rounded-full bg-secondary/80 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                        key={cat.id}
+                        onClick={() => setSelectedCategoryId(cat.id)}
+                        className={cn(
+                          "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                          selectedCategoryId === cat.id
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-secondary/80 text-foreground hover:bg-secondary"
+                        )}
                       >
                         {cat.label}
                       </button>

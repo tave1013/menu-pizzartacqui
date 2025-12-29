@@ -24,15 +24,12 @@ function getAllItems(): MenuItem[] {
   return menuCategories.flatMap((cat) => cat.items);
 }
 
-const suggestedCategories = [
-  { label: "Burgers", query: "burger" },
-  { label: "Birre", query: "birra" },
-  { label: "Dolci", query: "dolci" },
-  { label: "Contorni", query: "patatine" },
-];
+const suggestedCategories = menuCategories.map((cat) => ({ id: cat.id, label: cat.name }));
 
 export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayProps) {
   const [query, setQuery] = useState("");
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+  const [showAllCategory, setShowAllCategory] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const prefersReducedMotion = useReducedMotion();
   
@@ -48,6 +45,21 @@ export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayPro
       return normalizedName.includes(normalizedQuery) || normalizedDesc.includes(normalizedQuery);
     });
   }, [query, allItems]);
+  
+  // Category-based results when a suggested category is selected
+  const categoryResults = useMemo(() => {
+    if (!selectedCategoryId) return [];
+    const cat = menuCategories.find((c) => c.id === selectedCategoryId);
+    const items = cat?.items ?? [];
+    return showAllCategory ? items : items.slice(0, 10);
+  }, [selectedCategoryId, showAllCategory]);
+  
+  // Total items in selected category
+  const totalCategoryItems = useMemo(() => {
+    if (!selectedCategoryId) return 0;
+    const cat = menuCategories.find((c) => c.id === selectedCategoryId);
+    return cat?.items.length ?? 0;
+  }, [selectedCategoryId]);
 
   useEffect(() => {
     if (isOpen) {
@@ -80,17 +92,21 @@ export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayPro
 
   const handleClearQuery = () => {
     setQuery("");
+    setSelectedCategoryId(null);
+    setShowAllCategory(false);
     inputRef.current?.focus();
   };
 
   const handleClose = () => {
     setQuery("");
+    setSelectedCategoryId(null);
+    setShowAllCategory(false);
     onClose();
   };
 
-  const handleSuggestionClick = (suggestionQuery: string) => {
-    setQuery(suggestionQuery);
-    inputRef.current?.focus();
+  const handleSuggestionClick = (categoryId: string) => {
+    setSelectedCategoryId(categoryId);
+    setShowAllCategory(false);
   };
 
   const handleItemClick = (item: MenuItem) => {
@@ -131,7 +147,10 @@ export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayPro
                 ref={inputRef}
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setSelectedCategoryId(null);
+                }}
                 onKeyDown={handleKeyDown}
                 placeholder="Cerca nel menu…"
                 className="w-full h-10 pl-9 pr-10 rounded-full bg-secondary/60 border-0 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
@@ -153,14 +172,14 @@ export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayPro
           </div>
 
           <div className="flex-1 overflow-y-auto px-4 py-4" style={{ height: "calc(100vh - 56px - env(safe-area-inset-top) - env(safe-area-inset-bottom))" }}>
-            {query.length < 2 && (
+            {query.length < 2 && categoryResults.length === 0 && (
               <div>
                 <h2 className="text-sm font-semibold text-muted-foreground mb-3">Suggerimenti</h2>
                 <div className="flex flex-wrap gap-2">
                   {suggestedCategories.map((suggestion) => (
                     <button
-                      key={suggestion.query}
-                      onClick={() => handleSuggestionClick(suggestion.query)}
+                      key={suggestion.id}
+                      onClick={() => handleSuggestionClick(suggestion.id)}
                       className="px-4 py-2 rounded-full bg-secondary/80 text-sm font-medium text-foreground hover:bg-secondary active:bg-muted transition-colors"
                     >
                       {suggestion.label}
@@ -182,12 +201,49 @@ export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayPro
               </div>
             )}
 
-            {query.length >= 2 && results.length === 0 && (
+            {categoryResults.length > 0 && (
+              <div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Mostro {categoryResults.length} di {totalCategoryItems} prodotti da «
+                  <span className="font-medium text-foreground">{menuCategories.find((c) => c.id === selectedCategoryId)?.name}</span>»
+                </p>
+                <div className="flex flex-col divide-y divide-border/40">
+                  {categoryResults.map((item) => (
+                    <SearchResultCard
+                      key={item.id}
+                      item={item}
+                      onClick={() => handleItemClick(item)}
+                    />
+                  ))}
+                </div>
+                {!showAllCategory && totalCategoryItems > 10 && (
+                  <button
+                    onClick={() => setShowAllCategory(true)}
+                    className="w-full mt-4 py-3 text-sm font-medium text-primary hover:bg-secondary/50 rounded-lg transition-colors"
+                  >
+                    Vedi tutte ({totalCategoryItems})
+                  </button>
+                )}
+              </div>
+            )}
+
+            {query.length >= 2 && results.length === 0 && categoryResults.length === 0 && (
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <Search className="w-12 h-12 text-muted-foreground/40 mb-4" />
                 <p className="text-muted-foreground">
                   Nessun risultato per «<span className="font-medium text-foreground">{query}</span>»
                 </p>
+                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                  {suggestedCategories.map((suggestion) => (
+                    <button
+                      key={suggestion.id}
+                      onClick={() => handleSuggestionClick(suggestion.id)}
+                      className="px-4 py-2 rounded-full bg-secondary/80 text-sm font-medium text-foreground hover:bg-secondary active:bg-muted transition-colors"
+                    >
+                      {suggestion.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>

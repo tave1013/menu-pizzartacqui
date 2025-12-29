@@ -56,10 +56,15 @@ function isCurrentlyOpen(weeklyHours: DayHours[]): { isOpen: boolean; closingTim
   const now = new Date();
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
   
-  // Check each time slot
-  const slots = todayData.hours.split(",").map(s => s.trim());
+  // Check each time slot (ignore empty parts caused by trailing commas)
+  const slots = todayData.hours
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0 && s.includes("-"));
   for (const slot of slots) {
-    const [start, end] = slot.split(" - ").map(s => s.trim());
+    const parts = slot.split(" - ").map((s) => s.trim());
+    if (parts.length !== 2) continue;
+    const [start, end] = parts;
     const startMin = timeToMinutes(start);
     let endMin = timeToMinutes(end);
     
@@ -73,7 +78,9 @@ function isCurrentlyOpen(weeklyHours: DayHours[]): { isOpen: boolean; closingTim
   
   // Not open now, find next slot today or tomorrow
   for (const slot of slots) {
-    const [start] = slot.split(" - ").map(s => s.trim());
+    const parts = slot.split(" - ").map((s) => s.trim());
+    if (parts.length < 1) continue;
+    const [start] = parts;
     const startMin = timeToMinutes(start);
     if (currentMinutes < startMin) {
       return { isOpen: false, nextOpening: `Oggi ${start}` };
@@ -87,8 +94,14 @@ function isCurrentlyOpen(weeklyHours: DayHours[]): { isOpen: boolean; closingTim
     const nextDayIndex = (todayIndex + i) % 7;
     const nextDay = weeklyHours.find(d => d.day === daysOrder[nextDayIndex]);
     if (nextDay && !nextDay.closed && nextDay.hours) {
-      const firstSlot = nextDay.hours.split(",")[0].trim().split(" - ")[0];
-      return { isOpen: false, nextOpening: `${nextDay.day} ${firstSlot}` };
+      const nextSlots = nextDay.hours
+        .split(",")
+        .map((s) => s.trim())
+        .filter((s) => s.length > 0 && s.includes("-"));
+      if (nextSlots.length > 0) {
+        const firstSlot = nextSlots[0].split(" - ")[0].trim();
+        return { isOpen: false, nextOpening: `${nextDay.day} ${firstSlot}` };
+      }
     }
   }
   
@@ -233,9 +246,13 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                                 </span>
                               ) : (
                                 <div className="text-muted-foreground">
-                                  {dayData.hours.split(",").map((slot, i) => (
-                                    <div key={i}>{slot.trim()}</div>
-                                  ))}
+                                  {dayData.hours
+                                    .split(",")
+                                    .map((slot) => slot.trim())
+                                    .filter((slot) => slot.length > 0)
+                                    .map((slot, i) => (
+                                      <div key={i}>{slot}</div>
+                                    ))}
                                 </div>
                               )}
                             </td>

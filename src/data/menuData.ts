@@ -110,7 +110,7 @@ export const restaurantInfo: RestaurantInfo = {
   heroImage: "",
   openingHours: "18:00 - 22:30",
   weeklyHours: [
-    { day: "Lunedì", hours: "18:30 - 22:30," },
+    { day: "Lunedì", hours: "12:30 - 22:30" },
     { day: "Martedì", hours: "", closed: true },
     { day: "Mercoledì", hours: "18:30 - 22:30," },
     { day: "Giovedì", hours: "18:30 - 22:30," },
@@ -120,7 +120,7 @@ export const restaurantInfo: RestaurantInfo = {
   ],
   deliveryTime: "25-40 min",
   deliverooUrl: "https://deliveroo.it/it/menu/Alessandria/acqui-terme/pizzart-acqui-terme/?geohash=spyn0tjdewgp",
-  bookingPhone: "+39 333 1234567",
+  bookingPhone: "+39 3914272540",
   phone: "+39 0144 123456",
   email: "info@pizzartacquiterme.com",
   facebookUrl: "https://www.facebook.com/profile.php?id=100083643546473",
@@ -142,7 +142,7 @@ export const menuCategories: Category[] = [
         image: margheritaImg,
         dietaryTags: ["vegetarian"],
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "caronte",
@@ -153,7 +153,7 @@ export const menuCategories: Category[] = [
         allergens: ["Glutine", "Lattosio"],
         featured: true,
         featuredOrder: 1,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it", whatsapp: "+39 333 1234567" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
         id: "insuperabile",
@@ -164,7 +164,7 @@ export const menuCategories: Category[] = [
         allergens: ["Glutine", "Lattosio"],
         featured: true,
         featuredOrder: 2,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it", whatsapp: "+39 333 1234567" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
         id: "ai-formagi",
@@ -176,7 +176,7 @@ export const menuCategories: Category[] = [
         dietaryTags: ["vegetarian"],
         featured: true,
         featuredOrder: 3,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it", whatsapp: "+39 333 1234567" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
         id: "la-regina",
@@ -186,7 +186,7 @@ export const menuCategories: Category[] = [
         image: reginaImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "la-tonnara",
@@ -197,7 +197,7 @@ export const menuCategories: Category[] = [
         allergens: ["Glutine", "Lattosio", "Pesce"],
         featured: true,
         featuredOrder: 4,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "raffinata",
@@ -206,7 +206,7 @@ export const menuCategories: Category[] = [
         price: 16.5,
         image: raffinataImg,
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "stracciata",
@@ -216,7 +216,7 @@ export const menuCategories: Category[] = [
         image: "",
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "vegana",
@@ -226,7 +226,7 @@ export const menuCategories: Category[] = [
         image: "",
         allergens: ["Glutine"],
         dietaryTags: ["vegan"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "anciova",
@@ -235,7 +235,7 @@ export const menuCategories: Category[] = [
         price: 13.0,
         image: anciovaImg,
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },
@@ -250,7 +250,7 @@ export const menuCategories: Category[] = [
         desc: "Pomodoro, crema di pomodori secchi, cipolle di Tropea, burrata, acciughe del Cantabrico, olive, intingolo d'aglio, origano, basilico",
         price: 21.0,
         image: monetImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
         allergens: ["Glutine", "Lattosio", "Pesce"],
       },
       {
@@ -262,7 +262,7 @@ export const menuCategories: Category[] = [
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
         featured: true,
         featuredOrder: 5,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "renoir",
@@ -273,7 +273,7 @@ export const menuCategories: Category[] = [
         allergens: ["Glutine", "Lattosio"],
         featured: true,
         featuredOrder: 6,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "chagal",
@@ -282,7 +282,7 @@ export const menuCategories: Category[] = [
         price: 18.0,
         image: chagallImg,
         allergens: ["Glutine", "Lattosio", "Uova"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "cimabue",
@@ -291,7 +291,7 @@ export const menuCategories: Category[] = [
         price: 17.0,
         image: cimabueImg,
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "van-gogh",
@@ -300,7 +300,7 @@ export const menuCategories: Category[] = [
         price: 18.0,
         image: vanGoghImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "dali",
@@ -310,7 +310,7 @@ export const menuCategories: Category[] = [
         image: daliImg,
         dietaryTags: ["vegetarian"],
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "michelangelo",
@@ -322,7 +322,7 @@ export const menuCategories: Category[] = [
         dietaryTags: ["vegetarian"],
         featured: true,
         featuredOrder: 7,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "da-vinci",
@@ -331,7 +331,7 @@ export const menuCategories: Category[] = [
         price: 19.0,
         image: daVinciImg,
         allergens: ["Glutine", "Lattosio", "Crostacei"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },
@@ -346,7 +346,7 @@ export const menuCategories: Category[] = [
         price: 14.5,
         image: sfiziosaImg,
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "zena",
@@ -356,7 +356,7 @@ export const menuCategories: Category[] = [
         image: zenaImg,
         dietaryTags: ["vegetarian"],
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "focaccia-bianca",
@@ -366,7 +366,7 @@ export const menuCategories: Category[] = [
         image: "",
         dietaryTags: ["vegetarian"],
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },
@@ -382,7 +382,7 @@ export const menuCategories: Category[] = [
         price: 12.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "bismark",
@@ -391,7 +391,7 @@ export const menuCategories: Category[] = [
         price: 12.0,
         image: "",
         allergens: ["Glutine", "Lattosio", "Uova"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "calzone",
@@ -400,7 +400,7 @@ export const menuCategories: Category[] = [
         price: 10.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "capricciosa",
@@ -409,7 +409,7 @@ export const menuCategories: Category[] = [
         price: 13.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "gorgonzola",
@@ -418,7 +418,7 @@ export const menuCategories: Category[] = [
         price: 10.0,
         image: gorgoImg,
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "contadina",
@@ -427,7 +427,7 @@ export const menuCategories: Category[] = [
         price: 14.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "crudo",
@@ -436,7 +436,7 @@ export const menuCategories: Category[] = [
         price: 12.0,
         image: crudoImg,
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "marinara",
@@ -445,7 +445,7 @@ export const menuCategories: Category[] = [
         price: 6.5,
         image: marinataImg,
         allergens: ["Glutine"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "la-piemontese",
@@ -454,7 +454,7 @@ export const menuCategories: Category[] = [
         price: 12.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "panna-speck",
@@ -463,7 +463,7 @@ export const menuCategories: Category[] = [
         price: 12.0,
         image: "",
         allergens: ["Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "prosciutto-funghi",
@@ -472,7 +472,7 @@ export const menuCategories: Category[] = [
         price: 11.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "pugliese",
@@ -481,7 +481,7 @@ export const menuCategories: Category[] = [
         price: 10.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "siciliana",
@@ -490,7 +490,7 @@ export const menuCategories: Category[] = [
         price: 13.0,
         image: "",
         allergens: ["Glutine", "Lattosio", "Pesce"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "vegetariana",
@@ -500,7 +500,7 @@ export const menuCategories: Category[] = [
         image: "",
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "napoli",
@@ -509,7 +509,7 @@ export const menuCategories: Category[] = [
         price: 10.0,
         image: "",
         allergens: ["Glutine", "Lattosio", "Pesce"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "patatine",
@@ -518,7 +518,7 @@ export const menuCategories: Category[] = [
         price: 10.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "wurstel-patatine",
@@ -527,7 +527,7 @@ export const menuCategories: Category[] = [
         price: 13.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "salsiccia",
@@ -536,7 +536,7 @@ export const menuCategories: Category[] = [
         price: 11.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "speck-brie",
@@ -545,7 +545,7 @@ export const menuCategories: Category[] = [
         price: 12.0,
         image: speckBrieImg,
         allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "vegana-classica",
@@ -555,7 +555,7 @@ export const menuCategories: Category[] = [
         image: "",
         allergens: ["Glutine"],
         dietaryTags: ["vegan"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "margherita-classica",
@@ -565,7 +565,7 @@ export const menuCategories: Category[] = [
         image: margheritaImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "ai-formaggi-classica",
@@ -575,7 +575,7 @@ export const menuCategories: Category[] = [
         image: aiformaggiImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },
@@ -591,7 +591,7 @@ export const menuCategories: Category[] = [
         price: 6.0,
         image: burgerClassico,
         allergens: ["Glutine", "Lattosio", "Uova"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "gelato",
@@ -601,7 +601,7 @@ export const menuCategories: Category[] = [
         image: patatine,
         allergens: ["Lattosio", "Frutta a guscio"],
         dietaryTags: ["gluten-free"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },*/
@@ -615,7 +615,7 @@ export const menuCategories: Category[] = [
         desc: "Lattina 33 cl",
         price: 4.0,
         image: cocaZeroImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "coca",
@@ -623,7 +623,7 @@ export const menuCategories: Category[] = [
         desc: "Lattina 33 cl",
         price: 4.0,
         image: cocaImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "estath-limone",
@@ -631,7 +631,7 @@ export const menuCategories: Category[] = [
         desc: "Lattina 33 cl",
         price: 4.0,
         image: theLinoneImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "fanta",
@@ -639,7 +639,7 @@ export const menuCategories: Category[] = [
         desc: "Lattina 33 cl",
         price: 4.0,
         image: fantaImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "acqua-naturale",
@@ -647,7 +647,7 @@ export const menuCategories: Category[] = [
         desc: "Bottiglietta da 0,5 cl",
         price: 1.5,
         image: acquaNaturaleImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "acqua-frizzante",
@@ -655,7 +655,7 @@ export const menuCategories: Category[] = [
         desc: "Bottiglietta da 0,5 cl",
         price: 1.5,
         image: acquaGasataImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "estath-pesca",
@@ -663,7 +663,7 @@ export const menuCategories: Category[] = [
         desc: "Lattina 33 cl",
         price: 4.0,
         image: thePescaImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "sprite",
@@ -671,7 +671,7 @@ export const menuCategories: Category[] = [
         desc: "Lattina 33 cl",
         price: 4.0,
         image: spriteImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },
@@ -685,7 +685,7 @@ export const menuCategories: Category[] = [
         desc: "33 cl",
         price: 4.5,
         image: menabreaImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "tuborg",
@@ -693,7 +693,7 @@ export const menuCategories: Category[] = [
         desc: "66 cl",
         price: 5.5,
         image: tuborgenImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "ichnusa-non-filtrata",
@@ -701,7 +701,7 @@ export const menuCategories: Category[] = [
         desc: "33 cl",
         price: 4.5,
         image: ichnusaImg,
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "birra-senza-glutine",
@@ -711,7 +711,7 @@ export const menuCategories: Category[] = [
         image: "",
         allergens: [],
         dietaryTags: ["gluten-free"],
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "birra-analcolica",
@@ -719,7 +719,7 @@ export const menuCategories: Category[] = [
         desc: "33 cl",
         price: 5.0,
         image: "",
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },
@@ -733,7 +733,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso piemontese",
         price: 35.0,
         image: "",
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "arneis-tonino",
@@ -741,7 +741,7 @@ export const menuCategories: Category[] = [
         desc: "Vino bianco piemontese",
         price: 28.0,
         image: "",
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "barbera-boidina",
@@ -749,7 +749,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso",
         price: 28.0,
         image: "",
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "barbera-cascina-castlet",
@@ -757,7 +757,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso",
         price: 34.0,
         image: "",
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "spumante-orsola",
@@ -765,7 +765,7 @@ export const menuCategories: Category[] = [
         desc: "Spumante",
         price: 18.0,
         image: "",
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "ribolla-gialla",
@@ -773,7 +773,7 @@ export const menuCategories: Category[] = [
         desc: "Vino bianco",
         price: 26.0,
         image: "",
-        contact: { tel: "+39 333 1234567", mail: "info@newcastlepub.it" },
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
   },
