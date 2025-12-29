@@ -128,7 +128,7 @@ export const restaurantInfo: RestaurantInfo = {
   facebookName: "PizzArt",
   instagramUrl: "https://www.instagram.com/pizzartacquiterme/",
   instagramHandle: "@pizzartacquiterme",
-  googleBusinessUrl: "https://g.page/pizzart-acqui-terme",
+  googleBusinessUrl: "https://www.google.com/search?q=pizzart+acqui+terme",
 };
 
 export const menuCategories: Category[] = [
