@@ -31,6 +31,7 @@ const Index = () => {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [editingCartItem, setEditingCartItem] = useState<CartItem | null>(null);
+  const [editingFromCart, setEditingFromCart] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -54,17 +55,24 @@ const Index = () => {
     setSelectedItem(item);
     setSelectedCategoryId(categoryId || null);
     setEditingCartItem(null);
+    setEditingFromCart(false);
   };
 
   const handleCloseModal = () => {
     setSelectedItem(null);
     setSelectedCategoryId(null);
     setEditingCartItem(null);
+    // Se stava modificando dal carrello, riapri il carrello
+    if (editingFromCart) {
+      setIsCartOpen(true);
+      setEditingFromCart(false);
+    }
   };
 
   const handleEditCartItem = (item: MenuItem, cartItem: CartItem) => {
     setSelectedItem(item);
     setEditingCartItem(cartItem);
+    setEditingFromCart(true);
     setIsCartOpen(false);
   };
 
