@@ -46,7 +46,7 @@ export function Footer() {
       "bg-card border-t border-border mt-auto",
       hasCartBar && "pb-20" // Padding extra quando c'è la barra carrello
     )}>
-      <div className="container py-8 lg:py-12">
+      <div className="container py-6 lg:py-12">
         {/* Grid principale */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           

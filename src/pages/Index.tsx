@@ -150,7 +150,7 @@ const Index = () => {
 
           <CategoryNav categories={menuCategories} activeCategory={activeCategory} onCategoryClick={() => {}} />
 
-          <main className={`container py-6 space-y-8 ${totalItems > 0 ? "pb-28" : ""}`}>
+          <main className={`container py-6 pb-4 space-y-8 ${totalItems > 0 ? "pb-24" : ""}`}>
             {menuCategories.map((category) => (
               <MenuSection key={category.id} category={category} onItemClick={handleItemClick} />
             ))}
