@@ -693,8 +693,10 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                   
                   <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-2">
                     {suggestedItems.map((item) => {
-                      // Trova se questo prodotto è già nel carrello
-                      const cartItem = items.find(ci => ci.productId === item.id);
+                      // Trova se questo prodotto è già nel carrello (senza ingredienti rimossi)
+                      // L'ID per prodotti dall'upsell è `productId-` (array vuoto)
+                      const upsellCartId = `${item.id}-`;
+                      const cartItem = items.find(ci => ci.id === upsellCartId);
                       const quantityInCart = cartItem?.quantity || 0;
                       
                       return (
