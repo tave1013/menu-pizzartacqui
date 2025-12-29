@@ -43,7 +43,7 @@ function ProductCover({ imageUrl, name }: { imageUrl: string; name: string }) {
           alt={name}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain bg-gray-50"
           onError={() => setImgError(true)}
         />
       )}
@@ -261,9 +261,9 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             className={cn(
               "relative w-full",
-              // Mobile: in read-only mode modale più piccolo (80vh), altrimenti fullscreen
+              // Mobile: in read-only mode modale più piccolo (75vh), altrimenti fullscreen
               readOnlyMode 
-                ? "h-[80vh] max-h-[80vh] rounded-t-2xl" 
+                ? "h-[75vh] max-h-[75vh] rounded-t-2xl" 
                 : "h-[100dvh] max-h-[100dvh] rounded-t-2xl",
               // Desktop: dimensioni contenute
               "sm:h-auto sm:max-h-[85vh] sm:max-w-[720px] lg:max-w-[840px] sm:rounded-2xl",
