@@ -146,7 +146,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
         setRemovedIngredients(new Set());
       }
     }
-  }, [isOpen, item?.id, editingCartItem]);
+  }, [isOpen, item, editingCartItem]);
 
   // Focus trap and escape key
   useEffect(() => {
@@ -280,7 +280,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold text-card-foreground mb-2">
                     {item.name}
                   </h2>
-                  <p className="text-base sm:text-base text-muted-foreground mb-3">
+                  <p className="text-muted-foreground mb-3">
                     {item.desc}
                   </p>
                   <DietaryBadges tags={item.dietaryTags} isHalal={item.isHalal} isLactoseFree={item.isLactoseFree} size="md" className="mb-3" />
@@ -288,7 +288,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
                 {/* Contact Box */}
                 <div className="bg-secondary/50 rounded-xl p-4">
-                  <p className="text-base sm:text-sm text-muted-foreground mb-3">
+                  <p className="text-sm text-muted-foreground mb-3">
                     Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
                     <a
                       href={`tel:${item.contact.tel}`}
@@ -302,7 +302,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                 {/* Remove Ingredients Section - only in order mode when open */}
                 {showOrderingControls && isRestaurantOpen && ingredients.length > 0 && (
                   <div>
-                    <h3 className="text-xl sm:text-lg font-bold text-card-foreground mb-4">
+                    <h3 className="text-lg font-bold text-card-foreground mb-4">
                       Rimuovi Ingredienti da {item.name}
                     </h3>
                     <div className="border-t border-border">
@@ -317,13 +317,13 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                               "flex items-center justify-between",
                               "py-4 px-2 -mx-2 border-b border-border",
                               "cursor-pointer select-none",
-                              "min-h-[60px]",
+                              "min-h-[56px]",
                               "rounded-lg transition-colors duration-160",
                               "hover:bg-secondary/50 active:bg-secondary/70",
                               isRemoved && "bg-secondary/30"
                             )}
                           >
-                            <span className="text-base sm:text-base text-card-foreground flex-1">
+                            <span className="text-card-foreground flex-1">
                               No {ingredient}
                             </span>
                             <input
@@ -336,7 +336,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                             />
                             <div
                               className={cn(
-                                "w-7 h-7 sm:w-6 sm:h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
+                                "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
                                 isRemoved
                                   ? "bg-primary border-primary"
                                   : "border-border"

@@ -43,7 +43,7 @@ const MenuBase = () => {
         setIsDesktopSearchOpen(true);
       }
     }
-  }, []);
+  }, [searchQuery]);
 
   // Redirect if trying to access cart/thank you pages from base mode
   useEffect(() => {

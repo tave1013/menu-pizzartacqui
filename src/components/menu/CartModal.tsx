@@ -103,7 +103,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-border">
-              <h2 id="cart-modal-title" className="text-xl sm:text-xl font-bold text-card-foreground">
+              <h2 id="cart-modal-title" className="text-xl font-bold text-card-foreground">
                 Il tuo ordine ({totalItems})
               </h2>
               <button
@@ -145,25 +145,25 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
 
                     {/* Details */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-card-foreground text-base truncate">
+                      <h3 className="font-semibold text-card-foreground truncate">
                         {item.name}
                       </h3>
                       {item.removedIngredients.length > 0 && (
-                        <p className="text-sm text-muted-foreground mt-0.5">
+                        <p className="text-xs text-muted-foreground mt-0.5">
                           {item.removedIngredients.map((i) => `No ${i}`).join(" • ")}
                         </p>
                       )}
-                      <p className="text-base font-medium text-primary mt-1">
+                      <p className="text-sm font-medium text-primary mt-1">
                         {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
 
                     {/* Quantity controls */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handleQuantityChange(item, -1)}
                         className={cn(
-                          "w-8 h-8 rounded-full",
+                          "w-7 h-7 rounded-full",
                           "flex items-center justify-center",
                           "border border-border",
                           "text-card-foreground hover:bg-secondary",
@@ -171,15 +171,15 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                         )}
                         aria-label="Riduci quantità"
                       >
-                        <Minus className="w-4 h-4" />
+                        <Minus className="w-3.5 h-3.5" />
                       </button>
-                      <span className="w-6 text-center text-base font-semibold text-card-foreground">
+                      <span className="w-5 text-center text-sm font-medium text-card-foreground">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() => handleQuantityChange(item, 1)}
                         className={cn(
-                          "w-8 h-8 rounded-full",
+                          "w-7 h-7 rounded-full",
                           "flex items-center justify-center",
                           "bg-primary text-primary-foreground",
                           "hover:bg-primary/90",
@@ -187,7 +187,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                         )}
                         aria-label="Aumenta quantità"
                       >
-                        <Plus className="w-4 h-4" />
+                        <Plus className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
@@ -197,12 +197,12 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
 
             {/* Footer */}
             {items.length > 0 && (
-              <div className="border-t border-border p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] space-y-2">
+              <div className="border-t border-border p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold text-card-foreground">Totale</span>
-                  <span className="text-xl font-bold text-primary">{formatPrice(totalPrice)}</span>
+                  <span className="text-base font-semibold text-card-foreground">Totale</span>
+                  <span className="text-lg font-bold text-primary">{formatPrice(totalPrice)}</span>
                 </div>
-                <p className="text-center text-sm text-muted-foreground">
+                <p className="text-center text-xs text-muted-foreground">
                   Menu di consultazione – nessun acquisto online
                 </p>
               </div>

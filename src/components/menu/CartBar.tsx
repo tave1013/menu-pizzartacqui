@@ -49,19 +49,19 @@ export function CartBar({ onViewCart }: CartBarProps) {
               <span
                 className={cn(
                   "flex items-center justify-center",
-                  "w-7 h-7 rounded-md",
+                  "w-6 h-6 rounded-md",
                   "bg-primary-foreground/20 text-primary-foreground",
-                  "text-sm font-bold"
+                  "text-xs font-bold"
                 )}
               >
                 {totalItems}
               </span>
 
-              <span className="text-base font-semibold">
+              <span className="text-sm font-semibold">
                 Vedi carrello
               </span>
 
-              <span className="text-base font-bold">
+              <span className="text-sm font-bold">
                 {formatPrice(totalPrice)}
               </span>
             </button>
