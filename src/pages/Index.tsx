@@ -1,6 +1,4 @@
 import { useState, lazy, Suspense, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Eye } from "lucide-react";
 import { restaurantInfo, menuCategories, MenuItem } from "@/data/menuData";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useQueryParam } from "@/hooks/useQueryParam";
@@ -21,6 +19,7 @@ import { InfoModal } from "@/components/menu/InfoModal";
 import { ClosedBanner } from "@/components/menu/ClosedBanner";
 import { ClosedPopup } from "@/components/menu/ClosedPopup";
 import { FeaturedCarousel } from "@/components/menu/FeaturedCarousel";
+import { Footer } from "@/components/menu/Footer";
 
 const ItemDetailModal = lazy(() =>
   import("@/components/menu/ItemDetailModal").then((mod) => ({
@@ -42,8 +41,6 @@ const Index = () => {
   const { language } = useLanguage();
   const categoryIds = menuCategories.map((cat) => cat.id);
   const activeCategory = useScrollSpy(categoryIds, 140);
-
-  const baseMenuLink = `/menu-base?lang=${language}`;
 
   useEffect(() => {
     if (searchQuery && searchQuery.length >= 2) {
@@ -145,23 +142,9 @@ const Index = () => {
             {menuCategories.map((category) => (
               <MenuSection key={category.id} category={category} onItemClick={handleItemClick} />
             ))}
-
-            <footer className="text-center py-8 border-t border-border">
-              <p className="text-sm text-muted-foreground mb-3">
-                Menu di consultazione – Per ordinare visita il locale o contattaci
-              </p>
-              <Link
-                to={baseMenuLink}
-                className="inline-flex items-center gap-2 text-xs text-muted-foreground/70 hover:text-muted-foreground transition-colors"
-              >
-                <Eye className="w-3 h-3" />
-                Vedi versione base
-              </Link>
-              <p className="text-xs text-muted-foreground mt-3">
-                © {new Date().getFullYear()} {restaurantInfo.name}
-              </p>
-            </footer>
           </main>
+
+          <Footer />
 
           <Suspense fallback={null}>
             <ItemDetailModal

@@ -1,6 +1,5 @@
 import { useState, lazy, Suspense, useRef, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Eye } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { restaurantInfo, menuCategories, MenuItem } from "@/data/menuData";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useQueryParam } from "@/hooks/useQueryParam";
@@ -15,6 +14,7 @@ import { DesktopHeader } from "@/components/menu/DesktopHeader";
 import { DesktopSearchResults } from "@/components/menu/DesktopSearchResults";
 import { InfoModal } from "@/components/menu/InfoModal";
 import { FeaturedCarousel } from "@/components/menu/FeaturedCarousel";
+import { Footer } from "@/components/menu/Footer";
 
 const ItemDetailModal = lazy(() =>
   import("@/components/menu/ItemDetailModal").then((mod) => ({
@@ -98,8 +98,6 @@ const MenuBase = () => {
     setSearchQuery("", true);
   };
 
-  const fullMenuLink = `/?lang=${language}`;
-
   return (
     <ReadOnlyModeProvider readOnly={true}>
       <div className="min-h-screen bg-background">
@@ -160,23 +158,9 @@ const MenuBase = () => {
               onItemClick={handleItemClick}
             />
           ))}
-
-          <footer className="text-center py-8 border-t border-border">
-            <p className="text-sm text-muted-foreground mb-4">
-              Menu di sola consultazione
-            </p>
-            <Link
-              to={fullMenuLink}
-              className="inline-flex items-center gap-2 text-sm font-medium text-link hover:underline"
-            >
-              <Eye className="w-4 h-4" />
-              Passa alla versione completa
-            </Link>
-            <p className="text-xs text-muted-foreground mt-4">
-              © {new Date().getFullYear()} {restaurantInfo.name}
-            </p>
-          </footer>
         </main>
+
+        <Footer />
 
         <Suspense fallback={null}>
           <ItemDetailModal

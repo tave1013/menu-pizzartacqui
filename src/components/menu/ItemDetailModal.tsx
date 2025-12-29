@@ -190,14 +190,10 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
       // Remove old item and add updated one
       removeItem(editingCartItem.id);
       addItem(item, quantity, Array.from(removedIngredients));
-      toast({
-        title: "Ordine aggiornato",
-      });
+      // Rimosso toast per UX più fluida
     } else {
       addItem(item, quantity, Array.from(removedIngredients));
-      toast({
-        title: "Aggiunto all'ordine",
-      });
+      // Rimosso toast per UX più fluida
     }
     onClose();
   };
