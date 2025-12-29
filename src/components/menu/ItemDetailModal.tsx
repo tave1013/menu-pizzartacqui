@@ -216,7 +216,10 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+          className={cn(
+            "fixed inset-0 z-50 flex justify-center",
+            readOnlyMode ? "items-center" : "items-end sm:items-center"
+          )}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -242,11 +245,13 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             className={cn(
               "relative w-full",
-              // Mobile: schermo intero con safe-area
-              "h-[100dvh] max-h-[100dvh]",
+              // Mobile: in read-only mode modale più piccolo, altrimenti fullscreen
+              readOnlyMode 
+                ? "h-auto max-h-[70vh] rounded-2xl mx-4" 
+                : "h-[100dvh] max-h-[100dvh] rounded-t-2xl",
               // Desktop: dimensioni contenute
-              "sm:h-auto sm:max-h-[85vh] sm:max-w-[720px] lg:max-w-[840px]",
-              "bg-card rounded-t-2xl sm:rounded-2xl shadow-modal",
+              "sm:h-auto sm:max-h-[85vh] sm:max-w-[720px] lg:max-w-[840px] sm:rounded-2xl sm:mx-0",
+              "bg-card shadow-modal",
               "flex flex-col overflow-hidden"
             )}
           >
