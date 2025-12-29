@@ -39,10 +39,7 @@ export function Footer() {
   const hasCartBar = totalItems > 0;
   
   // Costruisci URL Google Maps
-  const mapsUrl = restaurantInfo.googleMapsUrl
-    || (restaurantInfo.coordinates 
-      ? `https://www.google.com/maps?q=${restaurantInfo.coordinates.lat},${restaurantInfo.coordinates.lng}`
-      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurantInfo.address)}`);
+  const mapsUrl = restaurantInfo.googleMapsUrl || `https://maps.google.com/?cid=6898912612804395203`;
 
   return (
     <footer className={cn(

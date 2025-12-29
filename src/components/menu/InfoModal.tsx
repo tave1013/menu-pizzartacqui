@@ -142,10 +142,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
     visible: { opacity: 1, scale: 1 },
   };
 
-  const googleMapsUrl = restaurantInfo.googleMapsUrl 
-    || (restaurantInfo.coordinates 
-      ? `https://www.google.com/maps/search/?api=1&query=${restaurantInfo.coordinates.lat},${restaurantInfo.coordinates.lng}`
-      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurantInfo.address)}`);
+  const googleMapsUrl = restaurantInfo.googleMapsUrl || `https://maps.google.com/?cid=6898912612804395203`;
 
   return (
     <AnimatePresence>
