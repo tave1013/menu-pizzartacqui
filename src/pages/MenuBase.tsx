@@ -143,7 +143,7 @@ const MenuBase = () => {
         </div>
 
         {/* Google Reviews Banner */}
-        <ReviewBanner className="mt-6" />
+        <ReviewBanner className="mt-4 mb-2" />
 
         {/* Featured Section - I più amati */}
         <FeaturedCarousel onItemClick={handleItemClick} />
