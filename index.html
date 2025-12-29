@@ -17,6 +17,51 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <link rel="icon" type="image/png" href="/favicon-pizzart.png" />
+    
+    <!-- Google Translate - UI nascosta, traduzione attiva -->
+    <style>
+      /* Nascondi la barra e UI di Google Translate */
+      .goog-te-banner-frame,
+      #goog-gt-tt,
+      .goog-te-balloon-frame,
+      .goog-te-menu-frame,
+      .goog-te-spinner-pos,
+      .goog-tooltip,
+      .goog-tooltip:hover,
+      .skiptranslate:not(#google_translate_element),
+      .goog-te-gadget,
+      .goog-te-gadget-simple {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        position: absolute !important;
+        top: -9999px !important;
+      }
+      
+      /* CRITICO: body sempre in posizione corretta */
+      body {
+        top: 0 !important;
+        position: relative !important;
+      }
+      
+      /* Rimuovi evidenziazione testo tradotto */
+      .goog-text-highlight {
+        background: none !important;
+        box-shadow: none !important;
+      }
+      
+      /* Font tags non devono alterare lo stile */
+      font { 
+        font-family: inherit !important;
+        background-color: transparent !important;
+      }
+      
+      /* Fix margini html tradotto */
+      html.translated-ltr,
+      html.translated-rtl {
+        margin-top: 0 !important;
+      }
+    </style>
   </head>
 
   <body>

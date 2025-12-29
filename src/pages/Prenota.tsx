@@ -428,7 +428,7 @@ export default function Prenota() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col notranslate" translate="no">
       {/* Pending booking modal */}
       <Dialog open={showPendingModal} onOpenChange={setShowPendingModal}>
         <DialogContent className="sm:max-w-md">
