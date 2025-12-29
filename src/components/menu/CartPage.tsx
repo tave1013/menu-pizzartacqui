@@ -691,7 +691,9 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                     Altri clienti hanno ordinato anche
                   </h2>
                   
-                  <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide pl-4 pr-4">
+                  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                    {/* Spacer sinistro */}
+                    <div className="w-4 flex-shrink-0" />
                     {suggestedItems.map((item) => {
                       // Trova se questo prodotto è già nel carrello
                       const cartItem = items.find(ci => ci.productId === item.id);
@@ -700,22 +702,22 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                       return (
                         <div
                           key={item.id}
-                          className="flex flex-col flex-shrink-0 w-36 snap-start bg-card rounded-xl overflow-hidden"
+                          className="flex flex-col flex-shrink-0 w-[144px] bg-card rounded-xl overflow-hidden"
                         >
                           <ProductImage
                             src={item.image}
                             alt={item.name}
                             className="w-full aspect-square"
                           />
-                          <div className="p-2">
+                          <div className="p-2 min-h-[72px]">
                             <p className="text-sm font-medium text-foreground truncate">{item.name}</p>
-                            <div className="flex items-center justify-between mt-1">
-                              <span className="text-sm font-semibold text-primary">
+                            <div className="flex items-center justify-between mt-1 h-7">
+                              <span className="text-sm font-semibold text-primary flex-shrink-0">
                                 {formatPrice(item.price)}
                               </span>
                               
                               {quantityInCart > 0 ? (
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-1 flex-shrink-0">
                                   <button
                                     onClick={() => {
                                       if (quantityInCart === 1) {
@@ -758,7 +760,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                                 <button
                                   onClick={() => handleAddUpsell(item)}
                                   className={cn(
-                                    "w-7 h-7 rounded-full",
+                                    "w-7 h-7 rounded-full flex-shrink-0",
                                     "flex items-center justify-center",
                                     "bg-primary text-primary-foreground",
                                     "hover:bg-primary/90",
@@ -774,6 +776,8 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                         </div>
                       );
                     })}
+                    {/* Spacer destro */}
+                    <div className="w-4 flex-shrink-0" />
                   </div>
                 </section>
               )}
