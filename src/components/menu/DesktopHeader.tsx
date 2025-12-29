@@ -153,11 +153,6 @@ export function DesktopHeader({
               autoCorrect="off"
               spellCheck={false}
             />
-            {!isFocused && query.length === 0 && (
-              <div className="absolute right-12 flex items-center gap-1 text-xs text-muted-foreground">
-                <kbd className="px-1.5 py-0.5 rounded bg-muted text-muted-foreground font-mono">/</kbd>
-              </div>
-            )}
             {query.length > 0 && (
               <button
                 onClick={handleClear}
