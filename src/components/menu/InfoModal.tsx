@@ -177,7 +177,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-5 pb-0 flex-shrink-0">
-              <h2 id="info-modal-title" className="text-lg font-bold text-card-foreground">
+              <h2 id="info-modal-title" className="text-xl font-bold text-card-foreground">
                 Informazioni su {restaurantInfo.name}
               </h2>
               <button
@@ -203,8 +203,8 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
               <section>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-muted-foreground" />
-                    <h3 className="font-semibold text-card-foreground">Orari</h3>
+                    <Clock className="w-5 h-5 text-muted-foreground" />
+                    <h3 className="text-base font-semibold text-card-foreground">Orari</h3>
                   </div>
                   {/* Open/Closed Status Badge */}
                   {openStatus.isOpen ? (
@@ -221,7 +221,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                 
                 {/* Weekly Hours Table */}
                 <div className="bg-secondary/30 rounded-xl overflow-hidden">
-                  <table className="w-full text-sm">
+                  <table className="w-full text-base">
                     <tbody>
                       {restaurantInfo.weeklyHours.map((dayData) => {
                         const isToday = dayData.day === getTodayDayName();
@@ -269,8 +269,8 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
               {(restaurantInfo.phone || restaurantInfo.email || restaurantInfo.facebookUrl || restaurantInfo.instagramUrl) && (
                 <section>
                   <div className="flex items-center gap-2 mb-3">
-                    <Phone className="w-4 h-4 text-muted-foreground" />
-                    <h3 className="font-semibold text-card-foreground">Contatti</h3>
+                    <Phone className="w-5 h-5 text-muted-foreground" />
+                    <h3 className="text-base font-semibold text-card-foreground">Contatti</h3>
                   </div>
                   
                   <div className="space-y-2">

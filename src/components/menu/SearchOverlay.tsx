@@ -282,10 +282,10 @@ function SearchResultCard({ item, onClick }: SearchResultCardProps) {
 
       <div className="flex-1 min-w-0 flex flex-col justify-between h-[72px] md:h-24">
         <div>
-          <h3 className="text-sm font-semibold text-card-foreground line-clamp-2 leading-tight">
+          <h3 className="text-base font-semibold text-card-foreground line-clamp-2 leading-tight">
             {item.name}
           </h3>
-          <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
+          <p className="text-sm text-muted-foreground line-clamp-1 mt-0.5">
             {item.desc}
           </p>
         </div>
@@ -297,14 +297,14 @@ function SearchResultCard({ item, onClick }: SearchResultCardProps) {
                 <DietaryBadge key={tag} tag={tag} size="sm" />
               ))}
               {extraCount > 0 && (
-                <span className="text-[10px] text-muted-foreground font-medium px-1.5 py-0.5 bg-secondary rounded-md">
+                <span className="text-xs text-muted-foreground font-medium px-1.5 py-0.5 bg-secondary rounded-md">
                   +{extraCount}
                 </span>
               )}
             </div>
           )}
           
-          <p className="text-sm font-semibold text-primary whitespace-nowrap ml-auto">
+          <p className="text-base font-semibold text-primary whitespace-nowrap ml-auto">
             € {item.price.toFixed(2).replace(".", ",")}
           </p>
         </div>

@@ -540,16 +540,16 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
               {/* Cart Section */}
               <section className="p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-base font-bold text-foreground">Carrello</h2>
+                  <h2 className="text-lg font-bold text-foreground">Carrello</h2>
                 </div>
                 
                 {/* Allergen Note */}
                 <button
                   onClick={onOpenInfo}
-                  className="flex items-center gap-2 text-sm text-muted-foreground mb-4 hover:text-primary transition-colors"
+                  className="flex items-center justify-between w-full text-base text-muted-foreground mb-4 hover:text-primary transition-colors text-left"
                 >
                   <span>Per comunicare eventuali allergie, contatta il ristorante</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-5 h-5 flex-shrink-0" />
                 </button>
 
                 {items.length === 0 ? (
@@ -564,11 +564,11 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                         <div key={item.id} className="p-3">
                           <div className="flex items-start gap-3">
                             {/* Quantity controls */}
-                            <div className="flex items-center gap-1">
+                            <div className="flex items-center gap-2">
                               <button
                                 onClick={() => handleQuantityChange(item, -1)}
                                 className={cn(
-                                  "w-6 h-6 rounded-full",
+                                  "w-8 h-8 rounded-full",
                                   "flex items-center justify-center",
                                   "border border-border",
                                   "text-foreground hover:bg-secondary",
@@ -576,15 +576,15 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                                 )}
                                 aria-label="Riduci quantità"
                               >
-                                <Minus className="w-3 h-3" />
+                                <Minus className="w-4 h-4" />
                               </button>
-                              <span className="w-5 text-center text-sm font-medium">
+                              <span className="w-6 text-center text-base font-semibold">
                                 {item.quantity}
                               </span>
                               <button
                                 onClick={() => handleQuantityChange(item, 1)}
                                 className={cn(
-                                  "w-6 h-6 rounded-full",
+                                  "w-8 h-8 rounded-full",
                                   "flex items-center justify-center",
                                   "bg-primary text-primary-foreground",
                                   "hover:bg-primary/90",
@@ -592,17 +592,17 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                                 )}
                                 aria-label="Aumenta quantità"
                               >
-                                <Plus className="w-3 h-3" />
+                                <Plus className="w-4 h-4" />
                               </button>
                             </div>
                             
                             {/* Item details */}
                             <div className="flex-1 min-w-0">
-                              <p className="font-medium text-foreground">{item.name}</p>
+                              <p className="text-base font-medium text-foreground">{item.name}</p>
                               {item.removedIngredients.length > 0 && (
                                 <div className="mt-1 space-y-0.5">
                                   {item.removedIngredients.map((ingredient, idx) => (
-                                    <p key={idx} className="text-xs text-muted-foreground">
+                                    <p key={idx} className="text-sm text-muted-foreground">
                                       -No {ingredient}
                                     </p>
                                   ))}
@@ -612,7 +612,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                             
                             {/* Price and edit */}
                             <div className="flex items-center gap-2">
-                              <span className="text-sm font-semibold text-foreground">
+                              <span className="text-base font-semibold text-foreground">
                                 {formatPrice(item.price * item.quantity)}
                               </span>
                               {menuItem && (
@@ -635,13 +635,13 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                 {/* Totals */}
                 {items.length > 0 && (
                   <div className="mt-4 space-y-2">
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center justify-between text-base">
                       <span className="text-muted-foreground">Subtotale</span>
                       <span className="text-foreground">{formatPrice(totalPrice)}</span>
                     </div>
                     <div className="flex items-center justify-between font-bold">
-                      <span className="text-foreground">Totale indicativo</span>
-                      <span className="text-primary text-lg">{formatPrice(totalPrice)}</span>
+                      <span className="text-lg text-foreground">Totale indicativo</span>
+                      <span className="text-primary text-xl">{formatPrice(totalPrice)}</span>
                     </div>
                   </div>
                 )}
