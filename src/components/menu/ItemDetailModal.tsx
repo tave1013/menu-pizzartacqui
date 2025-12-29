@@ -200,7 +200,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem }: Item
             exit="hidden"
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             className={cn(
-              "relative w-full h-[100vh] sm:h-auto sm:max-w-[720px] lg:max-w-[840px]",
+              "relative w-full max-h-[100vh] sm:max-w-[720px] lg:max-w-[840px]",
               "sm:max-h-[85vh]",
               "bg-card rounded-t-2xl sm:rounded-2xl shadow-modal",
               "flex flex-col overflow-hidden"
