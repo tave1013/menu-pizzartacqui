@@ -34,6 +34,7 @@ export function loadGoogleTranslateScript(): Promise<void> {
     }
 
     // Definisci la callback globale
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).googleTranslateElementInit = () => {
       try {
         // Crea un elemento nascosto per Google Translate
@@ -45,6 +46,7 @@ export function loadGoogleTranslateScript(): Promise<void> {
           document.body.appendChild(container);
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         new (window as any).google.translate.TranslateElement({
           pageLanguage: 'it',
           includedLanguages: 'en,es,fr,de',

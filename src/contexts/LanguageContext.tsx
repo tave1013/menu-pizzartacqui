@@ -15,13 +15,10 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(getInitialLanguage);
-  const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
 
   // Carica Google Translate all'avvio
   useEffect(() => {
     loadGoogleTranslateScript().then(() => {
-      setIsGoogleLoaded(true);
-      
       // Sincronizza con la lingua dal cookie di Google Translate
       const googleLang = getCurrentGoogleTranslateLanguage();
       if (googleLang !== "it") {
@@ -39,16 +36,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     url.searchParams.set("lang", lang);
     window.history.replaceState({}, "", url.toString());
     
-    // Attiva Google Translate
-    if (isGoogleLoaded) {
-      setGoogleTranslateLanguage(lang);
-    }
-  }, [isGoogleLoaded]);
-
-  useEffect(() => {
-    const initialLang = getInitialLanguage();
-    setLanguageState(initialLang);
-    localStorage.setItem("lang", initialLang);
+    // Attiva Google Translate (sempre, indipendentemente dal caricamento)
+    setGoogleTranslateLanguage(lang);
   }, []);
 
   return (

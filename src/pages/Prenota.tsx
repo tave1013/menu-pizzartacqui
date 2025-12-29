@@ -286,7 +286,7 @@ export default function Prenota() {
     !errors.phone && !errors.email;
 
   const validatePhone = (value: string): string => {
-    const cleaned = value.replace(/[\s\-\(\)]/g, '');
+    const cleaned = value.replace(/[\s\-()]/g, '');
     if (!/^(\+39)?[0-9]{9,11}$/.test(cleaned)) {
       return "Numero di telefono non valido";
     }
