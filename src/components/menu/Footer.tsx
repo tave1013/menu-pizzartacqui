@@ -54,9 +54,13 @@ export function Footer() {
           
           {/* Colonna 1: Info locale */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-card-foreground">
-              {restaurantInfo.name}
-            </h3>
+            <div className="flex items-center">
+              <img 
+                src="/logo-pizzart.webp" 
+                alt="PizzArt Logo" 
+                className="h-12 w-auto object-contain"
+              />
+            </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {restaurantInfo.cuisine}. Pizzeria artigianale nel cuore di Acqui Terme, 
               dove tradizione e qualità si incontrano per offrirti un'esperienza unica.
@@ -188,9 +192,15 @@ export function Footer() {
         {/* Divider e sezione legale */}
         <div className="border-t border-border mt-8 pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-muted-foreground">
-              © {currentYear} {restaurantInfo.name}. Tutti i diritti riservati.
-            </p>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">© {currentYear}</span>
+              <img 
+                src="/logo-pizzart.webp" 
+                alt="PizzArt Logo" 
+                className="h-5 w-auto object-contain"
+              />
+              <span className="text-xs text-muted-foreground">Tutti i diritti riservati.</span>
+            </div>
             
             {/* Link legali */}
             <div className="flex items-center gap-4">
