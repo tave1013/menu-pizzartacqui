@@ -81,7 +81,7 @@ export default function PrenotaGrazie() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col notranslate" translate="no">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container flex items-center h-14">
