@@ -132,7 +132,7 @@ const Index = () => {
             onQueryChange={(q) => setSearchQuery(q, true)}
           />
 
-          <MobileHeader ref={searchButtonRef} title="Newcastle Pub" onSearchClick={handleOpenSearch} />
+          <MobileHeader ref={searchButtonRef} title="PizzArt" onSearchClick={handleOpenSearch} />
 
           <SearchOverlay isOpen={isSearchOpen} onClose={handleCloseSearch} onItemClick={handleItemClick} />
 

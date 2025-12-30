@@ -119,10 +119,13 @@ export function DesktopHeader({
       )}
     >
       <div className="container flex items-center justify-between h-16 gap-6">
-        {/* Logo/Title */}
+        {/* Logo */}
         <div className="flex items-center gap-3 flex-shrink-0">
-          <span className="text-2xl">🍺</span>
-          <span className="text-lg font-bold text-foreground">{title}</span>
+          <img 
+            src="/logo-pizzart.webp" 
+            alt="PizzArt Logo" 
+            className="h-12 w-auto object-contain"
+          />
         </div>
 
         {/* Search Box */}

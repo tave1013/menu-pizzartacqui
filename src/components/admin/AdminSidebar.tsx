@@ -46,7 +46,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
             </div>
             <div>
               <h1 className="font-semibold text-sm text-foreground">Admin Panel</h1>
-              <p className="text-xs text-muted-foreground">Newcastle Pub</p>
+              <p className="text-xs text-muted-foreground">PizzArt</p>
             </div>
           </div>
           <Button

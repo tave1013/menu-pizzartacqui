@@ -61,10 +61,14 @@ export const MobileHeader = forwardRef<HTMLButtonElement, MobileHeaderProps>(
             </button>
           </div>
 
-          {/* Title */}
-          <h1 className="text-base font-semibold text-foreground truncate px-2">
-            {title}
-          </h1>
+          {/* Center: Logo */}
+          <div className="flex items-center justify-center flex-1">
+            <img 
+              src="/logo-pizzart.webp" 
+              alt="PizzArt Logo" 
+              className="h-12 w-auto object-contain"
+            />
+          </div>
 
           {/* Search Button */}
           <button

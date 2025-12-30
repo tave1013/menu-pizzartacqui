@@ -110,7 +110,7 @@ const MenuBase = () => {
         <link rel="canonical" href="/" />
 
         <DesktopHeader
-          title="Newcastle Pub"
+          title="PizzArt"
           query={searchQuery}
           onQueryChange={handleDesktopQueryChange}
           onSearch={handleDesktopSearch}
@@ -128,7 +128,7 @@ const MenuBase = () => {
 
         <MobileHeader
           ref={searchButtonRef}
-          title="Newcastle Pub"
+          title="PizzArt"
           onSearchClick={handleOpenSearch}
         />
 
