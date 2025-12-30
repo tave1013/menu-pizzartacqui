@@ -27,6 +27,10 @@ export function ProductImage({ src, alt, className, loading = "lazy" }: ProductI
   const hasImage = hasValidImageUrl(src);
   const showPlaceholder = !hasImage || error;
 
+  // fetchpriority: 'high' solo per la prima immagine visibile (es. in una lista/carousel)
+  // Per semplicità, qui lo lasciamo sempre 'auto', ma può essere esteso con una prop se necessario
+  const fetchPriority = loading === "eager" ? "high" : "auto";
+
   if (showPlaceholder) {
     return (
       <div
@@ -43,6 +47,8 @@ export function ProductImage({ src, alt, className, loading = "lazy" }: ProductI
       alt={alt}
       className={cn("block object-cover", className)}
       loading={loading}
+      decoding="async"
+      fetchpriority={fetchPriority}
       onError={() => setError(true)}
     />
   );
