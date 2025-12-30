@@ -502,7 +502,7 @@ export const menuCategories: Category[] = [
       {
         id: "vegetariana",
         name: "Vegetariana",
-        desc: "Pomodoro,
+        desc: "Pomodoro, mozzarella fiordilatte, verdure di stagione",
         price: 11.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
