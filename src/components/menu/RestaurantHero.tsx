@@ -77,6 +77,9 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
             src={heroImage}
             alt={`${info.name} - interno del ristorante`}
             className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
         </div>
