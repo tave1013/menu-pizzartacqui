@@ -7,6 +7,9 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
+import { AccessibilityWrapper } from "@/components/AccessibilityWrapper";
+import { AccessibilityDebugPanel } from "@/components/AccessibilityDebugPanel";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index";
@@ -28,46 +31,51 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <LanguageProvider>
-        <CartProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <SpeedInsights />
-            <Analytics />
-            <ErrorBoundary>
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/menu-base" element={<MenuBase />} />
-                  <Route path="/menu-locale" element={<MenuBase />} />
-                  <Route path="/grazie" element={<ThankYou />} />
-                  <Route path="/prenota" element={<Prenota />} />
-                  <Route path="/prenota/grazie" element={<PrenotaGrazie />} />
-                  
-                  {/* Auth Routes */}
-                  <Route path="/auth/login" element={<Login />} />
-                  
-                  {/* Admin Routes */}
-                  <Route path="/admin" element={<AdminLayout />}>
-                    <Route index element={<AdminDashboard />} />
-                    <Route path="prodotti" element={<AdminProducts />} />
-                    <Route path="categorie" element={<AdminCategories />} />
-                    <Route path="orari" element={<AdminHours />} />
-                    <Route path="impostazioni" element={<AdminSettings />} />
-                    <Route path="profilo" element={<AdminProfile />} />
-                  </Route>
-                  
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
-            </ErrorBoundary>
-          </TooltipProvider>
-        </CartProvider>
-      </LanguageProvider>
-    </AuthProvider>
+    <AccessibilityProvider>
+      <AuthProvider>
+        <LanguageProvider>
+          <CartProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <SpeedInsights />
+              <Analytics />
+              <ErrorBoundary>
+                <BrowserRouter>
+                  <AccessibilityWrapper>
+                    <Routes>
+                      <Route path="/" element={<Index />} />
+                      <Route path="/menu-base" element={<MenuBase />} />
+                      <Route path="/menu-locale" element={<MenuBase />} />
+                      <Route path="/grazie" element={<ThankYou />} />
+                      <Route path="/prenota" element={<Prenota />} />
+                      <Route path="/prenota/grazie" element={<PrenotaGrazie />} />
+                      
+                      {/* Auth Routes */}
+                      <Route path="/auth/login" element={<Login />} />
+                      
+                      {/* Admin Routes */}
+                      <Route path="/admin" element={<AdminLayout />}>
+                        <Route index element={<AdminDashboard />} />
+                        <Route path="prodotti" element={<AdminProducts />} />
+                        <Route path="categorie" element={<AdminCategories />} />
+                        <Route path="orari" element={<AdminHours />} />
+                        <Route path="impostazioni" element={<AdminSettings />} />
+                        <Route path="profilo" element={<AdminProfile />} />
+                      </Route>
+                      
+                      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                    <AccessibilityDebugPanel />
+                  </AccessibilityWrapper>
+                </BrowserRouter>
+              </ErrorBoundary>
+            </TooltipProvider>
+          </CartProvider>
+        </LanguageProvider>
+      </AuthProvider>
+    </AccessibilityProvider>
   </QueryClientProvider>
 );
 
