@@ -28,7 +28,7 @@ export const siteConfig: SiteConfig = {
   // "public" - Sito pubblico normale
   // "password-protected" - Accesso con password
   // "maintenance" - Mostra Coming Soon
-  mode: "maintenance",
+  mode: "public",
 
   // Password per l'accesso (usata solo se mode = "password-protected")
   password: "pizzart205",
