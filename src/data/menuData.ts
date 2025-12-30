@@ -502,7 +502,7 @@ export const menuCategories: Category[] = [
       {
         id: "vegetariana",
         name: "Vegetariana",
-        desc: "Pomodoro, mozzarella fiordilatte, melanzane, zucchine, peperoni",
+        desc: "Pomodoro,
         price: 11.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -571,8 +571,8 @@ export const menuCategories: Category[] = [
         desc: "Pomodoro, mozzarella fiordilatte, basilico",
         price: 8.0,
         image: margheritaImg,
-        allergens: ["Glutine", "Lattosio"],
-        dietaryTags: ["vegetarian"],
+          allergens: ["Glutine", "Lattosio"],
+          dietaryTags: ["vegetarian", "vegan"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -582,7 +582,7 @@ export const menuCategories: Category[] = [
         price: 13.0,
         image: aiformaggiImg,
         allergens: ["Glutine", "Lattosio"],
-        dietaryTags: ["vegetarian"],
+          dietaryTags: ["vegetarian", "vegan"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
