@@ -15,8 +15,6 @@ const ReviewBanner: React.FC<ReviewBannerProps> = ({ className = "" }) => {
     <div className={`container ${className}`}>
       <a
         href={reviewUrl}
-        target="_blank"
-        rel="noopener noreferrer"
         className="block w-full sm:w-auto sm:max-w-sm"
       >
         <div className="rounded-lg bg-white border border-gray-200 hover:border-gray-300 transition-colors">
