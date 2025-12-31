@@ -304,7 +304,6 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                 className="p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6"
                 style={readOnlyMode ? { minHeight: 220 } : undefined}
               
-              >
                 {/* Title and Description */}
                 <div>
                   <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold text-card-foreground mb-2">
