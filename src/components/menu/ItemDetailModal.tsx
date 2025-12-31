@@ -296,8 +296,14 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                 <ProductCover imageUrl={item.image} name={item.name} />
               </div>
 
-              {/* Details scrollabili sempre, anche in read-only/chiuso */}
-              <div style={{ WebkitOverflowScrolling: 'touch' }} className="overflow-y-auto flex-1 p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6">
+              {/* Details scrollabili solo se non read-only/chiuso */}
+              <div
+                style={readOnlyMode ? undefined : { WebkitOverflowScrolling: 'touch' }}
+                className={cn(
+                  !readOnlyMode && 'overflow-y-auto flex-1',
+                  'p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6'
+                )}
+              >
                 {/* Title and Description */}
                 <div>
                   <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold text-card-foreground mb-2">
