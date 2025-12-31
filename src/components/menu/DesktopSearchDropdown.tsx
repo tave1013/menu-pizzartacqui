@@ -63,33 +63,7 @@ export function DesktopSearchDropdown({
     }).length;
   }, [query, allItems]);
 
-  if (!isOpen) return null;
-
-  // Mostra suggerimenti categorie se la query è vuota o troppo corta
-  if (query.length < 2) {
-    return (
-      <div
-        className={cn(
-          "absolute top-full left-0 right-0 mt-2",
-          "bg-popover border border-border rounded-xl shadow-lg",
-          "overflow-hidden z-50",
-          "animate-in fade-in-0 slide-in-from-top-2 duration-200"
-        )}
-      >
-        <div className="flex flex-wrap gap-2 p-4">
-          {menuCategories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => onShowAll && onItemClick(cat.items[0], cat.id)}
-              className="px-4 py-2 rounded-full bg-secondary/60 hover:bg-secondary text-sm font-medium text-foreground transition-colors"
-            >
-              {cat.name}
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }
+  if (!isOpen || query.length < 2) return null;
 
   return (
     <div

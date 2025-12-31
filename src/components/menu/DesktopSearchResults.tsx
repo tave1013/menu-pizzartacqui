@@ -27,8 +27,14 @@ function getAllItems(): MenuItem[] {
   return menuCategories.flatMap((cat) => cat.items);
 }
 
-// Quick filter tags: usa le categorie reali del menu
-const quickFilters = menuCategories.map((cat) => ({ label: cat.name, query: cat.id }));
+// Quick filter tags
+const quickFilters = [
+  { label: "Burger", query: "burger" },
+  { label: "Birre", query: "birra" },
+  { label: "Bevande", query: "bevande" },
+  { label: "Vegetariano", query: "vegetariano" },
+  { label: "Piccante", query: "piccante" },
+];
 
 export function DesktopSearchResults({
   isOpen,
@@ -189,10 +195,10 @@ export function DesktopSearchResults({
                 {quickFilters.map((filter) => (
                   <button
                     key={filter.query}
-                    onClick={() => setSelectedCategoryId(filter.query)}
+                    onClick={() => toggleFilter(filter.query)}
                     className={cn(
                       "px-4 py-2 rounded-full text-sm font-medium transition-colors flex-shrink-0",
-                      selectedCategoryId === filter.query
+                      activeFilters.includes(filter.query)
                         ? "bg-primary text-primary-foreground"
                         : "bg-secondary/80 text-foreground hover:bg-secondary"
                     )}
