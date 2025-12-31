@@ -19,7 +19,7 @@ export default function NotFound() {
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <img
-          src="/assets/food/404-milk.png"
+          src="/assets/food/404-custom.png"
           alt="404"
           className="mx-auto mb-6 w-40 h-40 object-contain"
           style={{ maxWidth: 180 }}
