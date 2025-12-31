@@ -44,7 +44,7 @@ function ProductCover({ imageUrl, name }: { imageUrl: string; name: string }) {
           alt={name}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-none"
           onError={() => setImgError(true)}
         />
       )}
