@@ -23,9 +23,6 @@ const gorgoImg = "/assets/food/Gorgo.webp";
 const crudoImg = "/assets/food/Crudo.webp";
 const marinataImg = "/assets/food/Marinara.webp";
 const speckBrieImg = "/assets/food/Speck e Brie.webp";
-const burgerBbqImg = "/assets/food/burger-bbq.jpg";
-const insalataImg = "/assets/food/insalata.jpg";
-const onionRingsImg = "/assets/food/onion-rings.jpg";
 const acquaGasataImg = "/assets/food/acqua-gasata.webp";
 const acquaNaturaleImg = "/assets/food/acqua-naturale.webp";
 const cocaImg = "/assets/food/coca.webp";
@@ -103,7 +100,7 @@ export interface RestaurantInfo {
 
 export const restaurantInfo: RestaurantInfo = {
   name: "PizzArt",
-  description: "Pub tradizionale con hamburger artigianali e birre selezionate dal 2015.",
+  description: "Pizzeria artigianale  ad Acqui Terme",
   rating: 4.6,
   reviewCount: 387,
   priceRange: "€€€",
@@ -111,20 +108,20 @@ export const restaurantInfo: RestaurantInfo = {
   address: "Via Guglielmo Marconi, 18, 15011 Acqui Terme (AL)",
   coordinates: { lat: 44.6765, lng: 8.4659 },
   heroImage: "",
-  openingHours: "18:00 - 22:30",
+  openingHours: "18:30 - 22:30",
   weeklyHours: [
     { day: "Lunedì", hours:  "", closed: true },
     { day: "Martedì", hours:"12:30 - 22:30" },
-    { day: "Mercoledì", hours: "18:30 - 22:30," },
-    { day: "Giovedì", hours: "18:30 - 22:30," },
-    { day: "Venerdì", hours: "18:30 - 22:30," },
-    { day: "Sabato", hours: "18:30 - 22:30," },
+    { day: "Mercoledì", hours: "18:30 - 22:30" },
+    { day: "Giovedì", hours: "18:30 - 22:30" },
+    { day: "Venerdì", hours: "18:30 - 22:30" },
+    { day: "Sabato", hours: "18:30 - 22:30" },
     { day: "Domenica", hours: "18:00 - 22:30" },
   ],
   deliveryTime: "25-40 min",
   deliverooUrl: "https://deliveroo.it/it/menu/Alessandria/acqui-terme/pizzart-acqui-terme/?geohash=spyn0tjdewgp",
   bookingPhone: "+39 3914272540",
-  phone: "+39 0144 123456",
+  phone: "+39 366 990 4236",
   email: "info@pizzartacquiterme.com",
   facebookUrl: "https://www.facebook.com/profile.php?id=100083643546473",
   facebookName: "PizzArt",
