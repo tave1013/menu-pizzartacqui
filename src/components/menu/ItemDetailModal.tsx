@@ -292,17 +292,16 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
               <X className="w-5 h-5" />
             </button>
 
-            {/* Content - Image sticky, dettagli scrollabili separati (sempre, anche in read-only/chiuso) */}
+            {/* Content - Image sticky, dettagli sempre scrollabili */}
             <div className="flex-1 min-h-0 flex flex-col">
               {/* Image / Fallback Cover */}
               <div className="sticky top-0 z-10">
                 <ProductCover imageUrl={item.image} name={item.name} />
               </div>
 
-              {/* Details scrollabili solo se non read-only/chiuso */}
+              {/* Details: sempre scrollabili, anche in read-only/chiuso */}
               <div
-                className="p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6"
-                style={readOnlyMode ? { minHeight: 220 } : undefined}
+                className="flex-1 overflow-y-auto p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6"
               >
                 {/* Title and Description */}
                 <div>
