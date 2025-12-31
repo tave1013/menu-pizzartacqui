@@ -297,12 +297,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
               </div>
 
               {/* Details scrollabili solo se non read-only/chiuso */}
-              <div
-                style={readOnlyMode ? undefined : { WebkitOverflowScrolling: 'touch' }}
-                className={cn(
-                  !readOnlyMode && 'overflow-y-auto flex-1',
-                  'p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6'
-                )}
+              <div className="p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6">
               >
                 {/* Title and Description */}
                 <div>
