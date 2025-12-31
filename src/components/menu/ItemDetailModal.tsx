@@ -262,10 +262,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             className={cn(
               "relative w-full",
-              // Sempre fullscreen in consultazione/menu base
-              readOnlyMode 
-                ? "h-[100dvh] max-h-[100dvh] rounded-t-2xl" 
-                : "h-[100dvh] max-h-[100dvh] rounded-t-2xl",
+              // Sempre fullscreen su mobile, sia menu base che menu locale
+              "h-[100dvh] max-h-[100dvh] rounded-t-2xl",
               // Desktop: dimensioni contenute
               "sm:h-auto sm:max-h-[85vh] sm:max-w-[720px] lg:max-w-[840px] sm:rounded-2xl",
               "bg-card shadow-modal",
