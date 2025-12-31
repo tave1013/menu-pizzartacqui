@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from "react";
+import { ClosedBanner } from "./ClosedBanner";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, AlertTriangle, Minus, Plus } from "lucide-react";
 import { MenuItem } from "@/data/menuData";
@@ -261,9 +262,9 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             className={cn(
               "relative w-full",
-              // Mobile: in read-only mode modale più piccolo (75vh), altrimenti fullscreen
+              // Sempre fullscreen in consultazione/menu base
               readOnlyMode 
-                ? "h-[75vh] max-h-[75vh] rounded-t-2xl" 
+                ? "h-[100dvh] max-h-[100dvh] rounded-t-2xl" 
                 : "h-[100dvh] max-h-[100dvh] rounded-t-2xl",
               // Desktop: dimensioni contenute
               "sm:h-auto sm:max-h-[85vh] sm:max-w-[720px] lg:max-w-[840px] sm:rounded-2xl",
@@ -271,6 +272,10 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
               "flex flex-col overflow-hidden"
             )}
           >
+            {/* Banner chiusura solo se chiuso e in consultazione */}
+            {readOnlyMode && !isRestaurantOpen && (
+              <ClosedBanner />
+            )}
             {/* Close Button - Fixed position on mobile */}
             <button
               ref={closeButtonRef}
