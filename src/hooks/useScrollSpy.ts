@@ -4,6 +4,13 @@ export function useScrollSpy(sectionIds: string[], offset = 120) {
   const [activeId, setActiveId] = useState<string>(sectionIds[0] || "");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  // Reset activeId when sectionIds change and current activeId is not in the list
+  useEffect(() => {
+    if (!sectionIds.includes(activeId) && sectionIds.length > 0) {
+      setActiveId(sectionIds[0]);
+    }
+  }, [sectionIds, activeId]);
+
   useEffect(() => {
     if (observerRef.current) {
       observerRef.current.disconnect();
@@ -21,7 +28,7 @@ export function useScrollSpy(sectionIds: string[], offset = 120) {
 
       if (visibleSections.length > 0) {
         const id = visibleSections[0].target.getAttribute("id");
-        if (id) setActiveId(id);
+        if (id && sectionIds.includes(id)) setActiveId(id);
       }
     };
 
