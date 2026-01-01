@@ -96,9 +96,9 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
       >
         {/* TESTO: Sinistra su mobile (order-1), Sotto su desktop (order-2) */}
         <div className="flex-1 pr-4 lg:pr-0 order-1 lg:order-2 lg:p-4 lg:flex lg:flex-col lg:flex-grow">
-          <h3 className="font-bold text-card-foreground mb-1 line-clamp-1 text-[15px] lg:text-[16px]">{item.name}</h3>
+          <h3 className="font-bold text-card-foreground mb-1 line-clamp-1 text-[16px] lg:text-[16px]">{item.name}</h3>
 
-          <p className="text-[13px] lg:text-[13px] text-muted-foreground line-clamp-2 mb-3 lg:min-h-[2rem]">
+          <p className="text-[14px] lg:text-[13px] text-muted-foreground line-clamp-2 mb-3 lg:min-h-[2rem]">
             {item.desc}
           </p>
 
