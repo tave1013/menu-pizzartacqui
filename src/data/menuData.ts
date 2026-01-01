@@ -36,6 +36,23 @@ const ichnusaImg = "/assets/food/ichnusa.webp";
 const menabreaImg = "/assets/food/menabrea.webp";
 const tuborgenImg = "/assets/food/tuborg.webp";
 const aiformaggiImg = "/assets/food/ai-formaggi.webp";
+// Birre alla spina
+const birraBiondaPiccolaImg = "/assets/food/Birra-bionda-piccola.webp";
+const birraBiondaMediaImg = "/assets/food/Birra-bionda-media.webp";
+const birraRossaPiccolaImg = "/assets/food/Birra-rossa-piccola.webp";
+const birraRossaMediaImg = "/assets/food/Birra-rossa-media.webp";
+// Birre bicicletta
+const biciPiccolaBiondaImg = "/assets/food/Bici-piccola-bionda.webp";
+const biciMediaBiondaImg = "/assets/food/Bici-media-bionda.webp";
+const biciPiccolaRossaImg = "/assets/food/Bici-piccola-rossa.webp";
+const biciMediaRossaImg = "/assets/food/Bici-media-rossa.webp";
+// Vini sfusi
+const quartinoRossoSfusoImg = "/assets/food/Quartino-rosso-sfuso.webp";
+const mezzoRossoSfusoImg = "/assets/food/Mezzorosso-sfuso.webp";
+const litroRossoSfusoImg = "/assets/food/Litro-rosso-sfuso.webp";
+const quartinoBiancoSfusoImg = "/assets/food/Quartino-bianco-sfuso.webp";
+const mezzoBiancoSfusoImg = "/assets/food/Mezzo-bianco-sfuso.webp";
+const litroBiancoSfusoImg = "/assets/food/Litro-bianco-sfuso.webp";
 
 export type DietaryTag = "vegan" | "vegetarian" | "gluten-free";
 
@@ -763,7 +780,7 @@ export const menuCategories: Category[] = [
         name: "Birra Bionda Piccola",
         desc: "Birra alla spina",
         price: 3.5,
-        image: "",
+        image: birraBiondaPiccolaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -771,7 +788,7 @@ export const menuCategories: Category[] = [
         name: "Birra Bionda Media",
         desc: "Birra alla spina",
         price: 5.5,
-        image: "",
+        image: birraBiondaMediaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -779,7 +796,7 @@ export const menuCategories: Category[] = [
         name: "Birra Rossa Piccola",
         desc: "Birra alla spina",
         price: 4.0,
-        image: "",
+        image: birraRossaPiccolaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -787,7 +804,7 @@ export const menuCategories: Category[] = [
         name: "Birra Rossa Media",
         desc: "Birra alla spina",
         price: 6.0,
-        image: "",
+        image: birraRossaMediaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -801,7 +818,7 @@ export const menuCategories: Category[] = [
         name: "Bici Piccola Bionda",
         desc: "Birra bicicletta",
         price: 4.0,
-        image: "",
+        image: biciPiccolaBiondaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -809,7 +826,7 @@ export const menuCategories: Category[] = [
         name: "Bici Media Bionda",
         desc: "Birra bicicletta",
         price: 6.0,
-        image: "",
+        image: biciMediaBiondaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -817,7 +834,7 @@ export const menuCategories: Category[] = [
         name: "Bici Piccola Rossa",
         desc: "Birra bicicletta",
         price: 5.0,
-        image: "",
+        image: biciPiccolaRossaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -825,7 +842,7 @@ export const menuCategories: Category[] = [
         name: "Bici Media Rossa",
         desc: "Birra bicicletta",
         price: 7.0,
-        image: "",
+        image: biciMediaRossaImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -939,7 +956,7 @@ export const menuCategories: Category[] = [
         name: "Quartino Rosso Sfuso",
         desc: "Vino rosso sfuso",
         price: 3.5,
-        image: "",
+        image: quartinoRossoSfusoImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -947,7 +964,7 @@ export const menuCategories: Category[] = [
         name: "Mezzo Rosso Sfuso",
         desc: "Vino rosso sfuso",
         price: 5.5,
-        image: "",
+        image: mezzoRossoSfusoImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -955,7 +972,7 @@ export const menuCategories: Category[] = [
         name: "Litro Rosso Sfuso",
         desc: "Vino rosso sfuso",
         price: 10.0,
-        image: "",
+        image: litroRossoSfusoImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -963,7 +980,7 @@ export const menuCategories: Category[] = [
         name: "Quartino Bianco Sfuso",
         desc: "Vino bianco sfuso",
         price: 3.5,
-        image: "",
+        image: quartinoBiancoSfusoImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -971,7 +988,7 @@ export const menuCategories: Category[] = [
         name: "Mezzo Bianco Sfuso",
         desc: "Vino bianco sfuso",
         price: 5.5,
-        image: "",
+        image: mezzoBiancoSfusoImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -979,7 +996,7 @@ export const menuCategories: Category[] = [
         name: "Litro Bianco Sfuso",
         desc: "Vino bianco sfuso",
         price: 10.0,
-        image: "",
+        image: litroBiancoSfusoImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
