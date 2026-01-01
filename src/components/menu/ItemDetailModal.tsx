@@ -398,7 +398,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                       {item.allergens.map((allergen) => (
                         <span
                           key={allergen}
-                          className="px-3 py-1 text-sm bg-card rounded-full text-card-foreground"
+                          className="px-3 py-1 text-sm bg-card rounded-full text-card-foreground capitalize"
                         >
                           {allergen}
                         </span>
