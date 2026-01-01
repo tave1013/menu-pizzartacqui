@@ -77,10 +77,10 @@ export function FeaturedCarousel({ onItemClick }: FeaturedCarouselProps) {
             
             {/* Info - only title and price, no badges */}
             <div className="p-2 sm:p-2.5">
-              <h3 className="font-semibold text-card-foreground text-xs sm:text-sm line-clamp-2 mb-0.5 sm:mb-1">
+              <h3 className="font-semibold text-card-foreground text-[14px] sm:text-sm line-clamp-2 mb-0.5 sm:mb-1">
                 {item.name}
               </h3>
-              <p className="font-semibold text-card-foreground text-xs sm:text-sm">
+              <p className="font-semibold text-card-foreground text-[13px] sm:text-[14px]">
                 {item.price.toFixed(2)} €
               </p>
             </div>
