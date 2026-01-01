@@ -733,6 +733,7 @@ export const menuCategories: Category[] = [
         desc: "33 cl",
         price: 4.5,
         image: menabreaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -741,6 +742,7 @@ export const menuCategories: Category[] = [
         desc: "66 cl",
         price: 5.5,
         image: tuborgenImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -749,6 +751,7 @@ export const menuCategories: Category[] = [
         desc: "33 cl",
         price: 4.5,
         image: ichnusaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -767,6 +770,7 @@ export const menuCategories: Category[] = [
         desc: "33 cl",
         price: 5.0,
         image: "",
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -781,6 +785,7 @@ export const menuCategories: Category[] = [
         desc: "Birra alla spina",
         price: 3.5,
         image: birraBiondaPiccolaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -789,6 +794,7 @@ export const menuCategories: Category[] = [
         desc: "Birra alla spina",
         price: 5.5,
         image: birraBiondaMediaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -797,6 +803,7 @@ export const menuCategories: Category[] = [
         desc: "Birra alla spina",
         price: 4.0,
         image: birraRossaPiccolaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -805,6 +812,7 @@ export const menuCategories: Category[] = [
         desc: "Birra alla spina",
         price: 6.0,
         image: birraRossaMediaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -819,6 +827,7 @@ export const menuCategories: Category[] = [
         desc: "Birra bicicletta",
         price: 4.0,
         image: biciPiccolaBiondaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -827,6 +836,7 @@ export const menuCategories: Category[] = [
         desc: "Birra bicicletta",
         price: 6.0,
         image: biciMediaBiondaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -835,6 +845,7 @@ export const menuCategories: Category[] = [
         desc: "Birra bicicletta",
         price: 5.0,
         image: biciPiccolaRossaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -843,6 +854,7 @@ export const menuCategories: Category[] = [
         desc: "Birra bicicletta",
         price: 7.0,
         image: biciMediaRossaImg,
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -857,6 +869,7 @@ export const menuCategories: Category[] = [
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -865,6 +878,7 @@ export const menuCategories: Category[] = [
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -873,6 +887,7 @@ export const menuCategories: Category[] = [
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -881,6 +896,7 @@ export const menuCategories: Category[] = [
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -889,6 +905,7 @@ export const menuCategories: Category[] = [
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
+        allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -903,6 +920,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso piemontese",
         price: 35.0,
         image: "",
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -911,6 +929,7 @@ export const menuCategories: Category[] = [
         desc: "Vino bianco piemontese",
         price: 28.0,
         image: "",
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -919,6 +938,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso",
         price: 28.0,
         image: "",
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -927,6 +947,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso",
         price: 34.0,
         image: "",
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -935,6 +956,7 @@ export const menuCategories: Category[] = [
         desc: "Spumante",
         price: 18.0,
         image: "",
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -943,6 +965,7 @@ export const menuCategories: Category[] = [
         desc: "Vino bianco",
         price: 26.0,
         image: "",
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -957,6 +980,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso sfuso",
         price: 3.5,
         image: quartinoRossoSfusoImg,
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -965,6 +989,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso sfuso",
         price: 5.5,
         image: mezzoRossoSfusoImg,
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -973,6 +998,7 @@ export const menuCategories: Category[] = [
         desc: "Vino rosso sfuso",
         price: 10.0,
         image: litroRossoSfusoImg,
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -981,6 +1007,7 @@ export const menuCategories: Category[] = [
         desc: "Vino bianco sfuso",
         price: 3.5,
         image: quartinoBiancoSfusoImg,
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -989,6 +1016,7 @@ export const menuCategories: Category[] = [
         desc: "Vino bianco sfuso",
         price: 5.5,
         image: mezzoBiancoSfusoImg,
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -997,6 +1025,7 @@ export const menuCategories: Category[] = [
         desc: "Vino bianco sfuso",
         price: 10.0,
         image: litroBiancoSfusoImg,
+        allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
