@@ -140,11 +140,12 @@ const Index = () => {
             onClose={handleCloseDesktopSearch}
             onItemClick={handleItemClick}
             onQueryChange={(q) => setSearchQuery(q, true)}
+            excludedCategories={TAKEAWAY_EXCLUDED_CATEGORIES}
           />
 
           <MobileHeader ref={searchButtonRef} title="PizzArt" onSearchClick={handleOpenSearch} />
 
-          <SearchOverlay isOpen={isSearchOpen} onClose={handleCloseSearch} onItemClick={handleItemClick} />
+          <SearchOverlay isOpen={isSearchOpen} onClose={handleCloseSearch} onItemClick={handleItemClick} excludedCategories={TAKEAWAY_EXCLUDED_CATEGORIES} />
 
           <div className="lg:pt-16">
             <RestaurantHero info={restaurantInfo} />

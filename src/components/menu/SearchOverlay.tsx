@@ -11,6 +11,7 @@ interface SearchOverlayProps {
   isOpen: boolean;
   onClose: () => void;
   onItemClick: (item: MenuItem, categoryId?: string) => void;
+  excludedCategories?: string[];
 }
 
 function normalizeString(str: string): string {
@@ -20,20 +21,27 @@ function normalizeString(str: string): string {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function getAllItems(): MenuItem[] {
-  return menuCategories.flatMap((cat) => cat.items);
+function getAllItems(excludedCategories: string[] = []): MenuItem[] {
+  return menuCategories
+    .filter((cat) => !excludedCategories.includes(cat.id))
+    .flatMap((cat) => cat.items);
 }
 
-const suggestedCategories = menuCategories.map((cat) => ({ id: cat.id, label: cat.name }));
+function getSuggestedCategories(excludedCategories: string[] = []) {
+  return menuCategories
+    .filter((cat) => !excludedCategories.includes(cat.id))
+    .map((cat) => ({ id: cat.id, label: cat.name }));
+}
 
-export function SearchOverlay({ isOpen, onClose, onItemClick }: SearchOverlayProps) {
+export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories = [] }: SearchOverlayProps) {
   const [query, setQuery] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [showAllCategory, setShowAllCategory] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const prefersReducedMotion = useReducedMotion();
   
-  const allItems = useMemo(() => getAllItems(), []);
+  const allItems = useMemo(() => getAllItems(excludedCategories), [excludedCategories]);
+  const suggestedCategories = useMemo(() => getSuggestedCategories(excludedCategories), [excludedCategories]);
 
   const results = useMemo(() => {
     if (query.length < 2) return [];

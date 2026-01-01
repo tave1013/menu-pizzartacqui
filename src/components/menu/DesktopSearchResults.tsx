@@ -12,6 +12,7 @@ interface DesktopSearchResultsProps {
   onClose: () => void;
   onItemClick: (item: MenuItem, categoryId?: string) => void;
   onQueryChange: (query: string) => void;
+  excludedCategories?: string[];
 }
 
 // Normalize string for search (remove accents, lowercase)
@@ -22,13 +23,19 @@ function normalizeString(str: string): string {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-// Get all menu items flattened
-function getAllItems(): MenuItem[] {
-  return menuCategories.flatMap((cat) => cat.items);
+// Get all menu items flattened (optionally filtered by excluded categories)
+function getAllItems(excludedCategories: string[] = []): MenuItem[] {
+  return menuCategories
+    .filter((cat) => !excludedCategories.includes(cat.id))
+    .flatMap((cat) => cat.items);
 }
 
-// Quick filter tags: usa le categorie reali del menu
-const quickFilters = menuCategories.map((cat) => ({ label: cat.name, query: cat.id }));
+// Quick filter tags: usa le categorie reali del menu (optionally filtered)
+function getQuickFilters(excludedCategories: string[] = []) {
+  return menuCategories
+    .filter((cat) => !excludedCategories.includes(cat.id))
+    .map((cat) => ({ label: cat.name, query: cat.id }));
+}
 
 export function DesktopSearchResults({
   isOpen,
@@ -36,6 +43,7 @@ export function DesktopSearchResults({
   onClose,
   onItemClick,
   onQueryChange,
+  excludedCategories = [],
 }: DesktopSearchResultsProps) {
   const [query, setQuery] = useState(initialQuery);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
@@ -44,7 +52,8 @@ export function DesktopSearchResults({
   const inputRef = useRef<HTMLInputElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  const allItems = useMemo(() => getAllItems(), []);
+  const allItems = useMemo(() => getAllItems(excludedCategories), [excludedCategories]);
+  const quickFilters = useMemo(() => getQuickFilters(excludedCategories), [excludedCategories]);
 
   // Sync with initial query
   useEffect(() => {
@@ -115,11 +124,14 @@ export function DesktopSearchResults({
     onClose();
   };
 
-  // Suggested categories when no results
-  const suggestedCategories = menuCategories.map((cat) => ({
-    id: cat.id,
-    label: cat.name,
-  }));
+  // Suggested categories when no results (filtered by excluded categories)
+  const suggestedCategories = useMemo(() => 
+    menuCategories
+      .filter((cat) => !excludedCategories.includes(cat.id))
+      .map((cat) => ({
+        id: cat.id,
+        label: cat.name,
+      })), [excludedCategories]);
 
   // Category-based results when a suggested category is selected
   const categoryResults = useMemo(() => {
