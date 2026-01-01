@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense, useRef, useEffect } from "react";
+import { useState, lazy, Suspense, useRef, useEffect, useMemo } from "react";
 import { restaurantInfo, menuCategories, MenuItem } from "@/data/menuData";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useQueryParam } from "@/hooks/useQueryParam";
@@ -22,6 +22,9 @@ import { FeaturedCarousel } from "@/components/menu/FeaturedCarousel";
 import { Footer } from "@/components/menu/Footer";
 import ReviewBanner from "@/components/menu/ReviewBanner";
 
+// Categorie da escludere dal menu asporto (solo consultazione locale)
+const TAKEAWAY_EXCLUDED_CATEGORIES = ["birra-alla-spina", "birra-bicicletta", "vini-sfusi"];
+
 const ItemDetailModal = lazy(() =>
   import("@/components/menu/ItemDetailModal").then((mod) => ({
     default: mod.ItemDetailModal,
@@ -41,7 +44,14 @@ const Index = () => {
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const { totalItems } = useCart();
   const { language } = useLanguage();
-  const categoryIds = menuCategories.map((cat) => cat.id);
+  
+  // Filtra le categorie per escludere quelle non disponibili per asporto
+  const takeawayCategories = useMemo(() => 
+    menuCategories.filter(cat => !TAKEAWAY_EXCLUDED_CATEGORIES.includes(cat.id)),
+    []
+  );
+  
+  const categoryIds = takeawayCategories.map((cat) => cat.id);
   const activeCategory = useScrollSpy(categoryIds, 140);
 
   useEffect(() => {
@@ -148,10 +158,10 @@ const Index = () => {
           {/* Featured Section - I più amati */}
           <FeaturedCarousel onItemClick={handleItemClick} />
 
-          <CategoryNav categories={menuCategories} activeCategory={activeCategory} onCategoryClick={() => {}} />
+          <CategoryNav categories={takeawayCategories} activeCategory={activeCategory} onCategoryClick={() => {}} />
 
           <main className={`container py-6 pb-4 space-y-8 ${totalItems > 0 ? "pb-24" : ""}`}>
-            {menuCategories.map((category) => (
+            {takeawayCategories.map((category) => (
               <MenuSection key={category.id} category={category} onItemClick={handleItemClick} />
             ))}
           </main>
