@@ -199,8 +199,18 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
       if (editingCartItem) {
         setQuantity(editingCartItem.quantity);
         setRemovedIngredients(new Set(editingCartItem.removedIngredients));
-        setSelectedExtras(new Set());
-        setGlutenFreeOption(false);
+        // Ripristina gli extra già selezionati
+        if (editingCartItem.selectedExtras && editingCartItem.selectedExtras.length > 0) {
+          // Converti i nomi degli extra in ID
+          const extraIds = editingCartItem.selectedExtras
+            .map(name => INGREDIENTI_EXTRA.find(e => e.name === name)?.id)
+            .filter(Boolean) as string[];
+          setSelectedExtras(new Set(extraIds));
+        } else {
+          setSelectedExtras(new Set());
+        }
+        // Ripristina lo stato senza glutine
+        setGlutenFreeOption(editingCartItem.glutenFree || false);
       } else {
         setQuantity(1);
         setRemovedIngredients(new Set());

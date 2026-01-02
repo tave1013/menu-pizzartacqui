@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { restaurantInfo } from "@/data/menuData";
+import { CartItem } from "@/contexts/CartContext";
 
 interface OrderSummary {
   firstName: string;
@@ -11,6 +12,7 @@ interface OrderSummary {
   phone: string;
   selectedTime: string;
   totalPrice: number;
+  items?: CartItem[];
 }
 
 export default function ThankYou() {
@@ -93,6 +95,58 @@ export default function ThankYou() {
                 <span className="text-muted-foreground">Orario:</span>
                 <span className="text-foreground font-medium">{orderSummary.selectedTime}</span>
               </div>
+              
+              {/* Riepilogo prodotti ordinati */}
+              {orderSummary.items && orderSummary.items.length > 0 && (
+                <div className="mt-4 border-t border-border pt-3">
+                  <h3 className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+                    Prodotti Ordinati
+                  </h3>
+                  <div className="space-y-3">
+                    {orderSummary.items.map((item, idx) => (
+                      <div key={idx} className="text-sm">
+                        {/* Nome prodotto e quantità */}
+                        <div className="flex justify-between items-start mb-1">
+                          <span className="text-foreground font-medium">
+                            {item.quantity}x {item.name}
+                          </span>
+                          <span className="text-foreground font-medium">
+                            {formatPrice(
+                              ((Number(item.price) || 0) + (Number(item.extrasPrice) || 0) + (Number(item.glutenFreePrice) || 0)) * Number(item.quantity || 1)
+                            )}
+                          </span>
+                        </div>
+                        
+                        {/* Badge Senza Glutine */}
+                        {item.glutenFree && (
+                          <div className="inline-block px-2 py-0.5 mt-0.5 bg-yellow-100 dark:bg-yellow-900/30 rounded-full text-xs font-medium text-yellow-800 dark:text-yellow-200">
+                            Senza glutine
+                          </div>
+                        )}
+                        
+                        {/* Ingredienti Extra */}
+                        {item.selectedExtras && item.selectedExtras.length > 0 && (
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {item.selectedExtras.map((extra, i) => (
+                              <div key={i}>+ {extra}</div>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {/* Ingredienti Rimossi */}
+                        {item.removedIngredients && item.removedIngredients.length > 0 && (
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {item.removedIngredients.map((ingredient, i) => (
+                              <div key={i}>-No {ingredient}</div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
               <div className="flex justify-between border-t border-border pt-2 mt-2">
                 <span className="text-foreground font-semibold">Totale:</span>
                 <span className="text-primary font-bold">{formatPrice(orderSummary.totalPrice)}</span>

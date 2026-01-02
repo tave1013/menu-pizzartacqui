@@ -461,6 +461,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
         phone: pendingOrder.customerData.phone,
         selectedTime: pendingOrder.selectedTime,
         totalPrice: pendingOrder.totalPrice,
+        items: items,
       }));
     }
     
