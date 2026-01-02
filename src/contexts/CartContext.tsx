@@ -24,20 +24,51 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const CART_STORAGE_KEY = "newcastle-pub-cart";
+const CART_EXPIRY_MS = 24 * 60 * 60 * 1000;
+
+function loadCartFromStorage(): CartItem[] {
+  try {
+    const stored = localStorage.getItem(CART_STORAGE_KEY);
+    if (!stored) return [];
+
+    const parsed = JSON.parse(stored);
+
+    // Backward compatibility: old structure was just an array
+    if (Array.isArray(parsed)) {
+      return parsed;
+    }
+
+    if (parsed && Array.isArray(parsed.items)) {
+      const { items, updatedAt } = parsed;
+      if (typeof updatedAt === "number") {
+        const isExpired = Date.now() - updatedAt > CART_EXPIRY_MS;
+        if (isExpired) {
+          localStorage.removeItem(CART_STORAGE_KEY);
+          return [];
+        }
+      }
+      return items;
+    }
+  } catch {
+    // ignore broken storage
+  }
+  return [];
+}
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(() => {
-    try {
-      const stored = localStorage.getItem(CART_STORAGE_KEY);
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [items, setItems] = useState<CartItem[]>(() => loadCartFromStorage());
 
-  // Persist to localStorage
+  // Persist to localStorage with timestamp for expiry
   useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    if (!items.length) {
+      localStorage.removeItem(CART_STORAGE_KEY);
+      return;
+    }
+
+    localStorage.setItem(
+      CART_STORAGE_KEY,
+      JSON.stringify({ items, updatedAt: Date.now() })
+    );
   }, [items]);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);

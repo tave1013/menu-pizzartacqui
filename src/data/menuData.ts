@@ -131,7 +131,7 @@ export const restaurantInfo: RestaurantInfo = {
     { day: "Martedì", hours:"12:30 - 22:30" },
     { day: "Mercoledì", hours: "18:30 - 22:30" },
     { day: "Giovedì", hours: "18:30 - 22:30" },
-    { day: "Venerdì", hours: "18:30 - 22:30" },
+    { day: "Venerdì", hours: "11:30 - 22:30" },
     { day: "Sabato", hours: "18:30 - 22:30" },
     { day: "Domenica", hours: "18:00 - 22:30" },
   ],

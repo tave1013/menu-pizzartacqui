@@ -143,68 +143,21 @@ export default function Prenota() {
     return d;
   }, [today]);
 
-  const [bookingData, setBookingData] = useState<BookingData>(() => {
-    // Load draft from localStorage
-    const draft = localStorage.getItem("prenotaDraft");
-    if (draft) {
-      try {
-        const parsed = JSON.parse(draft);
-        let date: Date | undefined;
-        if (parsed.date && isDateValid(parsed.date, today, maxDate)) {
-          date = new Date(parsed.date);
-        }
-        return {
-          date,
-          adults: parsed.adults || 1,
-          children: parsed.children || 0,
-          time: parsed.time || "",
-          notes: parsed.notes || "",
-          firstName: parsed.firstName || "",
-          lastName: parsed.lastName || "",
-          phone: parsed.phone || "",
-          email: parsed.email || "",
-          privacyConsent: false,
-          contactConsent: false
-        };
-      } catch {
-        // Invalid draft
-      }
-    }
-    return {
-      date: undefined,
-      adults: 1,
-      children: 0,
-      time: "",
-      notes: "",
-      firstName: "",
-      lastName: "",
-      phone: "",
-      email: "",
-      privacyConsent: false,
-      contactConsent: false
-    };
+  const [bookingData, setBookingData] = useState<BookingData>({
+    date: undefined,
+    adults: 1,
+    children: 0,
+    time: "",
+    notes: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    privacyConsent: false,
+    contactConsent: false
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  // Save draft to localStorage with debounce
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const draftData = {
-        date: bookingData.date?.toISOString(),
-        adults: bookingData.adults,
-        children: bookingData.children,
-        time: bookingData.time,
-        notes: bookingData.notes,
-        firstName: bookingData.firstName,
-        lastName: bookingData.lastName,
-        phone: bookingData.phone,
-        email: bookingData.email
-      };
-      localStorage.setItem("prenotaDraft", JSON.stringify(draftData));
-    }, 200);
-    return () => clearTimeout(timeout);
-  }, [bookingData]);
 
   // Check for pending booking on mount and visibility change
   useEffect(() => {
@@ -282,7 +235,7 @@ export default function Prenota() {
     !errors.phone && !errors.email;
 
   const validatePhone = (value: string): string => {
-    const cleaned = value.replace(/[\s\-\(\)]/g, '');
+    const cleaned = value.replace(/[\s\-()]/g, '');
     if (!/^(\+39)?[0-9]{9,11}$/.test(cleaned)) {
       return "Numero di telefono non valido";
     }
