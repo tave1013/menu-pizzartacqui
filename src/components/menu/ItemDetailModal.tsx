@@ -469,36 +469,38 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                               isSelected && "bg-secondary/30"
                             )}
                           >
-                            <div className="flex-1">
-                              <span className="text-card-foreground">
-                                {extra.name}
-                              </span>
-                              <span className="text-muted-foreground text-sm ml-2">
+                            <span className="text-card-foreground flex-1">
+                              {extra.name}
+                            </span>
+                            
+                            {/* Blocco Prezzo + Checkbox a destra */}
+                            <div className="flex items-center gap-3">
+                              <span className="text-muted-foreground text-sm">
                                 +{formatPrice(extra.price)}
                               </span>
-                            </div>
-                            <input
-                              type="checkbox"
-                              id={inputId}
-                              checked={isSelected}
-                              onChange={() => handleToggleExtra(extra.id)}
-                              className="sr-only"
-                              aria-label={`Aggiungi ${extra.name}`}
-                            />
-                            <div
-                              className={cn(
-                                "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
-                                isSelected
-                                  ? "bg-primary border-primary"
-                                  : "border-border"
-                              )}
-                              aria-hidden="true"
-                            >
-                              {isSelected && (
-                                <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                </svg>
-                              )}
+                              <input
+                                type="checkbox"
+                                id={inputId}
+                                checked={isSelected}
+                                onChange={() => handleToggleExtra(extra.id)}
+                                className="sr-only"
+                                aria-label={`Aggiungi ${extra.name}`}
+                              />
+                              <div
+                                className={cn(
+                                  "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
+                                  isSelected
+                                    ? "bg-primary border-primary"
+                                    : "border-border"
+                                )}
+                                aria-hidden="true"
+                              >
+                                {isSelected && (
+                                  <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                )}
+                              </div>
                             </div>
                           </label>
                         );
