@@ -136,7 +136,7 @@ const INGREDIENTI_EXTRA: ExtraIngredient[] = [
 // IMPASTO SENZA GLUTINE
 // ═══════════════════════════════════════════════════════════════════════════
 const GLUTEN_FREE_PRICE = 3.00;
-const PIZZA_CATEGORY_ID = "pizze"; // ID della categoria pizze
+const PIZZA_CATEGORY_ID = "top-ten"; // ID della categoria pizze
 // ═══════════════════════════════════════════════════════════════════════════
 
 // Parse ingredients from description
