@@ -161,7 +161,19 @@ function buildWhatsAppMessage(
   message += `*Dettagli d'ordine:*\n`;
   
   items.forEach((item) => {
-    message += `x${item.quantity} *${item.name.toUpperCase()}* — ${formatPrice(item.price * item.quantity)}\n`;
+    // Aggiungi [SENZA GLUTINE] all'inizio se presente
+    const glutenFreePrefix = item.glutenFree ? "*[SENZA GLUTINE]* " : "";
+    const itemPrice = (item.price + item.extrasPrice + item.glutenFreePrice) * item.quantity;
+    message += `x${item.quantity} ${glutenFreePrefix}*${item.name.toUpperCase()}* — ${formatPrice(itemPrice)}\n`;
+    
+    // Ingredienti extra con "+"
+    if (item.selectedExtras && item.selectedExtras.length > 0) {
+      item.selectedExtras.forEach(extra => {
+        message += `_✓ + ${extra}_\n`;
+      });
+    }
+    
+    // Ingredienti rimossi con "❌"
     if (item.removedIngredients.length > 0) {
       item.removedIngredients.forEach(ingredient => {
         message += `_❌ No ${ingredient}_\n`;

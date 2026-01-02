@@ -136,7 +136,8 @@ const INGREDIENTI_EXTRA: ExtraIngredient[] = [
 // IMPASTO SENZA GLUTINE
 // ═══════════════════════════════════════════════════════════════════════════
 const GLUTEN_FREE_PRICE = 3.00;
-const PIZZA_CATEGORY_ID = "top-ten"; // ID della categoria pizze
+const PIZZA_CATEGORIES = ["top-ten", "pizart", "le-classiche", "baby-pizze"]; // Categorie pizze
+const EXCLUDED_CATEGORIES = ["le-focacce"]; // Categorie escluse
 // ═══════════════════════════════════════════════════════════════════════════
 
 // Parse ingredients from description
@@ -178,8 +179,12 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
   // Controlla se la categoria è esclusa dalla rimozione ingredienti
   const categoryHasIngredients = !categoryId || !CATEGORIE_SENZA_INGREDIENTI.includes(categoryId);
   
-  // Controlla se l'item è una pizza
-  const isPizza = categoryId === PIZZA_CATEGORY_ID;
+  // Controlla se l'item può avere l'opzione senza glutine
+  const canHaveGlutenFree = 
+    categoryId && 
+    PIZZA_CATEGORIES.includes(categoryId) && 
+    !EXCLUDED_CATEGORIES.includes(categoryId) &&
+    !item?.excludeGlutenFree;
 
   const ingredients = useMemo(() => {
     if (!item || !categoryHasIngredients) return [];
@@ -284,13 +289,19 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
   };
 
   const handleAddToCart = () => {
+    // Converti gli ID degli extra in nomi per il carrello
+    const extraNames = Array.from(selectedExtras).map((id) => {
+      const extra = INGREDIENTI_EXTRA.find((e) => e.id === id);
+      return extra?.name || id;
+    });
+    
     if (isEditing && editingCartItem) {
       // Remove old item and add updated one
       removeItem(editingCartItem.id);
-      addItem(item, quantity, Array.from(removedIngredients), Array.from(selectedExtras), extrasPrice, glutenFreeOption, glutenFreePrice);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, extrasPrice, glutenFreeOption, glutenFreePrice);
       // Rimosso toast per UX più fluida
     } else {
-      addItem(item, quantity, Array.from(removedIngredients), Array.from(selectedExtras), extrasPrice, glutenFreeOption, glutenFreePrice);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, extrasPrice, glutenFreeOption, glutenFreePrice);
       // Rimosso toast per UX più fluida
     }
     onClose();
@@ -411,7 +422,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                 </div>
 
                 {/* Gluten Free Option - only for pizzas in order mode when open */}
-                {showOrderingControls && isRestaurantOpen && isPizza && (
+                {showOrderingControls && isRestaurantOpen && canHaveGlutenFree && (
                   <div className="bg-amber-50 dark:bg-amber-950/20 rounded-xl p-4 border border-amber-200 dark:border-amber-900">
                     <h3 className="text-lg font-bold text-card-foreground mb-2">
                       Intollerante al glutine?

@@ -148,13 +148,31 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                       <h3 className="font-semibold text-card-foreground truncate">
                         {item.name}
                       </h3>
+                      
+                      {/* Senza Glutine - evidenziato con sfondo giallo */}
+                      {item.glutenFree && (
+                        <div className="inline-block px-2 py-0.5 mt-1 bg-amber-100 dark:bg-amber-900/30 rounded text-xs font-medium text-amber-800 dark:text-amber-200">
+                          Senza Glutine
+                        </div>
+                      )}
+                      
+                      {/* Ingredienti Extra */}
+                      {item.selectedExtras && item.selectedExtras.length > 0 && (
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Extra: {item.selectedExtras.join(", ")}
+                        </p>
+                      )}
+                      
+                      {/* Ingredienti Rimossi */}
                       {item.removedIngredients.length > 0 && (
                         <p className="text-xs text-muted-foreground mt-0.5">
                           {item.removedIngredients.map((i) => `No ${i}`).join(" • ")}
                         </p>
                       )}
+                      
+                      {/* Prezzo totale riga */}
                       <p className="text-sm font-medium text-primary mt-1">
-                        {formatPrice(item.price * item.quantity)}
+                        {formatPrice((item.price + item.extrasPrice + item.glutenFreePrice) * item.quantity)}
                       </p>
                     </div>
 

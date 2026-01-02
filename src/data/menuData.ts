@@ -68,6 +68,7 @@ export interface MenuItem {
   isLactoseFree?: boolean;
   featured?: boolean;
   featuredOrder?: number;
+  excludeGlutenFree?: boolean; // Se true, nasconde opzione senza glutine per questo prodotto
   contact: {
     tel: string;
     mail: string;
