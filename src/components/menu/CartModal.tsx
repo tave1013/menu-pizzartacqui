@@ -173,7 +173,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                       {/* Prezzo totale riga */}
                       <p className="text-sm font-medium text-primary mt-1">
                         {formatPrice(
-                          (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * Number(item.quantity || 1)
+                          ((Number(item.price) || 0) + (Number(item.extrasPrice) || 0) + (Number(item.glutenFreePrice) || 0)) * Number(item.quantity || 1)
                         )}
                       </p>
                     </div>
