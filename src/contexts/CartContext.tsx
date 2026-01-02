@@ -56,12 +56,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce((sum, item) => {
-    const itemTotal = (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * (Number(item.quantity) || 1);
+    const basePrice = Number(item.price) || 0;
+    const extrasPrice = Number(item.extrasPrice) || 0;
+    const glutenPrice = Number(item.glutenFreePrice) || 0;
+    const qty = Number(item.quantity) || 1;
+    const itemTotal = (basePrice + extrasPrice + glutenPrice) * qty;
     return sum + itemTotal;
   }, 0);
 
   const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], selectedExtras: string[] = [], extrasPrice: number = 0, glutenFree: boolean = false, glutenFreePrice: number = 0) => {
     const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${selectedExtras.sort().join(",")}-${glutenFree ? "gf" : ""}`;
+    
+    // Assicurati che i prezzi siano numeri
+    const safeExtrasPrice = Number(extrasPrice) || 0;
+    const safeGlutenFreePrice = Number(glutenFreePrice) || 0;
     
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.id === cartItemId);
@@ -86,9 +94,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
           quantity,
           removedIngredients,
           selectedExtras,
-          extrasPrice,
+          extrasPrice: safeExtrasPrice,
           glutenFree,
-          glutenFreePrice,
+          glutenFreePrice: safeGlutenFreePrice,
         },
       ];
     });

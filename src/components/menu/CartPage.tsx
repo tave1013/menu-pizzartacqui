@@ -163,7 +163,7 @@ function buildWhatsAppMessage(
   items.forEach((item) => {
     // Aggiungi [SENZA GLUTINE] all'inizio se presente
     const glutenFreePrefix = item.glutenFree ? "*[SENZA GLUTINE]* " : "";
-    const itemPrice = (item.price + item.extrasPrice + item.glutenFreePrice) * item.quantity;
+    const itemPrice = (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * Number(item.quantity || 1);
     message += `x${item.quantity} ${glutenFreePrefix}*${item.name.toUpperCase()}* — ${formatPrice(itemPrice)}\n`;
     
     // Ingredienti extra con "+"
@@ -663,7 +663,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                             <div className="flex items-center gap-2">
                               <span className="text-sm font-semibold text-foreground">
                                 {formatPrice(
-                                  (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * item.quantity
+                                  (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * Number(item.quantity || 1)
                                 )}
                               </span>
                               {menuItem && (

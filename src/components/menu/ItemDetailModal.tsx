@@ -295,13 +295,17 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
       return extra?.name || id;
     });
     
+    // Assicurati che i prezzi siano numeri
+    const finalExtrasPrice = Number(extrasPrice) || 0;
+    const finalGlutenFreePrice = Number(glutenFreePrice) || 0;
+    
     if (isEditing && editingCartItem) {
       // Remove old item and add updated one
       removeItem(editingCartItem.id);
-      addItem(item, quantity, Array.from(removedIngredients), extraNames, extrasPrice, glutenFreeOption, glutenFreePrice);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice);
       // Rimosso toast per UX più fluida
     } else {
-      addItem(item, quantity, Array.from(removedIngredients), extraNames, extrasPrice, glutenFreeOption, glutenFreePrice);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice);
       // Rimosso toast per UX più fluida
     }
     onClose();
