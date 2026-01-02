@@ -159,7 +159,7 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                       {/* Ingredienti Extra */}
                       {item.selectedExtras && item.selectedExtras.length > 0 && (
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Extra: {item.selectedExtras.join(", ")}
+                          {item.selectedExtras.map((extra) => `+ ${extra}`).join(", ")}
                         </p>
                       )}
                       
@@ -172,7 +172,9 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                       
                       {/* Prezzo totale riga */}
                       <p className="text-sm font-medium text-primary mt-1">
-                        {formatPrice((item.price + item.extrasPrice + item.glutenFreePrice) * item.quantity)}
+                        {formatPrice(
+                          (item.price + (item.extrasPrice || 0) + (item.glutenFreePrice || 0)) * item.quantity
+                        )}
                       </p>
                     </div>
 

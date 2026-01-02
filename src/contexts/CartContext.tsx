@@ -55,7 +55,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + (item.price + item.extrasPrice + item.glutenFreePrice) * item.quantity, 0);
+  const totalPrice = items.reduce((sum, item) => {
+    const itemTotal = (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * (Number(item.quantity) || 1);
+    return sum + itemTotal;
+  }, 0);
 
   const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], selectedExtras: string[] = [], extrasPrice: number = 0, glutenFree: boolean = false, glutenFreePrice: number = 0) => {
     const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${selectedExtras.sort().join(",")}-${glutenFree ? "gf" : ""}`;

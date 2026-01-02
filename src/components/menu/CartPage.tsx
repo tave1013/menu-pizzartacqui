@@ -662,7 +662,9 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                             {/* Price and edit */}
                             <div className="flex items-center gap-2">
                               <span className="text-sm font-semibold text-foreground">
-                                {formatPrice(item.price * item.quantity)}
+                                {formatPrice(
+                                  (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * item.quantity
+                                )}
                               </span>
                               {menuItem && (
                                 <button
