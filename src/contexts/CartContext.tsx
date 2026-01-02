@@ -9,13 +9,15 @@ export interface CartItem {
   image: string;
   quantity: number;
   removedIngredients: string[];
+  selectedExtras: string[];
+  extrasPrice: number;
 }
 
 interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
-  addItem: (item: MenuItem, quantity: number, removedIngredients: string[]) => void;
+  addItem: (item: MenuItem, quantity: number, removedIngredients: string[], selectedExtras?: string[], extrasPrice?: number) => void;
   updateQuantity: (cartItemId: string, quantity: number) => void;
   removeItem: (cartItemId: string) => void;
   clearCart: () => void;
@@ -51,10 +53,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalPrice = items.reduce((sum, item) => sum + (item.price + item.extrasPrice) * item.quantity, 0);
 
-  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[]) => {
-    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}`;
+  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], selectedExtras: string[] = [], extrasPrice: number = 0) => {
+    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${selectedExtras.sort().join(",")}`;
     
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.id === cartItemId);
@@ -78,6 +80,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
           image: menuItem.image,
           quantity,
           removedIngredients,
+          selectedExtras,
+          extrasPrice,
         },
       ];
     });
