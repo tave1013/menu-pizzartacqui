@@ -302,7 +302,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
               {/* Details: sempre scrollabili, anche in read-only/chiuso */}
               <div
-                className="flex-1 overflow-y-auto p-5 sm:p-6 lg:p-8 pb-4 sm:pb-5 lg:pb-6 space-y-6"
+                className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 lg:p-8 space-y-6"
+                style={{ scrollbarGutter: "stable" }}
               >
                 {/* Title and Description */}
                 <div>
@@ -416,8 +417,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                 className={cn(
                   "flex-shrink-0",
                   "bg-card border-t border-border",
-                  "p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]",
-                  "space-y-2"
+                  "p-4 pt-4 sm:p-6 lg:p-8 pb-[calc(1rem+env(safe-area-inset-bottom))]",
+                  "space-y-3"
                 )}
               >
                 {/* Quantity selector */}
