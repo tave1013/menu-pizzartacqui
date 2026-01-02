@@ -757,7 +757,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                               </span>
                               
                               {totalQuantityInCart > 0 && cartItem ? (
-                                {/* Stile identico alle MenuItemCard - selettore quantità con shadow */}
+                                // Stile identico alle MenuItemCard - selettore quantità con shadow
                                 <div className={cn(
                                   "flex items-center gap-1 rounded-full shadow-md bg-white/95 dark:bg-card/95 backdrop-blur-sm",
                                   "h-7 px-1"
@@ -793,7 +793,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                                   </button>
                                 </div>
                               ) : (
-                                {/* Stile identico alle MenuItemCard - bottone + singolo */}
+                                // Stile identico alle MenuItemCard - bottone + singolo
                                 <button
                                   onClick={() => handleAddUpsell(item)}
                                   className={cn(
