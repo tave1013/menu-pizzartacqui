@@ -28,6 +28,7 @@ function ProductCover({ imageUrl, name }: { imageUrl: string; name: string }) {
         "relative w-full flex-shrink-0",
         // Mobile: altezza fissa più contenuta per lasciare spazio al contenuto
         "h-[260px] sm:h-[clamp(240px,35vh,320px)]",
+        "aspect-video",
         "overflow-hidden",
         !showImage && "product-cover-fallback"
       )}
