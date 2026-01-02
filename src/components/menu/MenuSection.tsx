@@ -28,6 +28,7 @@ export function MenuSection({ category, onItemClick }: MenuSectionProps) {
             item={item}
             index={index}
             onItemClick={handleItemClick}
+            categoryId={category.id}
           />
         ))}
       </div>

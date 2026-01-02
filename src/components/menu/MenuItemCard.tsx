@@ -10,13 +10,18 @@ import { cn } from "@/lib/utils";
 import { DietaryBadges } from "./DietaryBadge";
 import { ProductImage } from "./ProductImage";
 
+// Costanti per opzione senza glutine
+const PIZZA_CATEGORIES = ["top-ten", "pizart", "le-classiche", "baby-pizze"];
+const EXCLUDED_CATEGORIES = ["le-focacce"];
+
 interface MenuItemCardProps {
   item: MenuItem;
   index: number;
   onItemClick: (item: MenuItem) => void;
+  categoryId?: string;
 }
 
-export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
+export function MenuItemCard({ item, index, onItemClick, categoryId }: MenuItemCardProps) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
@@ -25,6 +30,13 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
 
   const openState = useOptionalOpenState();
   const isRestaurantOpen = openState?.isOpen ?? true;
+  
+  // Controlla se il prodotto può avere l'opzione senza glutine
+  const canHaveGlutenFree = 
+    categoryId && 
+    PIZZA_CATEGORIES.includes(categoryId) && 
+    !EXCLUDED_CATEGORIES.includes(categoryId) &&
+    !item?.excludeGlutenFree;
 
   // Get all cart items for this product
   const cartItemsForProduct = items.filter((cartItem) => cartItem.productId === item.id);
@@ -101,6 +113,20 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
           <p className="text-[14px] lg:text-[13px] text-muted-foreground line-clamp-2 mb-3 lg:min-h-[2rem]">
             {item.desc}
           </p>
+          
+          {/* Banner Senza Glutine - solo visualizzazione */}
+          {canHaveGlutenFree && (
+            <div className="bg-amber-50 dark:bg-amber-950/20 rounded-lg p-2 mb-3 border border-amber-200 dark:border-amber-900">
+              <h4 className="text-xs font-bold text-card-foreground mb-1">
+                Intollerante al glutine?
+              </h4>
+              <p className="text-[10px] lg:text-[11px] text-muted-foreground italic leading-tight">
+                Attenzione: non siamo certificati gluten-free. Pur adottando tutte le accortezze possibili, 
+                in ambiente di lavoro possono verificarsi contaminazioni. Ingredienti e condimenti sono 
+                gli stessi utilizzati per le altre pizze.
+              </p>
+            </div>
+          )}
 
           <div className="mt-auto">
             <p className="font-bold text-card-foreground text-[14px] lg:text-[15px] mb-2">{item.price.toFixed(2)} €</p>
