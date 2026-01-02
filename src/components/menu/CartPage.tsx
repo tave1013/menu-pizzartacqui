@@ -757,7 +757,11 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                               </span>
                               
                               {totalQuantityInCart > 0 && cartItem ? (
-                                <div className="flex items-center gap-1 flex-shrink-0">
+                                {/* Stile identico alle MenuItemCard - selettore quantità con shadow */}
+                                <div className={cn(
+                                  "flex items-center gap-1 rounded-full shadow-md bg-white/95 dark:bg-card/95 backdrop-blur-sm",
+                                  "h-7 px-1"
+                                )}>
                                   <button
                                     onClick={() => {
                                       if (cartItem.quantity === 1) {
@@ -766,49 +770,40 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                                         updateQuantity(cartItem.id, cartItem.quantity - 1);
                                       }
                                     }}
-                                    className={cn(
-                                      "w-6 h-6 rounded-full",
-                                      "flex items-center justify-center",
-                                      "border border-border",
-                                      "hover:bg-muted",
-                                      "transition-colors duration-160"
-                                    )}
-                                    aria-label="Rimuovi uno"
+                                    className="flex items-center justify-center w-6 h-6 rounded-full text-primary hover:bg-primary/10 transition-colors"
+                                    aria-label={cartItem.quantity === 1 ? "Rimuovi dal carrello" : "Diminuisci quantità"}
                                   >
                                     {cartItem.quantity === 1 ? (
-                                      <Trash2 className="w-3 h-3 text-muted-foreground" />
+                                      <Trash2 className="w-3.5 h-3.5" strokeWidth={2.5} />
                                     ) : (
-                                      <Minus className="w-3 h-3 text-muted-foreground" />
+                                      <Minus className="w-3.5 h-3.5" strokeWidth={3} />
                                     )}
                                   </button>
-                                  <span className="text-sm font-medium w-4 text-center">{cartItem.quantity}</span>
+                                  
+                                  <span className="text-xs font-bold text-primary min-w-[16px] text-center">
+                                    {cartItem.quantity}
+                                  </span>
+                                  
                                   <button
                                     onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
-                                    className={cn(
-                                      "w-6 h-6 rounded-full",
-                                      "flex items-center justify-center",
-                                      "bg-primary text-primary-foreground",
-                                      "hover:bg-primary/90",
-                                      "transition-colors duration-160"
-                                    )}
-                                    aria-label="Aggiungi uno"
+                                    className="flex items-center justify-center w-6 h-6 rounded-full text-primary hover:bg-primary/10 transition-colors"
+                                    aria-label="Aggiungi al carrello"
                                   >
-                                    <Plus className="w-3 h-3" />
+                                    <Plus className="w-3.5 h-3.5" strokeWidth={3} />
                                   </button>
                                 </div>
                               ) : (
+                                {/* Stile identico alle MenuItemCard - bottone + singolo */}
                                 <button
                                   onClick={() => handleAddUpsell(item)}
                                   className={cn(
-                                    "w-7 h-7 rounded-full flex-shrink-0",
-                                    "flex items-center justify-center",
-                                    "bg-primary text-primary-foreground",
-                                    "hover:bg-primary/90",
-                                    "transition-colors duration-160"
+                                    "flex items-center justify-center rounded-full shadow-md",
+                                    "w-7 h-7",
+                                    "bg-white/90 dark:bg-card/90 backdrop-blur-sm text-primary"
                                   )}
                                   aria-label={`Aggiungi ${item.name}`}
                                 >
-                                  <Plus className="w-4 h-4" />
+                                  <Plus className="w-4 h-4" strokeWidth={3} />
                                 </button>
                               )}
                             </div>
