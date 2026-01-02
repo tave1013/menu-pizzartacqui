@@ -37,22 +37,22 @@ const menabreaImg = "/assets/food/menabrea.webp";
 const tuborgenImg = "/assets/food/tuborg.webp";
 const aiformaggiImg = "/assets/food/ai-formaggi.webp";
 // Birre alla spina
-const birraBiondaPiccolaImg = "/assets/food/Birra-bionda-piccola.webp";
-const birraBiondaMediaImg = "/assets/food/Birra-bionda-media.webp";
-const birraRossaPiccolaImg = "/assets/food/Birra-rossa-piccola.webp";
-const birraRossaMediaImg = "/assets/food/Birra-rossa-media.webp";
+const birraBiondaPiccolaImg = "/assets/food/Birra-bionda-piccola.png";
+const birraBiondaMediaImg = "/assets/food/Birra-bionda-media.png";
+const birraRossaPiccolaImg = "/assets/food/Birra-rossa-piccola.png";
+const birraRossaMediaImg = "/assets/food/Birra-rossa-media.png";
 // Birre bicicletta
-const biciPiccolaBiondaImg = "/assets/food/Bici-piccola-bionda.webp";
-const biciMediaBiondaImg = "/assets/food/Bici-media-bionda.webp";
-const biciPiccolaRossaImg = "/assets/food/Bici-piccola-rossa.webp";
-const biciMediaRossaImg = "/assets/food/Bici-media-rossa.webp";
+const biciPiccolaBiondaImg = "/assets/food/Bici-piccola-bionda.png";
+const biciMediaBiondaImg = "/assets/food/Bici-media-bionda.png";
+const biciPiccolaRossaImg = "/assets/food/Bici-piccola-rossa.png";
+const biciMediaRossaImg = "/assets/food/Bici-media-rossa.png";
 // Vini sfusi
-const quartinoRossoSfusoImg = "/assets/food/Quartino-rosso-sfuso.webp";
-const mezzoRossoSfusoImg = "/assets/food/Mezzorosso-sfuso.webp";
-const litroRossoSfusoImg = "/assets/food/Litro-rosso-sfuso.webp";
-const quartinoBiancoSfusoImg = "/assets/food/Quartino-bianco-sfuso.webp";
-const mezzoBiancoSfusoImg = "/assets/food/Mezzo-bianco-sfuso.webp";
-const litroBiancoSfusoImg = "/assets/food/Litro-bianco-sfuso.webp";
+const quartinoRossoSfusoImg = "/assets/food/Quartino-rosso-sfuso.png";
+const mezzoRossoSfusoImg = "/assets/food/Mezzo-rosso-sfuso.png";
+const litroRossoSfusoImg = "/assets/food/Litro-rosso-sfuso.png";
+const quartinoBiancoSfusoImg = "/assets/food/Quartino-bianco-sfuso.png";
+const mezzoBiancoSfusoImg = "/assets/food/Mezzo-bianco-sfuso.png";
+const litroBiancoSfusoImg = "/assets/food/Litro-bianco-sfuso.png";
 
 export type DietaryTag = "vegan" | "vegetarian" | "gluten-free";
 
