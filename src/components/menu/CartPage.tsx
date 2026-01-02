@@ -648,6 +648,26 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                             {/* Item details */}
                             <div className="flex-1 min-w-0">
                               <p className="font-medium text-foreground">{item.name}</p>
+                              
+                              {/* Senza Glutine Badge */}
+                              {item.glutenFree && (
+                                <div className="inline-block px-2 py-0.5 mt-1 bg-yellow-100 dark:bg-yellow-900/30 rounded-full text-xs font-medium text-yellow-800 dark:text-yellow-200">
+                                  Senza glutine
+                                </div>
+                              )}
+                              
+                              {/* Ingredienti Extra */}
+                              {item.selectedExtras && item.selectedExtras.length > 0 && (
+                                <div className="mt-1 space-y-0.5">
+                                  {item.selectedExtras.map((extra, idx) => (
+                                    <p key={idx} className="text-xs text-muted-foreground">
+                                      + {extra}
+                                    </p>
+                                  ))}
+                                </div>
+                              )}
+                              
+                              {/* Ingredienti Rimossi */}
                               {item.removedIngredients.length > 0 && (
                                 <div className="mt-1 space-y-0.5">
                                   {item.removedIngredients.map((ingredient, idx) => (
