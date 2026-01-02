@@ -85,6 +85,11 @@ const Index = () => {
     setEditingCartItem(cartItem);
     setEditingFromCart(true);
     setIsCartOpen(false);
+    // Trova la categoria del prodotto per la sezione Senza Glutine
+    const category = menuCategories.find(cat => 
+      cat.items.some(i => i.id === item.id)
+    );
+    setSelectedCategoryId(category?.id || null);
   };
 
   const handleOpenSearch = () => {
