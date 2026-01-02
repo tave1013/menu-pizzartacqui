@@ -29,7 +29,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
       const stored = localStorage.getItem(CART_STORAGE_KEY);
-      return stored ? JSON.parse(stored) : [];
+      if (!stored) return [];
+      
+      const parsed = JSON.parse(stored);
+      // Supporta sia array diretto che oggetto con proprietà items
+      if (Array.isArray(parsed)) {
+        return parsed;
+      }
+      if (parsed && Array.isArray(parsed.items)) {
+        return parsed.items;
+      }
+      return [];
     } catch {
       return [];
     }
