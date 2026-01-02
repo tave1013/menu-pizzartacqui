@@ -450,8 +450,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   </p>
                 </div>
 
-                {/* Gluten Free Option - only for pizzas in order mode when open */}
-                {showOrderingControls && isRestaurantOpen && canHaveGlutenFree && (
+                {/* Gluten Free Option - visible in both modes when applicable */}
+                {isRestaurantOpen && canHaveGlutenFree && (
                   <div className="bg-amber-50 dark:bg-amber-950/20 rounded-xl p-4 border border-amber-200 dark:border-amber-900">
                     <h3 className="text-lg font-bold text-card-foreground mb-2">
                       Intollerante al glutine?
