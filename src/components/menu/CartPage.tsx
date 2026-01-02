@@ -728,14 +728,12 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                   
                   <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-2">
                     {suggestedItems.map((item) => {
-                      // Trova tutti i cart items con questo productId e somma le quantità
-                      const totalQuantityInCart = items
-                        .filter(ci => ci.productId === item.id)
-                        .reduce((sum, ci) => sum + ci.quantity, 0);
+                      // Trova tutti i cart items con questo productId
+                      const cartItemsForProduct = items.filter(ci => ci.productId === item.id);
+                      const totalQuantityInCart = cartItemsForProduct.reduce((sum, ci) => sum + ci.quantity, 0);
                       
-                      // Per modificare la quantità, usa il cart item senza ingredienti rimossi
-                      const upsellCartId = `${item.id}-`;
-                      const cartItem = items.find(ci => ci.id === upsellCartId);
+                      // Usa il primo item trovato per gestire la quantità
+                      const cartItem = cartItemsForProduct.length > 0 ? cartItemsForProduct[0] : null;
                       
                       return (
                         <div
