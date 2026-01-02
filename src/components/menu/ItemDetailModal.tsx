@@ -456,7 +456,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                     <h3 className="text-lg font-bold text-card-foreground mb-2">
                       Intollerante al glutine?
                     </h3>
-                    <p className="text-xs text-muted-foreground italic mb-4 leading-relaxed">
+                    <p className="text-[14px] text-muted-foreground italic mb-4 leading-relaxed">
                       Attenzione: non siamo certificati gluten-free. Pur adottando tutte le accortezze possibili, 
                       in ambiente di lavoro possono verificarsi contaminazioni. Ingredienti e condimenti sono 
                       gli stessi utilizzati per le altre pizze.
