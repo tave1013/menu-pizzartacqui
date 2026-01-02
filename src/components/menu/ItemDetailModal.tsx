@@ -132,6 +132,13 @@ const INGREDIENTI_EXTRA: ExtraIngredient[] = [
 ];
 // ═══════════════════════════════════════════════════════════════════════════
 
+// ═══════════════════════════════════════════════════════════════════════════
+// IMPASTO SENZA GLUTINE
+// ═══════════════════════════════════════════════════════════════════════════
+const GLUTEN_FREE_PRICE = 3.00;
+const PIZZA_CATEGORY_ID = "pizze"; // ID della categoria pizze
+// ═══════════════════════════════════════════════════════════════════════════
+
 // Parse ingredients from description
 function parseIngredients(desc: string): string[] {
   return desc
@@ -166,9 +173,13 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
   const [quantity, setQuantity] = useState(1);
   const [removedIngredients, setRemovedIngredients] = useState<Set<string>>(new Set());
   const [selectedExtras, setSelectedExtras] = useState<Set<string>>(new Set());
+  const [glutenFreeOption, setGlutenFreeOption] = useState(false);
 
   // Controlla se la categoria è esclusa dalla rimozione ingredienti
   const categoryHasIngredients = !categoryId || !CATEGORIE_SENZA_INGREDIENTI.includes(categoryId);
+  
+  // Controlla se l'item è una pizza
+  const isPizza = categoryId === PIZZA_CATEGORY_ID;
 
   const ingredients = useMemo(() => {
     if (!item || !categoryHasIngredients) return [];
@@ -184,10 +195,12 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
         setQuantity(editingCartItem.quantity);
         setRemovedIngredients(new Set(editingCartItem.removedIngredients));
         setSelectedExtras(new Set());
+        setGlutenFreeOption(false);
       } else {
         setQuantity(1);
         setRemovedIngredients(new Set());
         setSelectedExtras(new Set());
+        setGlutenFreeOption(false);
       }
     }
   }, [isOpen, item, editingCartItem]);
@@ -236,8 +249,11 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
     const extra = INGREDIENTI_EXTRA.find((e) => e.id === extraId);
     return sum + (extra?.price ?? 0);
   }, 0);
+  
+  // Aggiungi prezzo impasto senza glutine se selezionato
+  const glutenFreePrice = glutenFreeOption ? GLUTEN_FREE_PRICE : 0;
 
-  const totalPrice = (item.price + extrasPrice) * quantity;
+  const totalPrice = (item.price + extrasPrice + glutenFreePrice) * quantity;
 
   const formatPrice = (price: number) => {
     return price.toFixed(2).replace(".", ",") + " €";
@@ -271,10 +287,10 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
     if (isEditing && editingCartItem) {
       // Remove old item and add updated one
       removeItem(editingCartItem.id);
-      addItem(item, quantity, Array.from(removedIngredients), Array.from(selectedExtras), extrasPrice);
+      addItem(item, quantity, Array.from(removedIngredients), Array.from(selectedExtras), extrasPrice, glutenFreeOption, glutenFreePrice);
       // Rimosso toast per UX più fluida
     } else {
-      addItem(item, quantity, Array.from(removedIngredients), Array.from(selectedExtras), extrasPrice);
+      addItem(item, quantity, Array.from(removedIngredients), Array.from(selectedExtras), extrasPrice, glutenFreeOption, glutenFreePrice);
       // Rimosso toast per UX più fluida
     }
     onClose();
@@ -387,6 +403,67 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                     </a>
                   </p>
                 </div>
+
+                {/* Gluten Free Option - only for pizzas in order mode when open */}
+                {showOrderingControls && isRestaurantOpen && isPizza && (
+                  <div className="bg-amber-50 dark:bg-amber-950/20 rounded-xl p-4 border border-amber-200 dark:border-amber-900">
+                    <h3 className="text-lg font-bold text-card-foreground mb-2">
+                      Intollerante al glutine?
+                    </h3>
+                    <p className="text-xs text-muted-foreground italic mb-4 leading-relaxed">
+                      Attenzione: non siamo certificati gluten-free. Pur adottando tutte le accortezze possibili, 
+                      in ambiente di lavoro possono verificarsi contaminazioni. Ingredienti e condimenti sono 
+                      gli stessi utilizzati per le altre pizze.
+                    </p>
+                    
+                    <label
+                      htmlFor="gluten-free-option"
+                      className={cn(
+                        "flex items-center justify-between",
+                        "py-3 px-3 rounded-lg border border-border",
+                        "cursor-pointer select-none",
+                        "min-h-[56px]",
+                        "transition-colors duration-160",
+                        "hover:bg-secondary/50 active:bg-secondary/70",
+                        glutenFreeOption && "bg-secondary/30"
+                      )}
+                    >
+                      <span className="text-card-foreground flex-1 font-medium">
+                        Impasto senza glutine
+                      </span>
+                      
+                      {/* Blocco Prezzo + Checkbox a destra */}
+                      <div className="flex items-center gap-3">
+                        <span className="text-muted-foreground text-sm">
+                          +{formatPrice(GLUTEN_FREE_PRICE)}
+                        </span>
+                        <input
+                          type="checkbox"
+                          id="gluten-free-option"
+                          checked={glutenFreeOption}
+                          onChange={() => setGlutenFreeOption(!glutenFreeOption)}
+                          className="sr-only"
+                          aria-label="Aggiungi impasto senza glutine"
+                        />
+                        <div
+                          className={cn(
+                            "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
+                            glutenFreeOption
+                              ? "bg-primary border-primary"
+                              : "border-border"
+                          )}
+                          aria-hidden="true"
+                        >
+                          {glutenFreeOption && (
+                            <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                )}
 
                 {/* Remove Ingredients Section - only in order mode when open */}
                 {showOrderingControls && isRestaurantOpen && ingredients.length > 0 && (
