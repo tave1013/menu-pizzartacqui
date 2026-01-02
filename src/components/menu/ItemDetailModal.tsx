@@ -75,31 +75,6 @@ const CATEGORIE_SENZA_INGREDIENTI = [
   // Aggiungi qui nuove categorie, es: "dolci", "gelati"
 ];
 
-// Ingredienti extra disponibili
-const INGREDIENTI_EXTRA = [
-  { id: "bufala", name: "Bufala", price: 2.00 },
-  { id: "burrata", name: "Burrata", price: 2.50 },
-  { id: "stracciata", name: "Stracciata", price: 2.50 },
-  { id: "stracchino", name: "Stracchino", price: 2.00 },
-  { id: "funghi-champignon", name: "Funghi champignon", price: 1.40 },
-  { id: "gorgonzola", name: "Gorgonzola", price: 1.50 },
-  { id: "olive", name: "Olive", price: 1.50 },
-  { id: "patatine", name: "Patatine", price: 1.50 },
-  { id: "rucola", name: "Rucola", price: 0.70 },
-  { id: "melanzane", name: "Melanzane", price: 1.50 },
-  { id: "peperoni", name: "Peperoni", price: 1.50 },
-  { id: "zucchine", name: "Zucchine", price: 1.50 },
-  { id: "pomodorini", name: "Pomodorini", price: 1.50 },
-  { id: "acciughe", name: "Acciughe", price: 1.50 },
-  { id: "porcini", name: "Porcini", price: 3.00 },
-  { id: "bresaola", name: "Bresaola", price: 3.00 },
-  { id: "prosciutto-cotto", name: "Prosciutto cotto", price: 2.00 },
-  { id: "prosciutto-crudo", name: "Prosciutto crudo", price: 3.00 },
-  { id: "salsiccia", name: "Salsiccia", price: 2.00 },
-  { id: "spianata", name: "Spianata", price: 2.00 },
-  { id: "tonno", name: "Tonno", price: 3.00 },
-];
-
 // Pattern per escludere descrizioni NON-ingredienti
 // (funziona automaticamente, non serve modificare di solito)
 const BLACKLIST_PATTERNS = [
@@ -150,7 +125,6 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
   
   const [quantity, setQuantity] = useState(1);
   const [removedIngredients, setRemovedIngredients] = useState<Set<string>>(new Set());
-  const [extraIngredients, setExtraIngredients] = useState<Set<string>>(new Set());
 
   // Controlla se la categoria è esclusa dalla rimozione ingredienti
   const categoryHasIngredients = !categoryId || !CATEGORIE_SENZA_INGREDIENTI.includes(categoryId);
@@ -168,11 +142,9 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
       if (editingCartItem) {
         setQuantity(editingCartItem.quantity);
         setRemovedIngredients(new Set(editingCartItem.removedIngredients));
-        setExtraIngredients(new Set());
       } else {
         setQuantity(1);
         setRemovedIngredients(new Set());
-        setExtraIngredients(new Set());
       }
     }
   }, [isOpen, item, editingCartItem]);
@@ -216,12 +188,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
   if (!item) return null;
 
-  const extraPrice = Array.from(extraIngredients).reduce((sum, extraId) => {
-    const extra = INGREDIENTI_EXTRA.find(e => e.id === extraId);
-    return sum + (extra?.price || 0);
-  }, 0);
-  
-  const totalPrice = (item.price + extraPrice) * quantity;
+  const totalPrice = item.price * quantity;
 
   const formatPrice = (price: number) => {
     return price.toFixed(2).replace(".", ",") + " €";
@@ -239,31 +206,14 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
     });
   };
 
-  const handleToggleExtra = (extraId: string) => {
-    setExtraIngredients((prev) => {
-      const next = new Set(prev);
-      if (next.has(extraId)) {
-        next.delete(extraId);
-      } else {
-        next.add(extraId);
-      }
-      return next;
-    });
-  };
-
   const handleAddToCart = () => {
-    const selectedExtras = Array.from(extraIngredients).map(extraId => {
-      const extra = INGREDIENTI_EXTRA.find(e => e.id === extraId);
-      return extra ? { id: extra.id, name: extra.name, price: extra.price } : null;
-    }).filter((e): e is { id: string; name: string; price: number } => e !== null);
-
     if (isEditing && editingCartItem) {
       // Remove old item and add updated one
       removeItem(editingCartItem.id);
-      addItem(item, quantity, Array.from(removedIngredients), selectedExtras);
+      addItem(item, quantity, Array.from(removedIngredients));
       // Rimosso toast per UX più fluida
     } else {
-      addItem(item, quantity, Array.from(removedIngredients), selectedExtras);
+      addItem(item, quantity, Array.from(removedIngredients));
       // Rimosso toast per UX più fluida
     }
     onClose();
@@ -434,65 +384,6 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   </div>
                 )}
 
-                {/* Extra Ingredients Section - only in order mode when open */}
-                {showOrderingControls && isRestaurantOpen && categoryHasIngredients && (
-                  <div>
-                    <h3 className="text-lg font-bold text-card-foreground mb-4">
-                      Ingredienti Extra
-                    </h3>
-                    <div className="border-t border-border">
-                      {INGREDIENTI_EXTRA.map((extra) => {
-                        const isSelected = extraIngredients.has(extra.id);
-                        const inputId = `extra-${extra.id}`;
-                        return (
-                          <label
-                            key={extra.id}
-                            htmlFor={inputId}
-                            className={cn(
-                              "flex items-center justify-between",
-                              "py-4 px-2 -mx-2 border-b border-border",
-                              "cursor-pointer select-none",
-                              "min-h-[56px]",
-                              "rounded-lg transition-colors duration-160",
-                              "hover:bg-secondary/50 active:bg-secondary/70",
-                              isSelected && "bg-secondary/30"
-                            )}
-                          >
-                            <span className="text-card-foreground flex-1">
-                              {extra.name}
-                            </span>
-                            <span className="text-muted-foreground text-sm mr-3">
-                              +{extra.price.toFixed(2).replace(".", ",")} €
-                            </span>
-                            <input
-                              type="checkbox"
-                              id={inputId}
-                              checked={isSelected}
-                              onChange={() => handleToggleExtra(extra.id)}
-                              className="sr-only"
-                              aria-label={`Aggiungi ${extra.name}`}
-                            />
-                            <div
-                              className={cn(
-                                "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
-                                isSelected
-                                  ? "bg-primary border-primary"
-                                  : "border-border"
-                              )}
-                              aria-hidden="true"
-                            >
-                              {isSelected && (
-                                <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                </svg>
-                              )}
-                            </div>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
 
                 {/* Allergens */}
                 {item.allergens && item.allergens.length > 0 && (

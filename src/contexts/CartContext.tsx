@@ -9,14 +9,13 @@ export interface CartItem {
   image: string;
   quantity: number;
   removedIngredients: string[];
-  extraIngredients?: Array<{ id: string; name: string; price: number }>;
 }
 
 interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
-  addItem: (item: MenuItem, quantity: number, removedIngredients: string[], extraIngredients?: Array<{ id: string; name: string; price: number }>) => void;
+  addItem: (item: MenuItem, quantity: number, removedIngredients: string[]) => void;
   updateQuantity: (cartItemId: string, quantity: number) => void;
   removeItem: (cartItemId: string) => void;
   clearCart: () => void;
@@ -25,62 +24,27 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const CART_STORAGE_KEY = "newcastle-pub-cart";
-const CART_EXPIRY_MS = 24 * 60 * 60 * 1000;
-
-function loadCartFromStorage(): CartItem[] {
-  try {
-    const stored = localStorage.getItem(CART_STORAGE_KEY);
-    if (!stored) return [];
-
-    const parsed = JSON.parse(stored);
-
-    // Backward compatibility: old structure was just an array
-    if (Array.isArray(parsed)) {
-      return parsed;
-    }
-
-    if (parsed && Array.isArray(parsed.items)) {
-      const { items, updatedAt } = parsed;
-      if (typeof updatedAt === "number") {
-        const isExpired = Date.now() - updatedAt > CART_EXPIRY_MS;
-        if (isExpired) {
-          localStorage.removeItem(CART_STORAGE_KEY);
-          return [];
-        }
-      }
-      return items;
-    }
-  } catch {
-    // ignore broken storage
-  }
-  return [];
-}
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(() => loadCartFromStorage());
-
-  // Persist to localStorage with timestamp for expiry
-  useEffect(() => {
-    if (!items.length) {
-      localStorage.removeItem(CART_STORAGE_KEY);
-      return;
+  const [items, setItems] = useState<CartItem[]>(() => {
+    try {
+      const stored = localStorage.getItem(CART_STORAGE_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
     }
+  });
 
-    localStorage.setItem(
-      CART_STORAGE_KEY,
-      JSON.stringify({ items, updatedAt: Date.now() })
-    );
+  // Persist to localStorage
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => {
-    const extraPrice = (item.extraIngredients || []).reduce((extraSum, extra) => extraSum + extra.price, 0);
-    return sum + (item.price + extraPrice) * item.quantity;
-  }, 0);
+  const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], extraIngredients?: Array<{ id: string; name: string; price: number }>) => {
-    const extraIds = (extraIngredients || []).map(e => e.id).sort().join(",");
-    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${extraIds}`;
+  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[]) => {
+    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}`;
     
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.id === cartItemId);
@@ -104,7 +68,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
           image: menuItem.image,
           quantity,
           removedIngredients,
-          extraIngredients: extraIngredients || [],
         },
       ];
     });
