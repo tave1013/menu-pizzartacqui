@@ -369,17 +369,23 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
               <X className="w-5 h-5" />
             </button>
 
-            {/* Content - Image sticky, dettagli sempre scrollabili */}
-            {/* Image / Fallback Cover - flex-shrink-0 per non comprimersi */}
-            <div className="flex-shrink-0 sticky top-0 z-10">
-              <ProductCover imageUrl={item.image} name={item.name} />
-            </div>
+            {/* Scroll Container - contiene immagine + dettagli */}
+            <div className="flex-1 min-h-0 overflow-y-auto" style={{ scrollbarGutter: "stable" }}>
+              {/* Image / Fallback Cover - sticky top-0 con z-index basso */}
+              <div className="sticky top-0 z-0">
+                <ProductCover imageUrl={item.image} name={item.name} />
+              </div>
 
-            {/* Details: sempre scrollabili, anche in read-only/chiuso */}
-            <div
-              className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 lg:p-8 space-y-6"
-              style={{ scrollbarGutter: "stable" }}
-            >
+              {/* Details: sfondo solido che copre l'immagine quando scrolla */}
+              <div
+                className={cn(
+                  "relative z-20",
+                  "bg-card",
+                  "rounded-t-3xl",
+                  "-mt-6",
+                  "p-5 sm:p-6 lg:p-8 space-y-6"
+                )}
+              >
                 {/* Title and Description */}
                 <div>
                   <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold text-card-foreground mb-2">
@@ -607,6 +613,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                     </div>
                   </div>
                 )}
+              </div>
             </div>
 
             {/* Fixed Bottom - Quantity & Add to Cart - only in order mode when open */}
