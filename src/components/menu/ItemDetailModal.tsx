@@ -96,6 +96,18 @@ const BLACKLIST_PATTERNS = [
 // ═══════════════════════════════════════════════════════════════════════════
 // INGREDIENTI EXTRA
 // ═══════════════════════════════════════════════════════════════════════════
+// 
+// Per ESCLUDERE categorie dalla sezione Ingredienti Extra:
+// Aggiungi l'ID della categoria a questa lista:
+//
+const EXCLUDED_EXTRA_CATEGORIES = [
+  "bevande",              // Coca Cola, Fanta, Acqua, etc.
+  "birre",                // Menabrea, Tuborg, etc.
+  "birre-artigianali",    // Birre artigianali
+  "vini",                 // Nebbiolo, Arneis, etc.
+  // Aggiungi qui nuove categorie da escludere, es: "dolci", "gelati"
+];
+
 interface ExtraIngredient {
   id: string;
   name: string;
@@ -178,6 +190,9 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
   // Controlla se la categoria è esclusa dalla rimozione ingredienti
   const categoryHasIngredients = !categoryId || !CATEGORIE_SENZA_INGREDIENTI.includes(categoryId);
+  
+  // Controlla se la categoria può avere ingredienti extra
+  const canHaveExtras = !categoryId || !EXCLUDED_EXTRA_CATEGORIES.includes(categoryId);
   
   // Controlla se l'item può avere l'opzione senza glutine
   const canHaveGlutenFree = 
@@ -554,7 +569,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                 )}
 
                 {/* Ingredienti Extra Section - only in order mode when open */}
-                {showOrderingControls && isRestaurantOpen && (
+                {showOrderingControls && isRestaurantOpen && canHaveExtras && (
                   <div>
                     <h3 className="text-lg font-bold text-card-foreground mb-4">
                       Ingredienti Extra
