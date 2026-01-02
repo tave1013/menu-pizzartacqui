@@ -9,13 +9,14 @@ export interface CartItem {
   image: string;
   quantity: number;
   removedIngredients: string[];
+  extraIngredients?: Array<{ id: string; name: string; price: number }>;
 }
 
 interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
-  addItem: (item: MenuItem, quantity: number, removedIngredients: string[]) => void;
+  addItem: (item: MenuItem, quantity: number, removedIngredients: string[], extraIngredients?: Array<{ id: string; name: string; price: number }>) => void;
   updateQuantity: (cartItemId: string, quantity: number) => void;
   removeItem: (cartItemId: string) => void;
   clearCart: () => void;
@@ -72,10 +73,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalPrice = items.reduce((sum, item) => {
+    const extraPrice = (item.extraIngredients || []).reduce((extraSum, extra) => extraSum + extra.price, 0);
+    return sum + (item.price + extraPrice) * item.quantity;
+  }, 0);
 
-  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[]) => {
-    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}`;
+  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], extraIngredients?: Array<{ id: string; name: string; price: number }>) => {
+    const extraIds = (extraIngredients || []).map(e => e.id).sort().join(",");
+    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${extraIds}`;
     
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.id === cartItemId);
@@ -99,6 +104,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           image: menuItem.image,
           quantity,
           removedIngredients,
+          extraIngredients: extraIngredients || [],
         },
       ];
     });
