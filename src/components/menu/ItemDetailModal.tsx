@@ -462,52 +462,15 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                       gli stessi utilizzati per le altre pizze.
                     </p>
                     
-                    <label
-                      htmlFor="gluten-free-option"
-                      className={cn(
-                        "flex items-center justify-between",
-                        "py-3 px-3 rounded-lg border border-border",
-                        "cursor-pointer select-none",
-                        "min-h-[56px]",
-                        "transition-colors duration-160",
-                        "hover:bg-secondary/50 active:bg-secondary/70",
-                        glutenFreeOption && "bg-secondary/30"
-                      )}
-                    >
+                    {/* Riga statica con prezzo - no checkbox */}
+                    <div className="flex items-center justify-between py-3 px-3 rounded-lg border border-border bg-secondary/10">
                       <span className="text-card-foreground flex-1 font-medium">
                         Impasto senza glutine
                       </span>
-                      
-                      {/* Blocco Prezzo + Checkbox a destra */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-muted-foreground text-sm">
-                          +{formatPrice(GLUTEN_FREE_PRICE)}
-                        </span>
-                        <input
-                          type="checkbox"
-                          id="gluten-free-option"
-                          checked={glutenFreeOption}
-                          onChange={() => setGlutenFreeOption(!glutenFreeOption)}
-                          className="sr-only"
-                          aria-label="Aggiungi impasto senza glutine"
-                        />
-                        <div
-                          className={cn(
-                            "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
-                            glutenFreeOption
-                              ? "bg-primary border-primary"
-                              : "border-border"
-                          )}
-                          aria-hidden="true"
-                        >
-                          {glutenFreeOption && (
-                            <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                            </svg>
-                          )}
-                        </div>
-                      </div>
-                    </label>
+                      <span className="text-muted-foreground text-sm font-semibold">
+                        +{formatPrice(GLUTEN_FREE_PRICE)}
+                      </span>
+                    </div>
                   </div>
                 )}
 
