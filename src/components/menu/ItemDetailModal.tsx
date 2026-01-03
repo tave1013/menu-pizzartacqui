@@ -652,20 +652,20 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                     </div>
                   </div>
                 )}
-              </div>
-            </div>
 
-            {/* Contact Box - now truly at the bottom, outside scrollable area */}
-            <div className="bg-slate-50 dark:bg-slate-950/30 border-t border-border p-4 sm:p-6 mt-8">
-              <p className="text-sm text-muted-foreground text-center">
-                Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
-                <a
-                  href={`tel:${item.contact.tel}`}
-                  className="text-link font-medium hover:underline"
-                >
-                  Contatta il ristorante
-                </a>
-              </p>
+                {/* Contact Box - inside scroll area, as final element after ingredients */}
+                <div className="bg-slate-50 dark:bg-slate-950/30 border-t border-border p-4 sm:p-6 mt-6">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
+                    <a
+                      href={`tel:${item.contact.tel}`}
+                      className="text-link font-medium hover:underline"
+                    >
+                      Contatta il ristorante
+                    </a>
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Fixed Bottom - Quantity & Add to Cart - only in order mode when open */}
