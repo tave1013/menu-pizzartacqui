@@ -655,7 +655,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
                 {/* Contact Box - inside scroll area, as final element after ingredients */}
                 <div className="bg-secondary/50 rounded-xl p-6 mt-8">
-                  <p className="text-sm text-muted-foreground text-center">
+                  <p className="text-sm text-muted-foreground">
                     Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
                     <a
                       href={`tel:${item.contact.tel}`}
