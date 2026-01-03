@@ -655,8 +655,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
               </div>
             </div>
 
-            {/* Contact Box - at the very bottom before action buttons */}
-            <div className="bg-secondary/50 border-t border-border p-4 sm:p-6">
+            {/* Contact Box - now truly at the bottom, outside scrollable area */}
+            <div className="bg-slate-50 dark:bg-slate-950/30 border-t border-border p-4 sm:p-6 mt-8">
               <p className="text-sm text-muted-foreground text-center">
                 Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
                 <a
