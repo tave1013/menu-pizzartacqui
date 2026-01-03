@@ -657,13 +657,13 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
             {/* Contact Box - at the very bottom before action buttons */}
             <div className="bg-secondary/50 border-t border-border p-4 sm:p-6">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground text-center">
                 Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
                 <a
                   href={`tel:${item.contact.tel}`}
                   className="text-link font-medium hover:underline"
                 >
-                  Contatta il ristorante.
+                  Contatta il ristorante
                 </a>
               </p>
             </div>
