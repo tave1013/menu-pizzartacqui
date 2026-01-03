@@ -245,6 +245,7 @@ export const menuCategories: Category[] = [
         image: margheritaImg,
         dietaryTags: ["vegetarian", "vegan"],
         allergens: ["Glutine", "Lattosio"],
+        isAvailable: false, // Prodotto esaurito - esempio
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
