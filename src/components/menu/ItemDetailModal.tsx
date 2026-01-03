@@ -464,7 +464,10 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
                 {/* Gluten Free Option - visible in both modes when applicable */}
                 {isRestaurantOpen && canHaveGlutenFree && (
-                  <div className="bg-amber-50 dark:bg-amber-950/20 rounded-xl p-4 border border-amber-200 dark:border-amber-900">
+                  <div className={cn(
+                    "bg-amber-50 dark:bg-amber-950/20 rounded-xl p-4 border border-amber-200 dark:border-amber-900",
+                    !isAvailable && "opacity-50 grayscale"
+                  )}>
                     <h3 className="text-lg font-bold text-card-foreground mb-2">
                       Intollerante al glutine?
                     </h3>
@@ -495,7 +498,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                           "min-h-[56px]",
                           "transition-colors duration-160",
                           "hover:bg-secondary/50 active:bg-secondary/70",
-                          glutenFreeOption && "bg-secondary/30"
+                          glutenFreeOption && "bg-secondary/30",
+                          !isAvailable && "cursor-not-allowed opacity-50"
                         )}
                       >
                         <span className="text-card-foreground flex-1 font-medium">
@@ -510,7 +514,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                             type="checkbox"
                             id="gluten-free-option"
                             checked={glutenFreeOption}
-                            onChange={() => setGlutenFreeOption(!glutenFreeOption)}
+                            onChange={() => !isAvailable ? null : setGlutenFreeOption(!glutenFreeOption)}
+                            disabled={!isAvailable}
                             className="sr-only"
                             aria-label="Aggiungi impasto senza glutine"
                           />
@@ -537,7 +542,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
                 {/* Remove Ingredients Section - only in order mode when open */}
                 {showOrderingControls && isRestaurantOpen && ingredients.length > 0 && (
-                  <div>
+                  <div className={!isAvailable ? "opacity-50 grayscale" : ""}>
                     <h3 className="text-lg font-bold text-card-foreground mb-4">
                       Rimuovi Ingredienti da {item.name}
                     </h3>
@@ -556,7 +561,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                               "min-h-[56px]",
                               "rounded-lg transition-colors duration-160",
                               "hover:bg-secondary/50 active:bg-secondary/70",
-                              isRemoved && "bg-secondary/30"
+                              isRemoved && "bg-secondary/30",
+                              !isAvailable && "cursor-not-allowed opacity-50"
                             )}
                           >
                             <span className="text-card-foreground flex-1">
@@ -566,7 +572,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                               type="checkbox"
                               id={inputId}
                               checked={isRemoved}
-                              onChange={() => handleToggleIngredient(ingredient)}
+                              onChange={() => !isAvailable ? null : handleToggleIngredient(ingredient)}
+                              disabled={!isAvailable}
                               className="sr-only"
                               aria-label={`Rimuovi ${ingredient}`}
                             />
@@ -594,7 +601,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
                 {/* Ingredienti Extra Section - only in order mode when open */}
                 {showOrderingControls && isRestaurantOpen && canHaveExtras && (
-                  <div>
+                  <div className={!isAvailable ? "opacity-50 grayscale" : ""}>
                     <h3 className="text-lg font-bold text-card-foreground mb-4">
                       Ingredienti Extra
                     </h3>
@@ -613,7 +620,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                               "min-h-[56px]",
                               "rounded-lg transition-colors duration-160",
                               "hover:bg-secondary/50 active:bg-secondary/70",
-                              isSelected && "bg-secondary/30"
+                              isSelected && "bg-secondary/30",
+                              !isAvailable && "cursor-not-allowed opacity-50"
                             )}
                           >
                             <span className="text-card-foreground flex-1">
@@ -629,7 +637,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                                 type="checkbox"
                                 id={inputId}
                                 checked={isSelected}
-                                onChange={() => handleToggleExtra(extra.id)}
+                                onChange={() => !isAvailable ? null : handleToggleExtra(extra.id)}
+                                disabled={!isAvailable}
                                 className="sr-only"
                                 aria-label={`Aggiungi ${extra.name}`}
                               />
@@ -683,11 +692,12 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
               >
                 {!isAvailable ? (
                   // Product not available message
-                  <div className="text-center py-2">
-                    <p className="text-muted-foreground text-sm font-medium">
-                      Al momento non disponibile
-                    </p>
-                  </div>
+                  <button
+                    disabled
+                    className="w-full py-3 rounded-xl bg-gray-300 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-sm font-semibold cursor-not-allowed opacity-60"
+                  >
+                    Prodotto esaurito
+                  </button>
                 ) : (
                   <>
                     {/* Quantity selector */}
