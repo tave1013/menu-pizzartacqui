@@ -450,6 +450,28 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   </p>
                 </div>
 
+                {/* Allergens - moved here for better visual hierarchy */}
+                {item.allergens && item.allergens.length > 0 && (
+                  <div className="bg-secondary/50 rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <AlertTriangle className="w-4 h-4 text-muted-foreground" />
+                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                        Allergeni
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {item.allergens.map((allergen) => (
+                        <span
+                          key={allergen}
+                          className="px-3 py-1 text-sm bg-card rounded-full text-card-foreground capitalize"
+                        >
+                          {allergen}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Gluten Free Option - visible in both modes when applicable */}
                 {isRestaurantOpen && canHaveGlutenFree && (
                   <div className="bg-amber-50 dark:bg-amber-950/20 rounded-xl p-4 border border-amber-200 dark:border-amber-900">
@@ -640,28 +662,6 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                           </label>
                         );
                       })}
-                    </div>
-                  </div>
-                )}
-
-                {/* Allergens */}
-                {item.allergens && item.allergens.length > 0 && (
-                  <div className="bg-secondary/50 rounded-xl p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <AlertTriangle className="w-4 h-4 text-muted-foreground" />
-                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                        Allergeni
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {item.allergens.map((allergen) => (
-                        <span
-                          key={allergen}
-                          className="px-3 py-1 text-sm bg-card rounded-full text-card-foreground capitalize"
-                        >
-                          {allergen}
-                        </span>
-                      ))}
                     </div>
                   </div>
                 )}
