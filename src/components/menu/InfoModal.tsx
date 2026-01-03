@@ -12,7 +12,7 @@ import {
   AlertTriangle,
   Store
 } from "lucide-react";
-import { RestaurantInfo, DayHours } from "@/data/menuData";
+import { RestaurantInfo, DayHours, SpecialHoliday, SPECIAL_OPENING_HOURS } from "@/data/menuData";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +26,40 @@ interface InfoModalProps {
 function getTodayDayName(): string {
   const days = ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
   return days[new Date().getDay()];
+}
+
+// Helper to get day name from date
+function getDayNameFromDate(date: Date): string {
+  const days = ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
+  return days[date.getDay()];
+}
+
+// Helper to format date as YYYY-MM-DD
+function formatDateString(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+/**
+ * Trova le festività che cadono nei prossimi 7 giorni
+ * Stile Google My Business - mostra solo festività imminenti
+ */
+function getUpcomingHolidays(): SpecialHoliday[] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  const sevenDaysFromNow = new Date(today);
+  sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
+  
+  return SPECIAL_OPENING_HOURS.filter(holiday => {
+    const holidayDate = new Date(holiday.date + 'T00:00:00');
+    return holidayDate >= today && holidayDate < sevenDaysFromNow;
+  }).map(holiday => ({
+    ...holiday,
+    dayName: getDayNameFromDate(new Date(holiday.date + 'T00:00:00'))
+  }));
 }
 
 // Helper to parse time string to minutes
@@ -114,6 +148,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
   const prefersReduced = useReducedMotion();
 
   const openStatus = useMemo(() => isCurrentlyOpen(restaurantInfo.weeklyHours), [restaurantInfo.weeklyHours]);
+  const upcomingHolidays = useMemo(() => getUpcomingHolidays(), []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -223,12 +258,19 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                     <tbody>
                       {restaurantInfo.weeklyHours.map((dayData) => {
                         const isToday = dayData.day === getTodayDayName();
+                        
+                        // Cerca se c'è una festività per questo giorno della settimana
+                        const holidayForThisDay = upcomingHolidays.find(
+                          h => (h as any).dayName === dayData.day
+                        );
+
                         return (
                           <tr 
                             key={dayData.day} 
                             className={cn(
                               "border-b border-border/30 last:border-0",
-                              isToday && "bg-primary/5"
+                              isToday && "bg-primary/5",
+                              holidayForThisDay && "bg-green-500/5"
                             )}
                           >
                             <td className={cn(
@@ -237,22 +279,49 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                             )}>
                               {dayData.day}
                               {isToday && <span className="text-xs ml-1.5 text-primary/70">(oggi)</span>}
+                              {/* Mostra nome festività tra parentesi - stile Google */}
+                              {holidayForThisDay && (
+                                <span className="text-xs ml-1.5 text-green-600 dark:text-green-400 font-medium">
+                                  ({holidayForThisDay.name})
+                                </span>
+                              )}
                             </td>
                             <td className="py-2.5 px-3 text-right">
-                              {dayData.closed ? (
-                                <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-destructive/15 text-destructive rounded-md">
-                                  Chiuso
-                                </span>
+                              {/* Se c'è una festività, mostra l'orario festivo */}
+                              {holidayForThisDay ? (
+                                holidayForThisDay.closed ? (
+                                  <div className="space-y-0.5">
+                                    <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-500/15 text-red-600 dark:text-red-400 rounded-md">
+                                      Chiuso (Festivo)
+                                    </span>
+                                  </div>
+                                ) : (
+                                  <div className="space-y-0.5">
+                                    <div className="text-green-600 dark:text-green-400 font-medium">
+                                      {holidayForThisDay.hours}
+                                    </div>
+                                    <div className="text-xs text-green-600/70 dark:text-green-400/70">
+                                      Orario festivo
+                                    </div>
+                                  </div>
+                                )
                               ) : (
-                                <div className="text-muted-foreground">
-                                  {dayData.hours
-                                    .split(",")
-                                    .map((slot) => slot.trim())
-                                    .filter((slot) => slot.length > 0)
-                                    .map((slot, i) => (
-                                      <div key={i}>{slot}</div>
-                                    ))}
-                                </div>
+                                // Orario normale
+                                dayData.closed ? (
+                                  <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-destructive/15 text-destructive rounded-md">
+                                    Chiuso
+                                  </span>
+                                ) : (
+                                  <div className="text-muted-foreground">
+                                    {dayData.hours
+                                      .split(",")
+                                      .map((slot) => slot.trim())
+                                      .filter((slot) => slot.length > 0)
+                                      .map((slot, i) => (
+                                        <div key={i}>{slot}</div>
+                                      ))}
+                                  </div>
+                                )
                               )}
                             </td>
                           </tr>

@@ -89,6 +89,13 @@ export interface DayHours {
   closed?: boolean;
 }
 
+export interface SpecialHoliday {
+  date: string; // Formato: YYYY-MM-DD
+  name: string; // Nome della festività
+  hours?: string; // Orario speciale (se aperto)
+  closed?: boolean; // true se chiuso
+}
+
 export interface RestaurantInfo {
   name: string;
   description?: string;
@@ -149,6 +156,52 @@ export const restaurantInfo: RestaurantInfo = {
   googleReviewUrl: "https://g.page/r/CcMEQOqoXLdfEBM/review",
   googleMapsUrl: "https://www.google.com/maps?ll=44.67656,8.465947&z=15&t=m&hl=it&gl=IT&mapclient=embed&cid=6897083234895529155",
 };
+
+/**
+ * ORARI SPECIALI FESTIVITÀ
+ * 
+ * Sistema intelligente per gestire orari festivi.
+ * Le festività nei prossimi 7 giorni appariranno automaticamente nel popup orari.
+ * 
+ * FORMATO:
+ * - date: 'YYYY-MM-DD' (es. '2026-01-06' per Epifania)
+ * - name: Nome della festività da mostrare
+ * - hours: Orario speciale (se aperto), es. '12:00 - 22:00'
+ * - closed: true (se chiuso per quella festività)
+ * 
+ * ESEMPI:
+ * { date: '2026-01-01', name: 'Capodanno', closed: true }
+ * { date: '2026-01-06', name: 'Epifania', hours: '18:30 - 22:30' }
+ * { date: '2026-04-25', name: 'Festa della Liberazione', hours: '12:00 - 23:00' }
+ */
+export const SPECIAL_OPENING_HOURS: SpecialHoliday[] = [
+  // Gennaio
+  { date: '2026-01-01', name: 'Capodanno', closed: true },
+  { date: '2026-01-06', name: 'Epifania', hours: '18:30 - 22:30' },
+  
+  // Aprile (Pasqua e Pasquetta - DATE VARIABILI, aggiornare ogni anno)
+  { date: '2026-04-05', name: 'Pasqua', hours: '12:00 - 22:30' },
+  { date: '2026-04-06', name: 'Pasquetta', hours: '12:00 - 22:30' },
+  { date: '2026-04-25', name: 'Festa della Liberazione', hours: '18:30 - 22:30' },
+  
+  // Maggio
+  { date: '2026-05-01', name: 'Festa del Lavoro', closed: true },
+  
+  // Giugno
+  { date: '2026-06-02', name: 'Festa della Repubblica', hours: '18:30 - 22:30' },
+  
+  // Agosto
+  { date: '2026-08-15', name: 'Ferragosto', hours: '19:00 - 23:00' },
+  
+  // Novembre
+  { date: '2026-11-01', name: 'Tutti i Santi', closed: true },
+  
+  // Dicembre
+  { date: '2026-12-08', name: "Immacolata Concezione", hours: '18:30 - 22:30' },
+  { date: '2026-12-25', name: 'Natale', closed: true },
+  { date: '2026-12-26', name: 'Santo Stefano', hours: '12:00 - 22:30' },
+  { date: '2026-12-31', name: 'San Silvestro', hours: '18:30 - 01:00' },
+];
 
 export const menuCategories: Category[] = [
   {
