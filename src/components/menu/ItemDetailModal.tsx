@@ -437,19 +437,6 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   <DietaryBadges tags={item.dietaryTags} isHalal={item.isHalal} isLactoseFree={item.isLactoseFree} size="md" className="mb-3" />
                 </div>
 
-                {/* Contact Box */}
-                <div className="bg-secondary/50 rounded-xl p-4">
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
-                    <a
-                      href={`tel:${item.contact.tel}`}
-                      className="text-link font-medium hover:underline"
-                    >
-                      Contatta il ristorante.
-                    </a>
-                  </p>
-                </div>
-
                 {/* Allergens - moved here for better visual hierarchy */}
                 {item.allergens && item.allergens.length > 0 && (
                   <div className="bg-secondary/50 rounded-xl p-4">
@@ -665,6 +652,19 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                     </div>
                   </div>
                 )}
+
+                {/* Contact Box - moved to bottom for cleaner top section */}
+                <div className="bg-secondary/50 rounded-xl p-4">
+                  <p className="text-sm text-muted-foreground">
+                    Hai delle domande su allergeni, ingredienti o metodi di preparazione?{" "}
+                    <a
+                      href={`tel:${item.contact.tel}`}
+                      className="text-link font-medium hover:underline"
+                    >
+                      Contatta il ristorante.
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
 
