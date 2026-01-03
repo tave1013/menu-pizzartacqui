@@ -37,13 +37,14 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
   const [query, setQuery] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [showAllCategory, setShowAllCategory] = useState(false);
+  const [showAllResults, setShowAllResults] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const prefersReducedMotion = useReducedMotion();
   
   const allItems = useMemo(() => getAllItems(excludedCategories), [excludedCategories]);
   const suggestedCategories = useMemo(() => getSuggestedCategories(excludedCategories), [excludedCategories]);
 
-  const results = useMemo(() => {
+  const allResults = useMemo(() => {
     if (query.length < 2) return [];
     
     const normalizedQuery = normalizeString(query);
@@ -53,6 +54,11 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
       return normalizedName.includes(normalizedQuery) || normalizedDesc.includes(normalizedQuery);
     });
   }, [query, allItems]);
+  
+  // Limit results to 10 unless showAllResults is true
+  const results = useMemo(() => {
+    return showAllResults ? allResults : allResults.slice(0, 10);
+  }, [allResults, showAllResults]);
   
   // Category-based results when a suggested category is selected
   const categoryResults = useMemo(() => {
@@ -102,6 +108,7 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
     setQuery("");
     setSelectedCategoryId(null);
     setShowAllCategory(false);
+    setShowAllResults(false);
     inputRef.current?.focus();
   };
 
@@ -109,12 +116,14 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
     setQuery("");
     setSelectedCategoryId(null);
     setShowAllCategory(false);
+    setShowAllResults(false);
     onClose();
   };
 
   const handleSuggestionClick = (categoryId: string) => {
     setSelectedCategoryId(categoryId);
     setShowAllCategory(false);
+    setShowAllResults(false);
   };
 
   const handleItemClick = (item: MenuItem) => {
@@ -177,10 +186,7 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
                   <X className="w-4 h-4 text-muted-foreground" />
                 </button>
               )}
-            </div>
-          </div>
-
-          <div className="flex-1 overflow-y-auto px-4 py-4" style={{ height: "calc(100vh - 56px - env(safe-area-inset-top) - env(safe-area-inset-bottom))" }}>
+            </div> pb-40" style={{ height: "calc(100vh - 56px - env(safe-area-inset-top) - env(safe-area-inset-bottom))" }}>
             {query.length < 2 && categoryResults.length === 0 && (
               <div>
                 <h2 className="text-sm font-semibold text-muted-foreground mb-3">Suggerimenti</h2>
@@ -198,12 +204,25 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
               </div>
             )}
 
-            {query.length >= 2 && results.length > 0 && (
-              <div className="flex flex-col divide-y divide-border/40">
-                {results.map((item) => (
-                  <SearchResultCard
-                    key={item.id}
-                    item={item}
+            {query.length >= 2 && allResults.length > 0 && (
+              <div>
+                <div className="flex flex-col divide-y divide-border/40">
+                  {results.map((item) => (
+                    <SearchResultCard
+                      key={item.id}
+                      item={item}
+                      onClick={() => handleItemClick(item)}
+                    />
+                  ))}
+                </div>
+                {!showAllResults && allResults.length > 10 && (
+                  <button
+                    onClick={() => setShowAllResults(true)}
+                    className="w-full mt-4 py-3 text-sm font-medium text-primary hover:bg-secondary/50 rounded-lg transition-colors"
+                  >
+                    Vedi tutti ({allResults.length})
+                  </button>
+                   item={item}
                     onClick={() => handleItemClick(item)}
                   />
                 ))}
@@ -226,7 +245,7 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
                   ))}
                 </div>
                 {!showAllCategory && totalCategoryItems > 10 && (
-                  <button
+                  <buttonallR
                     onClick={() => setShowAllCategory(true)}
                     className="w-full mt-4 py-3 text-sm font-medium text-primary hover:bg-secondary/50 rounded-lg transition-colors"
                   >
