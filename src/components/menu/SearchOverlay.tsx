@@ -245,7 +245,7 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
                   ))}
                 </div>
                 {!showAllCategory && totalCategoryItems > 10 && (
-                  <buttonallR
+                  <button
                     onClick={() => setShowAllCategory(true)}
                     className="w-full mt-4 py-3 text-sm font-medium text-primary hover:bg-secondary/50 rounded-lg transition-colors"
                   >
