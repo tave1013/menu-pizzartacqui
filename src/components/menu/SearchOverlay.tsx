@@ -186,7 +186,10 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
                   <X className="w-4 h-4 text-muted-foreground" />
                 </button>
               )}
-            </div> pb-40" style={{ height: "calc(100vh - 56px - env(safe-area-inset-top) - env(safe-area-inset-bottom))" }}>
+            </div>
+          </div>
+
+          <div className="flex-1 overflow-y-auto px-4 py-4 pb-40" style={{ height: "calc(100vh - 56px - env(safe-area-inset-top) - env(safe-area-inset-bottom))" }}>
             {query.length < 2 && categoryResults.length === 0 && (
               <div>
                 <h2 className="text-sm font-semibold text-muted-foreground mb-3">Suggerimenti</h2>
@@ -222,10 +225,7 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
                   >
                     Vedi tutti ({allResults.length})
                   </button>
-                   item={item}
-                    onClick={() => handleItemClick(item)}
-                  />
-                ))}
+                )}
               </div>
             )}
 
