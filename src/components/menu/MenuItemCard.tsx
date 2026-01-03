@@ -26,6 +26,9 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
   const openState = useOptionalOpenState();
   const isRestaurantOpen = openState?.isOpen ?? true;
 
+  // Check product availability (default: true if not specified)
+  const isAvailable = item.isAvailable !== false;
+
   // Get all cart items for this product
   const cartItemsForProduct = items.filter((cartItem) => cartItem.productId === item.id);
   const quantityInCart = cartItemsForProduct.reduce((sum, cartItem) => sum + cartItem.quantity, 0);
@@ -92,15 +95,23 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
           "flex-row items-center py-4 border-b border-border/50",
           // Desktop: immagine sopra (order-1)
           "lg:flex-col lg:items-stretch lg:py-0 lg:border-b-0 lg:bg-card lg:rounded-[20px] lg:overflow-hidden lg:shadow-sm lg:hover:shadow-md transition-all lg:min-h-[380px]",
+          // Stile "esaurito": grigio e opacità ridotta
+          !isAvailable && "grayscale opacity-60 cursor-default"
         )}
       >
         {/* TESTO: Sinistra su mobile (order-1), Sotto su desktop (order-2) */}
         <div className="flex-1 pr-4 lg:pr-0 order-1 lg:order-2 lg:p-4 lg:flex lg:flex-col lg:flex-grow">
           <h3 className="font-bold text-card-foreground mb-1 line-clamp-1 text-[16px] lg:text-[16px]">{item.name}</h3>
 
-          <p className="text-[14px] lg:text-[13px] text-muted-foreground line-clamp-2 mb-3 lg:min-h-[2rem]">
-            {item.desc}
-          </p>
+          {!isAvailable ? (
+            <p className="text-[14px] lg:text-[13px] text-orange-600 dark:text-orange-400 font-medium line-clamp-2 mb-3 lg:min-h-[2rem]">
+              Prodotto esaurito
+            </p>
+          ) : (
+            <p className="text-[14px] lg:text-[13px] text-muted-foreground line-clamp-2 mb-3 lg:min-h-[2rem]">
+              {item.desc}
+            </p>
+          )}
 
           <div className="mt-auto">
             <p className="font-bold text-card-foreground text-[14px] lg:text-[15px] mb-2">{item.price.toFixed(2)} €</p>
@@ -124,7 +135,8 @@ export function MenuItemCard({ item, index, onItemClick }: MenuItemCardProps) {
           />
 
           {/* Pulsante + sempre visibile (in read-only apre solo dettaglio) */}
-          {(isRestaurantOpen || readOnlyMode) && (
+          {/* Nascondi pulsante se prodotto non disponibile */}
+          {isAvailable && (isRestaurantOpen || readOnlyMode) && (
             quantityInCart > 0 && !readOnlyMode ? (
               // Show - / quantity / + controls when item is in cart
               <div

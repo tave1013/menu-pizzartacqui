@@ -58,6 +58,32 @@ const litroBiancoSfusoImg = "/assets/food/Litro-bianco-sfuso.png";
 
 export type DietaryTag = "vegan" | "vegetarian" | "gluten-free";
 
+// ═══════════════════════════════════════════════════════════════════════════
+// GESTIONE PRODOTTI ESAURITI
+// ═══════════════════════════════════════════════════════════════════════════
+// 
+// Per disattivare temporaneamente un prodotto (renderlo "esaurito"):
+// Aggiungi la proprietà: isAvailable: false
+// 
+// Esempio:
+// {
+//   id: "margherita",
+//   name: "Margherita",
+//   desc: "Pomodoro, mozzarella, basilico",
+//   price: 6.50,
+//   isAvailable: false, // ← Prodotto esaurito
+//   ...
+// }
+// 
+// Quando isAvailable è false:
+// - La card appare in grigio (grayscale + opacity ridotta)
+// - Mostra "Prodotto esaurito" al posto della descrizione
+// - Il pulsante "Aggiungi" viene disabilitato
+// - Nel popup, il pulsante ordine è sostituito da "Al momento non disponibile"
+// 
+// Per riattivare il prodotto, rimuovi la proprietà o impostala a true.
+// ═══════════════════════════════════════════════════════════════════════════
+
 export interface MenuItem {
   id: string;
   name: string;
@@ -71,6 +97,7 @@ export interface MenuItem {
   featured?: boolean;
   featuredOrder?: number;
   excludeGlutenFree?: boolean; // Se true, nasconde opzione senza glutine per questo prodotto
+  isAvailable?: boolean; // Se false, il prodotto appare come "esaurito" (default: true)
   contact: {
     tel: string;
     mail: string;

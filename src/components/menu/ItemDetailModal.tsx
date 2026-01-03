@@ -338,6 +338,9 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
   // Determine if ordering controls should be shown
   const showOrderingControls = !readOnlyMode;
+  
+  // Check product availability (default: true if not specified)
+  const isAvailable = item?.isAvailable !== false;
 
   const backdropVariants = {
     hidden: { opacity: 0 },
@@ -678,62 +681,73 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   "space-y-3"
                 )}
               >
-                {/* Quantity selector */}
-                <div className="flex items-center justify-center gap-5">
-                  <button
-                    onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                    disabled={quantity <= 1}
-                    className={cn(
-                      "w-9 h-9 rounded-full",
-                      "flex items-center justify-center",
-                      "border border-border",
-                      "text-card-foreground",
-                      "transition-all duration-160",
-                      quantity <= 1
-                        ? "opacity-30 cursor-not-allowed"
-                        : "hover:bg-secondary active:scale-95"
-                    )}
-                    aria-label="Riduci quantità"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  
-                  <span className="text-lg font-bold text-card-foreground w-6 text-center">
-                    {quantity}
-                  </span>
-                  
-                  <button
-                    onClick={() => setQuantity((q) => q + 1)}
-                    className={cn(
-                      "w-9 h-9 rounded-full",
-                      "flex items-center justify-center",
-                      "bg-primary text-primary-foreground",
-                      "transition-all duration-160",
-                      "hover:bg-primary/90 active:scale-95"
-                    )}
-                    aria-label="Aumenta quantità"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
-                </div>
+                {!isAvailable ? (
+                  // Product not available message
+                  <div className="text-center py-2">
+                    <p className="text-muted-foreground text-sm font-medium">
+                      Al momento non disponibile
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    {/* Quantity selector */}
+                    <div className="flex items-center justify-center gap-5">
+                      <button
+                        onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                        disabled={quantity <= 1}
+                        className={cn(
+                          "w-9 h-9 rounded-full",
+                          "flex items-center justify-center",
+                          "border border-border",
+                          "text-card-foreground",
+                          "transition-all duration-160",
+                          quantity <= 1
+                            ? "opacity-30 cursor-not-allowed"
+                            : "hover:bg-secondary active:scale-95"
+                        )}
+                        aria-label="Riduci quantità"
+                      >
+                        <Minus className="w-4 h-4" />
+                      </button>
+                      
+                      <span className="text-lg font-bold text-card-foreground w-6 text-center">
+                        {quantity}
+                      </span>
+                      
+                      <button
+                        onClick={() => setQuantity((q) => q + 1)}
+                        className={cn(
+                          "w-9 h-9 rounded-full",
+                          "flex items-center justify-center",
+                          "bg-primary text-primary-foreground",
+                          "transition-all duration-160",
+                          "hover:bg-primary/90 active:scale-95"
+                        )}
+                        aria-label="Aumenta quantità"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
+                    </div>
 
-                {/* Add to cart button */}
-                <button
-                  onClick={handleAddToCart}
-                  className={cn(
-                    "w-full py-3 rounded-xl",
-                    "bg-primary text-primary-foreground",
-                    "text-sm font-semibold",
-                    "transition-all duration-160",
-                    "hover:bg-primary/90 active:scale-[0.99]",
-                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  )}
-                >
-                  {isEditing 
-                    ? `Aggiorna per ${formatPrice(totalPrice)}` 
-                    : `Aggiungi per ${formatPrice(totalPrice)}`
-                  }
-                </button>
+                    {/* Add to cart button */}
+                    <button
+                      onClick={handleAddToCart}
+                      className={cn(
+                        "w-full py-3 rounded-xl",
+                        "bg-primary text-primary-foreground",
+                        "text-sm font-semibold",
+                        "transition-all duration-160",
+                        "hover:bg-primary/90 active:scale-[0.99]",
+                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      )}
+                    >
+                      {isEditing 
+                        ? `Aggiorna per ${formatPrice(totalPrice)}` 
+                        : `Aggiungi per ${formatPrice(totalPrice)}`
+                      }
+                    </button>
+                  </>
+                )}
               </div>
             )}
 
