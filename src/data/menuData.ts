@@ -27,6 +27,8 @@ const acquaGasataImg = "/assets/food/acqua-gasata.webp";
 const acquaNaturaleImg = "/assets/food/acqua-naturale.webp";
 const cocaImg = "/assets/food/coca.webp";
 const cocaZeroImg = "/assets/food/coca-zero.webp";
+const cocaVetroImg = "/assets/food/Coca-cola-vetro.webp";
+const cocaZeroVetroImg = "/assets/food/coca-cola-zero-vetro.webp";
 const fantaImg = "/assets/food/fanta.webp";
 const theLinoneImg = "/assets/food/the-limone.webp";
 const thePescaImg = "/assets/food/the-pesca.webp";
@@ -34,7 +36,7 @@ const spriteImg = "/assets/food/sprite.webp";
 const birraImg = "/assets/food/birra.jpg";
 const ichnusaImg = "/assets/food/ichnusa.webp";
 const menabreaImg = "/assets/food/menabrea.webp";
-const tuborgenImg = "/assets/food/tuborg.webp";
+const tuborgenImg = "/assets/food/Tuborg.webp";
 const aiformaggiImg = "/assets/food/ai-formaggi.webp";
 // Birre alla spina
 const birraBiondaPiccolaImg = "/assets/food/Birra-bionda-piccola.png";
@@ -732,7 +734,7 @@ export const menuCategories: Category[] = [
         name: "Coca Cola Vetro",
         desc: "Bottiglietta di vetro 33 cl",
         price: 4.0,
-        image: cocaImg,
+        image: cocaVetroImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -740,7 +742,7 @@ export const menuCategories: Category[] = [
         name: "Coca Cola 0 Vetro",
         desc: "Bottiglietta di vetro 33 cl",
         price: 4.0,
-        image: cocaZeroImg,
+        image: cocaZeroVetroImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
