@@ -269,8 +269,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                             key={dayData.day} 
                             className={cn(
                               "border-b border-border/30 last:border-0",
-                              isToday && "bg-primary/5",
-                              holidayForThisDay && "bg-green-500/5"
+                              isToday && "bg-primary/5"
                             )}
                           >
                             <td className={cn(
@@ -279,9 +278,9 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                             )}>
                               {dayData.day}
                               {isToday && <span className="text-xs ml-1.5 text-primary/70">(oggi)</span>}
-                              {/* Mostra nome festività tra parentesi - stile Google */}
+                              {/* Mostra nome festività tra parentesi - stile sobrio */}
                               {holidayForThisDay && (
-                                <span className="text-xs ml-1.5 text-green-600 dark:text-green-400 font-medium">
+                                <span className="text-xs ml-1.5 text-primary font-medium">
                                   ({holidayForThisDay.name})
                                 </span>
                               )}
@@ -297,10 +296,10 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                                   </div>
                                 ) : (
                                   <div className="space-y-0.5">
-                                    <div className="text-green-600 dark:text-green-400 font-medium">
+                                    <div className="text-muted-foreground">
                                       {holidayForThisDay.hours}
                                     </div>
-                                    <div className="text-xs text-green-600/70 dark:text-green-400/70">
+                                    <div className="text-xs text-primary font-medium">
                                       Orario festivo
                                     </div>
                                   </div>
