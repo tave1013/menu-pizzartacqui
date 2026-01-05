@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Eye } from "lucide-react";
 import { restaurantInfo } from "@/data/menuData";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/contexts/CartContext";
@@ -191,6 +191,19 @@ export function Footer() {
 
         {/* Divider e sezione legale */}
         <div className="border-t border-border mt-8 pt-6">
+          {/* Link menu locale */}
+          <div className="flex justify-center mb-6">
+            <a 
+              href="https://menu.pizzartacquiterme.com/menu-locale"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+            >
+              <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <span>Sfoglia menu al locale</span>
+            </a>
+          </div>
+          
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground">© {currentYear}</span>
