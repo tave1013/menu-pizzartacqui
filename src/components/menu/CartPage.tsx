@@ -169,7 +169,7 @@ function buildWhatsAppMessage(
     // Ingredienti extra con "+"
     if (item.selectedExtras && item.selectedExtras.length > 0) {
       item.selectedExtras.forEach(extra => {
-        message += `_✓ + ${extra}_\n`;
+        message += `_👉 ${extra}_\n`;
       });
     }
     
