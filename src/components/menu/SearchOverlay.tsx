@@ -189,7 +189,7 @@ export function SearchOverlay({ isOpen, onClose, onItemClick, excludedCategories
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-4 py-4 pb-40" style={{ height: "calc(100vh - 56px - env(safe-area-inset-top) - env(safe-area-inset-bottom))" }}>
+          <div className="flex-1 overflow-y-auto px-4 py-4 pb-20" style={{ height: "calc(100vh - 56px - env(safe-area-inset-top) - env(safe-area-inset-bottom))" }}>
             {query.length < 2 && categoryResults.length === 0 && (
               <div>
                 <h2 className="text-sm font-semibold text-muted-foreground mb-3">Suggerimenti</h2>
