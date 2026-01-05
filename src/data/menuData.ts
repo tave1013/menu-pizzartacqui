@@ -161,7 +161,7 @@ export const restaurantInfo: RestaurantInfo = {
   heroImage: "",
   openingHours: "18:30 - 22:30",
   weeklyHours: [
-    { day: "Lunedì", hours:  "", closed: true },
+    { day: "Lunedì", hours: "8:30 - 22:30" },
     { day: "Martedì", hours:"8:30 - 22:30" },
     { day: "Mercoledì", hours: "8:30 - 22:30" },
     { day: "Giovedì", hours: "8:30 - 22:30" },
