@@ -152,8 +152,8 @@ export interface RestaurantInfo {
 export const restaurantInfo: RestaurantInfo = {
   name: "PizzArt",
   description: "Pizzeria artigianale  ad Acqui Terme",
-  rating: 4.6,
-  reviewCount: 387,
+  rating: 4.8,
+  reviewCount: 405,
   priceRange: "€€€",
   cuisine: "Pizzeria ad Acqui Terme",
   address: "Via Guglielmo Marconi, 18, 15011 Acqui Terme (AL)",

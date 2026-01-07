@@ -19,6 +19,7 @@ interface BookingData {
   date: Date | undefined;
   adults: number;
   children: number;
+  seats: number; // seggiolini
   time: string;
   notes: string;
   firstName: string;
@@ -39,6 +40,7 @@ interface PendingBooking {
     orario: string;
     adulti: number;
     bambini: number;
+    seggiolini: number;
     note: string;
     nome: string;
     cognome: string;
@@ -147,6 +149,7 @@ export default function Prenota() {
     date: undefined,
     adults: 1,
     children: 0,
+    seats: 0,
     time: "",
     notes: "",
     firstName: "",
@@ -269,19 +272,20 @@ export default function Prenota() {
     if (!bookingData.date) return "";
     
     const childrenLine = bookingData.children > 0 ? ` + ${bookingData.children} bambini` : "";
+    const seggioliniLine = bookingData.seats > 0 ? ` + ${bookingData.seats} seggiolini` : "";
     const notesLine = bookingData.notes.trim() ? `\n\n📝 Note: ${bookingData.notes.trim()}` : "";
     
     return `📅 *Richiesta Prenotazione Tavolo* — ${restaurantInfo.name}
 
-🗓️ Data: ${formatDateItalian(bookingData.date)}
-🕒 Orario: ${bookingData.time}
-👥 Persone: ${bookingData.adults} adulti${childrenLine}${notesLine}
+  🗓️ Data: ${formatDateItalian(bookingData.date)}
+  🕒 Orario: ${bookingData.time}
+  👥 Persone: ${bookingData.adults} adulti${childrenLine}${seggioliniLine}${notesLine}
 
-👤 *Nome:* ${bookingData.firstName} ${bookingData.lastName}
-📞 *Telefono:* ${bookingData.phone}
-✉️ *Email:* ${bookingData.email}
+  👤 *Nome:* ${bookingData.firstName} ${bookingData.lastName}
+  📞 *Telefono:* ${bookingData.phone}
+  ✉️ *Email:* ${bookingData.email}
 
-✅ Consensi: Privacy accettata, ok a ricontatto.`;
+  ✅ Consensi: Privacy accettata, ok a ricontatto.`;
   }, [bookingData]);
 
   const handleSubmit = () => {
@@ -301,6 +305,7 @@ export default function Prenota() {
         orario: bookingData.time,
         adulti: bookingData.adults,
         bambini: bookingData.children,
+        seggiolini: bookingData.seats,
         note: bookingData.notes,
         nome: bookingData.firstName,
         cognome: bookingData.lastName,
@@ -349,6 +354,7 @@ export default function Prenota() {
         date,
         adults: payload.adulti,
         children: payload.bambini,
+        seats: payload.seggiolini || 0,
         time: payload.orario,
         notes: payload.note,
         firstName: payload.nome,
@@ -489,24 +495,24 @@ export default function Prenota() {
               {/* Adults selector */}
               <div className="space-y-3">
                 <Label className="text-base font-medium">Adulti</Label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <Button
                     type="button"
                     variant="outline"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-8 w-8 rounded-full"
                     onClick={() => setBookingData(prev => ({ ...prev, adults: Math.max(1, prev.adults - 1) }))}
                     disabled={bookingData.adults <= 1}
                     aria-label="Diminuisci adulti"
                   >
                     <Minus className="w-4 h-4" />
                   </Button>
-                  <span className="text-xl font-semibold w-8 text-center">{bookingData.adults}</span>
+                  <span className="text-xl font-semibold w-10 text-center mx-2">{bookingData.adults}</span>
                   <Button
                     type="button"
                     variant="outline"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-8 w-8 rounded-full"
                     onClick={() => setBookingData(prev => ({ ...prev, adults: Math.min(12, prev.adults + 1) }))}
                     disabled={bookingData.adults >= 12}
                     aria-label="Aumenta adulti"
@@ -516,33 +522,62 @@ export default function Prenota() {
                 </div>
               </div>
 
-              {/* Children selector */}
+
+              {/* Children & Seggiolini selector */}
               <div className="space-y-3">
                 <Label className="text-base font-medium">Bambini</Label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <Button
                     type="button"
                     variant="outline"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-8 w-8 rounded-full"
                     onClick={() => setBookingData(prev => ({ ...prev, children: Math.max(0, prev.children - 1) }))}
                     disabled={bookingData.children <= 0}
                     aria-label="Diminuisci bambini"
                   >
                     <Minus className="w-4 h-4" />
                   </Button>
-                  <span className="text-xl font-semibold w-8 text-center">{bookingData.children}</span>
+                  <span className="text-xl font-semibold w-10 text-center mx-2">{bookingData.children}</span>
                   <Button
                     type="button"
                     variant="outline"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-8 w-8 rounded-full"
                     onClick={() => setBookingData(prev => ({ ...prev, children: Math.min(12, prev.children + 1) }))}
                     disabled={bookingData.children >= 12}
                     aria-label="Aumenta bambini"
                   >
                     <Plus className="w-4 h-4" />
                   </Button>
+
+                  {/* Seggiolini selector accanto a bambini */}
+                  <div className="flex items-center gap-2 ml-6 w-[50%]">
+                    <Label className="text-base font-medium whitespace-nowrap">Seggiolini</Label>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8 rounded-full"
+                      onClick={() => setBookingData(prev => ({ ...prev, seats: Math.max(0, prev.seats - 1) }))}
+                      disabled={bookingData.seats <= 0}
+                      aria-label="Diminuisci seggiolini"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </Button>
+                    <span className="text-xl font-semibold w-10 text-center mx-2">{bookingData.seats}</span>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8 rounded-full"
+                      onClick={() => setBookingData(prev => ({ ...prev, seats: Math.min(3, prev.seats + 1) }))}
+                      disabled={bookingData.seats >= 3}
+                      aria-label="Aumenta seggiolini"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
 

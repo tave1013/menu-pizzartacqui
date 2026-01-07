@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { 
   ArrowLeft, 
   Trash2, 
-  ChevronRight, 
+  ChevronRight,
+  ChevronLeft,
   Plus, 
   Minus,
   Clock,
@@ -50,6 +51,7 @@ interface PendingOrder {
   customerData: CustomerData;
   selectedTime: string;
   totalPrice: number;
+  items?: CartItem[];
 }
 
 const PENDING_ORDER_KEY = "ordine-in-attesa";
@@ -57,22 +59,17 @@ const PENDING_ORDER_TIMEOUT = 3600000; // 60 minutes
 
 // Generate available time slots based on current time and restaurant hours
 function generateTimeSlots(): string[] {
-  const now = new Date();
-  const currentHour = now.getHours();
-  const currentMinutes = now.getMinutes();
-  
-  // Simple implementation: generate slots from 18:00 to 22:30
+  // Genera slot ogni 15 minuti dalle 18:00 alle 22:00 incluso
   const slots: string[] = [];
-  const startHour = Math.max(18, currentHour + (currentMinutes > 30 ? 2 : 1));
-  
-  for (let hour = startHour; hour <= 22; hour++) {
-    slots.push(`${hour.toString().padStart(2, "0")}:00`);
-    if (hour < 22) {
-      slots.push(`${hour.toString().padStart(2, "0")}:30`);
+  for (let hour = 18; hour <= 22; hour++) {
+    for (let min = 0; min < 60; min += 15) {
+      if (hour === 22 && min > 0) break; // Solo 22:00, non 22:15/22:30/22:45
+      const h = hour.toString().padStart(2, "0");
+      const m = min.toString().padStart(2, "0");
+      slots.push(`${h}:${m}`);
     }
   }
-  
-  return slots.slice(0, 8); // Max 8 slots
+  return slots;
 }
 
 // ============================================
@@ -124,6 +121,94 @@ function getSuggestedItems(): MenuItem[] {
   }
   
   return suggestions.slice(0, 9); // Mostra max 9 prodotti
+}
+
+// Scroller orizzontale con drag e frecce per desktop
+function UpsellScroller({ suggestedItems, handleAddUpsell }: { suggestedItems: MenuItem[]; handleAddUpsell: (item: MenuItem) => void; }) {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const isDown = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return;
+    isDown.current = true;
+    startX.current = e.pageX - scrollRef.current.getBoundingClientRect().left;
+    scrollLeft.current = scrollRef.current.scrollLeft;
+    document.body.style.cursor = "grabbing";
+  };
+  const endDrag = () => {
+    isDown.current = false;
+    document.body.style.cursor = "";
+  };
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDown.current || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.getBoundingClientRect().left;
+    const walk = x - startX.current;
+    scrollRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  const scrollBy = (amount: number) => {
+    scrollRef.current?.scrollBy({ left: amount, behavior: "smooth" });
+  };
+
+  const priceToString = (price: number) => price.toFixed(2).replace(".", ",") + " €";
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-card/80 rounded-full shadow p-1"
+        onClick={() => scrollBy(-180)}
+        aria-label="Scorri a sinistra"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <div
+        ref={scrollRef}
+        className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-2 select-none"
+        style={{ cursor: "grab" }}
+        onMouseDown={onMouseDown}
+        onMouseLeave={endDrag}
+        onMouseUp={endDrag}
+        onMouseMove={onMouseMove}
+      >
+        {suggestedItems.map((item) => (
+          <div key={item.id} className="flex flex-col flex-shrink-0 w-[144px] bg-card rounded-xl">
+            <div className="rounded-t-xl overflow-hidden">
+              <ProductImage src={item.image} alt={item.name} className="w-full aspect-square" />
+            </div>
+            <div className="p-2 pb-3">
+              <p className="text-sm font-medium text-foreground truncate">{item.name}</p>
+              <div className="flex items-center justify-between mt-1">
+                <span className="text-sm font-semibold text-primary flex-shrink-0">{priceToString(item.price)}</span>
+                <button
+                  onClick={() => handleAddUpsell(item)}
+                  className={cn(
+                    "flex items-center justify-center rounded-full shadow-md",
+                    "w-7 h-7",
+                    "bg-white/90 dark:bg-card/90 backdrop-blur-sm text-primary"
+                  )}
+                  aria-label={`Aggiungi ${item.name}`}
+                >
+                  <Plus className="w-4 h-4" strokeWidth={3} />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-card/80 rounded-full shadow p-1"
+        onClick={() => scrollBy(180)}
+        aria-label="Scorri a destra"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+    </div>
+  );
 }
 
 // Validate Italian phone number
@@ -202,7 +287,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
   
   const [itemToRemove, setItemToRemove] = useState<string | null>(null);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
-  const [showPendingOrderModal, setShowPendingOrderModal] = useState(false);
+  // Modale di conferma invio rimossa: non usiamo più showPendingOrderModal
   const [pendingOrder, setPendingOrder] = useState<PendingOrder | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(() => {
     try {
@@ -248,9 +333,6 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
         const order: PendingOrder = JSON.parse(stored);
         const isExpired = Date.now() - order.time > PENDING_ORDER_TIMEOUT;
         setPendingOrder(order);
-        if (!isExpired) {
-          setShowPendingOrderModal(true);
-        }
       }
     } catch {
       // Ignore errors
@@ -439,11 +521,18 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
       customerData,
       selectedTime,
       totalPrice,
+      items: items,
     };
     localStorage.setItem(PENDING_ORDER_KEY, JSON.stringify(pendingOrderData));
     
     // Open WhatsApp
     openWhatsApp(message);
+    
+    // Immediately clear the cart and related selections
+    clearCart();
+    localStorage.removeItem("cart-selected-time");
+    localStorage.removeItem("cart-notes");
+    onClose();
     
     toast({
       title: "Si sta aprendo WhatsApp",
@@ -461,7 +550,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
         phone: pendingOrder.customerData.phone,
         selectedTime: pendingOrder.selectedTime,
         totalPrice: pendingOrder.totalPrice,
-        items: items,
+        items: pendingOrder.items && pendingOrder.items.length > 0 ? pendingOrder.items : items,
       }));
     }
     
@@ -470,7 +559,6 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
     localStorage.removeItem("cart-selected-time");
     localStorage.removeItem("cart-notes");
     clearCart();
-    setShowPendingOrderModal(false);
     setPendingOrder(null);
     onClose();
     
@@ -489,7 +577,6 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
     localStorage.removeItem("cart-selected-time");
     localStorage.removeItem("cart-notes");
     clearCart();
-    setShowPendingOrderModal(false);
     setPendingOrder(null);
     onClose();
     toast({ title: "Ordine annullato" });
@@ -726,90 +813,8 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                     Altri clienti hanno ordinato anche
                   </h2>
                   
-                  <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-2">
-                    {suggestedItems.map((item) => {
-                      // Trova tutti i cart items con questo productId
-                      const cartItemsForProduct = items.filter(ci => ci.productId === item.id);
-                      const totalQuantityInCart = cartItemsForProduct.reduce((sum, ci) => sum + ci.quantity, 0);
-                      
-                      // Usa il primo item trovato per gestire la quantità
-                      const cartItem = cartItemsForProduct.length > 0 ? cartItemsForProduct[0] : null;
-                      
-                      return (
-                        <div
-                          key={item.id}
-                          className="flex flex-col flex-shrink-0 w-[144px] bg-card rounded-xl"
-                        >
-                          <div className="rounded-t-xl overflow-hidden">
-                            <ProductImage
-                              src={item.image}
-                              alt={item.name}
-                              className="w-full aspect-square"
-                            />
-                          </div>
-                          <div className="p-2 pb-3">
-                            <p className="text-sm font-medium text-foreground truncate">{item.name}</p>
-                            <div className="flex items-center justify-between mt-1">
-                              <span className="text-sm font-semibold text-primary flex-shrink-0">
-                                {formatPrice(item.price)}
-                              </span>
-                              
-                              {totalQuantityInCart > 0 && cartItem ? (
-                                // Stile identico alle MenuItemCard - selettore quantità con shadow
-                                <div className={cn(
-                                  "flex items-center gap-1 rounded-full shadow-md bg-white/95 dark:bg-card/95 backdrop-blur-sm",
-                                  "h-7 px-1"
-                                )}>
-                                  <button
-                                    onClick={() => {
-                                      if (cartItem.quantity === 1) {
-                                        removeItem(cartItem.id);
-                                      } else {
-                                        updateQuantity(cartItem.id, cartItem.quantity - 1);
-                                      }
-                                    }}
-                                    className="flex items-center justify-center w-6 h-6 rounded-full text-primary hover:bg-primary/10 transition-colors"
-                                    aria-label={cartItem.quantity === 1 ? "Rimuovi dal carrello" : "Diminuisci quantità"}
-                                  >
-                                    {cartItem.quantity === 1 ? (
-                                      <Trash2 className="w-3.5 h-3.5" strokeWidth={2.5} />
-                                    ) : (
-                                      <Minus className="w-3.5 h-3.5" strokeWidth={3} />
-                                    )}
-                                  </button>
-                                  
-                                  <span className="text-xs font-bold text-primary min-w-[16px] text-center">
-                                    {cartItem.quantity}
-                                  </span>
-                                  
-                                  <button
-                                    onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
-                                    className="flex items-center justify-center w-6 h-6 rounded-full text-primary hover:bg-primary/10 transition-colors"
-                                    aria-label="Aggiungi al carrello"
-                                  >
-                                    <Plus className="w-3.5 h-3.5" strokeWidth={3} />
-                                  </button>
-                                </div>
-                              ) : (
-                                // Stile identico alle MenuItemCard - bottone + singolo
-                                <button
-                                  onClick={() => handleAddUpsell(item)}
-                                  className={cn(
-                                    "flex items-center justify-center rounded-full shadow-md",
-                                    "w-7 h-7",
-                                    "bg-white/90 dark:bg-card/90 backdrop-blur-sm text-primary"
-                                  )}
-                                  aria-label={`Aggiungi ${item.name}`}
-                                >
-                                  <Plus className="w-4 h-4" strokeWidth={3} />
-                                </button>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
+
+                  <UpsellScroller suggestedItems={suggestedItems} handleAddUpsell={handleAddUpsell} />
                 </section>
               )}
 
@@ -1214,91 +1219,6 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
             )}
           </AnimatePresence>
 
-          {/* Pending order confirmation modal */}
-          <AnimatePresence>
-            {showPendingOrderModal && pendingOrder && !isPendingOrderExpired && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute inset-0 z-30 flex items-center justify-center bg-foreground/50"
-                onClick={() => setShowPendingOrderModal(false)}
-              >
-                <motion.div
-                  initial={{ scale: 0.95, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.95, opacity: 0 }}
-                  className="bg-card rounded-xl p-5 shadow-xl mx-4 max-w-sm w-full"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <MessageCircle className="w-5 h-5 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-card-foreground">
-                        Conferma ordine
-                      </h3>
-                    </div>
-                    <button
-                      onClick={() => setShowPendingOrderModal(false)}
-                      className="p-1 text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                  
-                  <p className="text-sm text-muted-foreground mb-5">
-                    Hai inviato il messaggio su WhatsApp?
-                  </p>
-                  
-                  <div className="space-y-2">
-                    <button
-                      onClick={handleConfirmSent}
-                      className={cn(
-                        "w-full py-3 rounded-xl",
-                        "bg-primary text-primary-foreground",
-                        "font-semibold text-sm",
-                        "hover:bg-primary/90 transition-colors",
-                        "flex items-center justify-center gap-2"
-                      )}
-                    >
-                      <Check className="w-4 h-4" />
-                      Sì, ho inviato il messaggio
-                    </button>
-                    
-                    <button
-                      onClick={handleReopenWhatsApp}
-                      className={cn(
-                        "w-full py-3 rounded-xl",
-                        "border border-border",
-                        "font-semibold text-sm text-foreground",
-                        "hover:bg-secondary transition-colors",
-                        "flex items-center justify-center gap-2"
-                      )}
-                    >
-                      <RotateCcw className="w-4 h-4" />
-                      Riapri WhatsApp
-                    </button>
-                    
-                    <button
-                      onClick={handleCancelPendingOrder}
-                      className={cn(
-                        "w-full py-3 rounded-xl",
-                        "text-destructive",
-                        "font-medium text-sm",
-                        "hover:bg-destructive/10 transition-colors",
-                        "flex items-center justify-center gap-2"
-                      )}
-                    >
-                      <X className="w-4 h-4" />
-                      Annulla ordine
-                    </button>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {/* Expired pending order banner */}
           <AnimatePresence>
