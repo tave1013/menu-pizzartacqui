@@ -59,16 +59,28 @@ const PENDING_ORDER_TIMEOUT = 3600000; // 60 minutes
 
 // Generate available time slots based on current time and restaurant hours
 function generateTimeSlots(): string[] {
-  // Genera slot ogni 15 minuti dalle 18:00 alle 22:00 incluso
-  const slots: string[] = [];
+  // Slot ogni 15 minuti dalle 18:00 alle 22:30 incluso
+  const rawSlots: string[] = [];
   for (let hour = 18; hour <= 22; hour++) {
     for (let min = 0; min < 60; min += 15) {
-      if (hour === 22 && min > 0) break; // Solo 22:00, non 22:15/22:30/22:45
+      if (hour === 22 && min > 30) break; // Fino alle 22:30
       const h = hour.toString().padStart(2, "0");
       const m = min.toString().padStart(2, "0");
-      slots.push(`${h}:${m}`);
+      rawSlots.push(`${h}:${m}`);
     }
   }
+
+  // Applica anticipo minimo di 30 minuti rispetto all'ora corrente
+  const now = new Date();
+  const earliest = new Date(now.getTime() + 30 * 60 * 1000);
+
+  const slots = rawSlots.filter((slot) => {
+    const [hh, mm] = slot.split(":").map((v) => parseInt(v, 10));
+    const slotDate = new Date(now);
+    slotDate.setHours(hh, mm, 0, 0);
+    return slotDate.getTime() >= earliest.getTime();
+  });
+
   return slots;
 }
 
@@ -324,6 +336,16 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
   const formatPrice = (price: number) => {
     return price.toFixed(2).replace(".", ",") + " €";
   };
+
+  // Se l'orario salvato non è più valido (non presente tra gli slot), rimuovilo
+  useEffect(() => {
+    if (selectedTime && !timeSlots.includes(selectedTime)) {
+      setSelectedTime(null);
+      try {
+        localStorage.removeItem("cart-selected-time");
+      } catch {}
+    }
+  }, [timeSlots]);
 
   // Check for pending order on visibility change
   const checkPendingOrder = useCallback(() => {
@@ -827,7 +849,7 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                   </div>
                   
                   <p className="text-sm text-muted-foreground mb-3">
-                    Scegli l'orario in cui venire a ritirare il tuo ordine. L'orario è indicativo: riceverai conferma dal nostro staff su WhatsApp.
+                    Scegli l'orario in cui venire a ritirare il tuo ordine. Per consentire la preparazione, gli orari disponibili partono da almeno 30 minuti dopo l'orario attuale. L'orario è indicativo: riceverai conferma dal nostro staff su WhatsApp.
                   </p>
                   
                   {timeSlots.length > 0 ? (
