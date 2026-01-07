@@ -523,7 +523,7 @@ export default function Prenota() {
               </div>
 
 
-              {/* Children & Seggiolini selector */}
+              {/* Children selector */}
               <div className="space-y-3">
                 <Label className="text-base font-medium">Bambini</Label>
                 <div className="flex items-center gap-2">
@@ -550,34 +550,36 @@ export default function Prenota() {
                   >
                     <Plus className="w-4 h-4" />
                   </Button>
+                </div>
+              </div>
 
-                  {/* Seggiolini selector accanto a bambini */}
-                  <div className="flex items-center gap-2 ml-6 w-[50%]">
-                    <Label className="text-base font-medium whitespace-nowrap">Seggiolini</Label>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="icon"
-                      className="h-8 w-8 rounded-full"
-                      onClick={() => setBookingData(prev => ({ ...prev, seats: Math.max(0, prev.seats - 1) }))}
-                      disabled={bookingData.seats <= 0}
-                      aria-label="Diminuisci seggiolini"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </Button>
-                    <span className="text-xl font-semibold w-10 text-center mx-2">{bookingData.seats}</span>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="icon"
-                      className="h-8 w-8 rounded-full"
-                      onClick={() => setBookingData(prev => ({ ...prev, seats: Math.min(3, prev.seats + 1) }))}
-                      disabled={bookingData.seats >= 3}
-                      aria-label="Aumenta seggiolini"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </div>
+              {/* Seggiolini selector */}
+              <div className="space-y-3">
+                <Label className="text-base font-medium">Seggiolini</Label>
+                <div className="flex items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-full"
+                    onClick={() => setBookingData(prev => ({ ...prev, seats: Math.max(0, prev.seats - 1) }))}
+                    disabled={bookingData.seats <= 0}
+                    aria-label="Diminuisci seggiolini"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </Button>
+                  <span className="text-xl font-semibold w-10 text-center mx-2">{bookingData.seats}</span>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-full"
+                    onClick={() => setBookingData(prev => ({ ...prev, seats: Math.min(3, prev.seats + 1) }))}
+                    disabled={bookingData.seats >= 3}
+                    aria-label="Aumenta seggiolini"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
 
