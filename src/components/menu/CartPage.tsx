@@ -263,6 +263,11 @@ function buildWhatsAppMessage(
     const itemPrice = (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * Number(item.quantity || 1);
     message += `x${item.quantity} ${glutenFreePrefix}*${item.name.toUpperCase()}* — ${formatPrice(itemPrice)}\n`;
     
+    // Ingrediente principale se presente
+    if (item.selectedMainIngredient) {
+      message += `_👉 Ingrediente principale: ${item.selectedMainIngredient}_\n`;
+    }
+    
     // Ingredienti extra con "+"
     if (item.selectedExtras && item.selectedExtras.length > 0) {
       item.selectedExtras.forEach(extra => {
@@ -763,6 +768,15 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                               {item.glutenFree && (
                                 <div className="inline-block px-2 py-0.5 mt-1 bg-yellow-100 dark:bg-yellow-900/30 rounded-full text-xs font-medium text-yellow-800 dark:text-yellow-200">
                                   Senza glutine
+                                </div>
+                              )}
+                              
+                              {/* Ingrediente Principale */}
+                              {item.selectedMainIngredient && (
+                                <div className="mt-1 space-y-0.5">
+                                  <p className="text-xs text-muted-foreground">
+                                    👉 {item.selectedMainIngredient}
+                                  </p>
                                 </div>
                               )}
                               

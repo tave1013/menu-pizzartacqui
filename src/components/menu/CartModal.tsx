@@ -156,6 +156,13 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                         </div>
                       )}
                       
+                      {/* Ingrediente Principale */}
+                      {item.selectedMainIngredient && (
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          👉 {item.selectedMainIngredient}
+                        </p>
+                      )}
+                      
                       {/* Ingredienti Extra */}
                       {item.selectedExtras && item.selectedExtras.length > 0 && (
                         <p className="text-xs text-muted-foreground mt-0.5">

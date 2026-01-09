@@ -100,11 +100,30 @@ const BLACKLIST_PATTERNS = [
 // Per ESCLUDERE categorie dalla sezione Ingredienti Extra:
 // Aggiungi l'ID della categoria a questa lista:
 //
+// ESCLUSIONE PER CATEGORIA:
+// const EXCLUDED_EXTRA_CATEGORIES = [
+//   "bevande",              // Non ha ingredienti extra
+//   "le-focacce",           // Non ha ingredienti extra
+// ];
+//
+// ESCLUSIONE PER PRODOTTO SINGOLO:
+// Aggiungi la proprietà 'excludeExtraIngredients: true' nel MenuItem in menuData.ts
+// Esempio:
+// {
+//   id: "margherita",
+//   name: "Margherita",
+//   desc: "...",
+//   price: 8.0,
+//   excludeExtraIngredients: true,  // ← Esclude Ingredienti Extra solo per questo prodotto
+//   contact: { tel: "...", mail: "..." }
+// }
+//
 const EXCLUDED_EXTRA_CATEGORIES = [
   "bevande",              // Coca Cola, Fanta, Acqua, etc.
   "birre",                // Menabrea, Tuborg, etc.
   "birre-artigianali",    // Birre artigianali
   "vini",                 // Nebbiolo, Arneis, etc.
+  "le-focacce",           // Le focacce
   // Aggiungi qui nuove categorie da escludere, es: "dolci", "gelati"
 ];
 
@@ -152,6 +171,34 @@ const PIZZA_CATEGORIES = ["top-ten", "pizart", "le-classiche", "baby-pizze"]; //
 const EXCLUDED_CATEGORIES = ["le-focacce"]; // Categorie escluse
 // ═══════════════════════════════════════════════════════════════════════════
 
+// ═══════════════════════════════════════════════════════════════════════════
+// INGREDIENTI PRINCIPALI (ad es. per Focacce)
+// ═══════════════════════════════════════════════════════════════════════════
+interface MainIngredientOption {
+  id: string;
+  name: string;
+}
+
+interface ProductMainIngredients {
+  productId: string;
+  options: MainIngredientOption[];
+}
+
+const PRODUCTS_WITH_MAIN_INGREDIENTS: ProductMainIngredients[] = [
+  {
+    productId: "sfiziosa",
+    options: [
+      { id: "prosciutto-crudo", name: "Prosciutto crudo" },
+      { id: "bresaola", name: "Bresaola" },
+    ],
+  },
+];
+
+const getMainIngredientsForProduct = (productId: string): ProductMainIngredients | undefined => {
+  return PRODUCTS_WITH_MAIN_INGREDIENTS.find(p => p.productId === productId);
+};
+// ═══════════════════════════════════════════════════════════════════════════
+
 // Parse ingredients from description
 function parseIngredients(desc: string): string[] {
   return desc
@@ -187,12 +234,21 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
   const [removedIngredients, setRemovedIngredients] = useState<Set<string>>(new Set());
   const [selectedExtras, setSelectedExtras] = useState<Set<string>>(new Set());
   const [glutenFreeOption, setGlutenFreeOption] = useState(false);
+  const [selectedMainIngredient, setSelectedMainIngredient] = useState<string>("");
+
+  // Get main ingredients config for this product
+  const mainIngredientsConfig = item ? getMainIngredientsForProduct(item.id) : undefined;
+  const requiresMainIngredient = !readOnlyMode && mainIngredientsConfig !== undefined;
 
   // Controlla se la categoria è esclusa dalla rimozione ingredienti
   const categoryHasIngredients = !categoryId || !CATEGORIE_SENZA_INGREDIENTI.includes(categoryId);
   
   // Controlla se la categoria può avere ingredienti extra
-  const canHaveExtras = !categoryId || !EXCLUDED_EXTRA_CATEGORIES.includes(categoryId);
+  const categoryCanHaveExtras = !categoryId || !EXCLUDED_EXTRA_CATEGORIES.includes(categoryId);
+  // Controlla se il prodotto singolo esclude ingredienti extra
+  const productCanHaveExtras = !item?.excludeExtraIngredients;
+  // Combinazione: entrambi devono permetterlo
+  const canHaveExtras = categoryCanHaveExtras && productCanHaveExtras;
   
   // Controlla se l'item può avere l'opzione senza glutine
   const canHaveGlutenFree = 
@@ -226,11 +282,14 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
         }
         // Ripristina lo stato senza glutine
         setGlutenFreeOption(editingCartItem.glutenFree || false);
+        // Ripristina l'ingrediente principale selezionato
+        setSelectedMainIngredient(editingCartItem.selectedMainIngredient || "");
       } else {
         setQuantity(1);
         setRemovedIngredients(new Set());
         setSelectedExtras(new Set());
         setGlutenFreeOption(false);
+        setSelectedMainIngredient("");
       }
     }
   }, [isOpen, item, editingCartItem]);
@@ -324,13 +383,23 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
     const finalExtrasPrice = Number(extrasPrice) || 0;
     const finalGlutenFreePrice = Number(glutenFreePrice) || 0;
     
+    // Check if main ingredient is required
+    if (requiresMainIngredient && !selectedMainIngredient) {
+      toast({
+        title: "Scegli un ingrediente principale",
+        description: "Devi selezionare un ingrediente principale per continuare",
+        duration: 2000,
+      });
+      return;
+    }
+    
     if (isEditing && editingCartItem) {
       // Remove old item and add updated one
       removeItem(editingCartItem.id);
-      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice, selectedMainIngredient);
       // Rimosso toast per UX più fluida
     } else {
-      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice, selectedMainIngredient);
       // Rimosso toast per UX più fluida
     }
     onClose();
@@ -537,6 +606,64 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                         </div>
                       </label>
                     )}
+                  </div>
+                )}
+
+                {/* Main Ingredient Selection - only in order mode when open and product has main ingredients */}
+                {mainIngredientsConfig && (mainIngredientsConfig.options.length > 0) && (
+                  <div className={!isAvailable ? "opacity-50 grayscale" : ""}>
+                    <h3 className="text-lg font-bold text-card-foreground mb-4">
+                      Scegli ingrediente principale {requiresMainIngredient && <span className="text-red-500">*</span>}
+                    </h3>
+                    <div className="space-y-3 border-t border-border pt-4">
+                      {mainIngredientsConfig.options.map((option) => {
+                        const isSelected = selectedMainIngredient === option.id;
+                        const inputId = `main-ingredient-${option.id}`;
+                        return (
+                          <label
+                            key={option.id}
+                            htmlFor={inputId}
+                            className={cn(
+                              "flex items-center justify-between",
+                              "py-4 px-2 -mx-2 rounded-lg",
+                              "cursor-pointer select-none",
+                              "min-h-[56px]",
+                              "transition-colors duration-160",
+                              "hover:bg-secondary/50 active:bg-secondary/70",
+                              isSelected && "bg-secondary/30 border border-primary/30",
+                              !isAvailable && "cursor-not-allowed opacity-50"
+                            )}
+                          >
+                            <span className="text-card-foreground flex-1 font-medium">
+                              {option.name}
+                            </span>
+                            <input
+                              type="radio"
+                              id={inputId}
+                              name="main-ingredient"
+                              checked={isSelected}
+                              onChange={() => !isAvailable ? null : setSelectedMainIngredient(option.id)}
+                              disabled={!isAvailable}
+                              className="sr-only"
+                              aria-label={`Scegli ${option.name}`}
+                            />
+                            <div
+                              className={cn(
+                                "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors flex-shrink-0",
+                                isSelected
+                                  ? "bg-primary border-primary"
+                                  : "border-border"
+                              )}
+                              aria-hidden="true"
+                            >
+                              {isSelected && (
+                                <div className="w-2 h-2 rounded-full bg-primary-foreground" />
+                              )}
+                            </div>
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
 

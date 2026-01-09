@@ -124,6 +124,13 @@ export default function ThankYou() {
                           </div>
                         )}
                         
+                        {/* Ingrediente Principale */}
+                        {item.selectedMainIngredient && (
+                          <div className="text-xs text-muted-foreground mt-1">
+                            <div>👉 {item.selectedMainIngredient}</div>
+                          </div>
+                        )}
+                        
                         {/* Ingredienti Extra */}
                         {item.selectedExtras && item.selectedExtras.length > 0 && (
                           <div className="text-xs text-muted-foreground mt-1">

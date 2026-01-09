@@ -13,13 +13,14 @@ export interface CartItem {
   extrasPrice: number;
   glutenFree: boolean;
   glutenFreePrice: number;
+  selectedMainIngredient?: string; // Main ingredient selection (e.g., for Sfiziosa)
 }
 
 interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
-  addItem: (item: MenuItem, quantity: number, removedIngredients: string[], selectedExtras?: string[], extrasPrice?: number, glutenFree?: boolean, glutenFreePrice?: number) => void;
+  addItem: (item: MenuItem, quantity: number, removedIngredients: string[], selectedExtras?: string[], extrasPrice?: number, glutenFree?: boolean, glutenFreePrice?: number, selectedMainIngredient?: string) => void;
   updateQuantity: (cartItemId: string, quantity: number) => void;
   removeItem: (cartItemId: string) => void;
   clearCart: () => void;
@@ -64,8 +65,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return sum + itemTotal;
   }, 0);
 
-  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], selectedExtras: string[] = [], extrasPrice: number = 0, glutenFree: boolean = false, glutenFreePrice: number = 0) => {
-    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${selectedExtras.sort().join(",")}-${glutenFree ? "gf" : ""}`;
+  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], selectedExtras: string[] = [], extrasPrice: number = 0, glutenFree: boolean = false, glutenFreePrice: number = 0, selectedMainIngredient: string = "") => {
+    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${selectedExtras.sort().join(",")}-${glutenFree ? "gf" : ""}-${selectedMainIngredient}`;
     
     // Assicurati che i prezzi siano numeri
     const safeExtrasPrice = Number(extrasPrice) || 0;
@@ -97,6 +98,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           extrasPrice: safeExtrasPrice,
           glutenFree,
           glutenFreePrice: safeGlutenFreePrice,
+          selectedMainIngredient: selectedMainIngredient || undefined,
         },
       ];
     });
