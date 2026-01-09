@@ -1,0 +1,87 @@
+Nome Prodotto,Categoria,Prezzo,Ingredienti,Allergeni,Tag Dietetici
+Margherita,Le Top Ten,€6.00,"Pomodoro, mozzarella fiordilatte, basilico","Glutine, Lattosio","vegetarian, vegan"
+Caronte,Le Top Ten,€8.00,"Pomodoro, mozzarella fiordilatte, spianata calabra","Glutine, Lattosio",-
+Insuperabile,Le Top Ten,€8.00,"Pomodoro, mozzarella fiordilatte, prosciutto cotto insuperabile Barabino fuori cottura","Glutine, Lattosio",-
+Ai formaggi,Le Top Ten,€9.50,"Mozzarella fiordilatte, gorgonzola DOP, squacquerone, toma piemontese","Glutine, Lattosio",vegetarian
+La Regina,Le Top Ten,€9.00,"Pomodoro, bufala campana DOP, basilico, olio e.v.o.","Glutine, Lattosio",vegetarian
+La Tonnara,Le Top Ten,€10.00,"Pomodoro, mozzarella fiordilatte, filetti di tonno sott'olio, cipolla rossa di Tropea","Glutine, Lattosio, Pesce",-
+Verace,Le Top Ten,€10.00,"Fior di latte, provola affumicata, salsiccia, friarielli","Glutine, Lattosio",-
+Raffinata,Le Top Ten,€13.00,"Pomodoro, mozzarella fiordilatte, in uscita prosciutto crudo brado Barabino, stracciatella di burrata, pomodorini datterini e rucola","Glutine, Lattosio",-
+Stracciata,Le Top Ten,€9.00,"Pomodoro, stracciatella di burrata DOP, basilico, olio E.V.O.","Glutine, Lattosio",vegetarian
+Vegana,Le Top Ten,€9.00,"Crema di patate, carpaccio di verdure, intingolo d’aglio, olive taggiasche, origano",Glutine,"vegan, vegetarian"
+L'anciova,Le Top Ten,€10.00,"Pomodoro, bufala campana DOP, acciughe, origano","Glutine, Lattosio",-
+Raffaello,Pizzart,€16.00,"Fior di latte, funghi porcini, prosciutto crudo (fuori cottura), burrata, polvere di porcini, basilico","Glutine, Lattosio",-
+Bosch,Pizzart,€14.00,"Fior di latte, funghi porcini, patate al forno sottili, salsiccia, salsa all'aglio e prezzemolo, prezzemolo","Glutine, Lattosio",-
+Artemisia,Pizzart,€15.00,"Fior di latte, scamorza affumicata, porchetta, patate al forno, rosmarino, maionese al tartufo","Glutine, Lattosio",-
+Monet,Pizzart,€16.00,"Pomodoro, crema di pomodori secchi, cipolle di Tropea, burrata, acciughe del Cantabrico, olive, intingolo d'aglio, origano, basilico","Glutine, Lattosio, Pesce",-
+Picasso,Pizzart,€14.00,"Mozzarella fiordilatte, burrata, mortadella fuori cottura, crema di pistacchio, granella di pistacchio, basilico","Glutine, Lattosio, Frutta a guscio",-
+Renoir,Pizzart,€13.00,"Bufala, 'nduja calabrese, peperoni, salame piccante, origano, pomodori datterini, basilico","Glutine, Lattosio",-
+Chagall,Pizzart,€14.00,"Fiordilatte, burrata, pancetta arrostita aromatizzata, uovo all’occhio di bue, crumble croccante di pecorino, pepe","Glutine, Lattosio, Uova",-
+Cimabue,Pizzart,€13.00,"Pomodoro, funghi porcini, stracciatella di burrata, prosciutto cotto fuori cottura","Glutine, Lattosio",-
+Van Gogh,Pizzart,€14.00,"Fiordilatte, salsiccia marinata nel vino Porto, olive, pinoli, pesto","Glutine, Lattosio, Frutta a guscio",-
+Dalì,Pizzart,€13.00,"Fiordilatte, toma piemontese, gorgonzola, pere caramellate, noci","Glutine, Lattosio",vegetarian
+Michelangelo,Pizzart,€13.00,"Crema di patate, fagiolini, stracciatella di burrata, pesto.","Glutine, Lattosio, Frutta a guscio",vegetarian
+Da Vinci,Pizzart,€15.00,"Fiordilatte, gamberetti*, rucola, emulsione agli agrumi, glassa di aceto balsamico","Glutine, Lattosio, Crostacei",-
+Fugassa Sottile al Formaggio,Le Focacce,€12.00,Stracchino,"Glutine, Lattosio",vegetarian
+Pataccia - Focaccia tonda,Le Focacce,€6.00,"Patate al forno sottili, rosmarino, olio extravergine",Glutine,"vegetarian, vegan"
+Focaccia Tonnarò,Le Focacce,€15.00,"Vitello sottile, tradizionale salsa tonnata, capperi","Glutine, Pesce",-
+Porzione di patatine,Le Focacce,€5.00,-,Glutine,"vegetarian, vegan"
+Sfiziosa,Le Focacce,€11.00,"Rucola, scaglie di grana, pomodorini","Glutine, Lattosio",-
+Zena,Le Focacce,€10.00,"Stracchino, fagiolini, pesto","Glutine, Lattosio, Frutta a guscio",vegetarian
+Focaccia Bianca,Le Focacce,€4.00,"Olio, sale","Glutine, Lattosio, Frutta a guscio",vegetarian
+Stracchino e Rucola,Le Classiche,€8.00,"Fior di latte, stracchino, rucola","Glutine, Lattosio",vegetarian
+Rustica,Le Classiche,€12.00,"Pomodoro, fior di latte, salsiccia, peperoni, cipolle, scamorza affumicata","Glutine, Lattosio",-
+Pro Marinara,Le Classiche,€8.00,"Crema di pomodori secchi, pomodoro, olive, intingolo d'aglio, origano, basilico",Glutine,"vegetarian, vegan"
+Più Margherita,Le Classiche,€7.50,"Pomodoro, basilico in cottura, fior di latte, parmigiano, olio extravergine","Glutine, Lattosio",vegetarian
+Funghi,Le Classiche,€7.50,"Pomodoro, fior di latte, funghi champignon","Glutine, Lattosio",vegetarian
+4 Stagioni,Le Classiche,€9.00,"Pomodoro, fior di latte, funghi champignon, carciofini, olive, prosciutto cotto fuori cottura","Glutine, Lattosio",-
+Bismark,Le Classiche,€9.00,"Pomodoro, fiordilatte, uovo, prosciutto cotto fuori cottura","Glutine, Lattosio, Uova",-
+Calzone,Le Classiche,€8.00,"Pomodoro, fiordilatte, prosciutto cotto","Glutine, Lattosio",-
+Capricciosa,Le Classiche,€10.00,"Pomodoro, fiordilatte, funghi champignon, carciofini, olive, prosciutto cotto fuori cottura","Glutine, Lattosio",-
+Gorgonzola,Le Classiche,€7.50,"Pomodoro, fiordilatte, gorgonzola","Glutine, Lattosio",-
+Contadina,Le Classiche,€12.00,"Pomodoro, fiordilatte, funghi champignon, salsiccia, cipolle, olive","Glutine, Lattosio",-
+Crudo,Le Classiche,€9.00,"Pomodoro, fiordilatte, prosciutto crudo fuori cottura","Glutine, Lattosio",-
+Marinara,Le Classiche,€5.00,"Pomodoro, intingolo d'aglio, origano",Glutine,"vegan, vegetarian"
+La Piemontese,Le Classiche,€9.00,"Pomodoro, fior di latte, toma piemontese, cotto","Glutine, Lattosio",-
+Panna e Speck,Le Classiche,€9.00,"Mozzarella fiordilatte, panna, speck in uscita",Lattosio,-
+Prosciutto e Funghi,Le Classiche,€9.00,"Pomodoro, mozzarella fiordilatte, funghi champignon, prosciutto cotto Barabino fuori cottura","Glutine, Lattosio",-
+Pugliese,Le Classiche,€7.50,"Pomodoro, mozzarella fiordilatte, cipolle di Tropea","Glutine, Lattosio",vegetarian
+Siciliana,Le Classiche,€10.00,"Pomodoro, mozzarella fiordilatte, acciughe, capperi, olive, origano","Glutine, Lattosio, Pesce",-
+Vegetariana,Le Classiche,€8.50,"Pomodoro, mozzarella fiordilatte, verdure di stagione","Glutine, Lattosio",vegetarian
+Napoli,Le Classiche,€7.50,"Pomodoro, fiordilatte, acciughe, origano","Glutine, Lattosio, Pesce",-
+Patatine,Le Classiche,€8.00,"Pomodoro, fiordilatte, patatine fritte","Glutine, Lattosio",vegetarian
+Würstel e Patatine,Le Classiche,€7.50,"Pomodoro, fiordilatte, wurstel, patatine fritte","Glutine, Lattosio",-
+Salsiccia,Le Classiche,€8.50,"Pomodoro, fiordilatte, salsiccia","Glutine, Lattosio",-
+Speck e Brie,Le Classiche,€9.00,"Fiordilatte, brie, speck fuori cottura","Glutine, Lattosio",-
+Vegana,Le Classiche,€9.00,"Crema di patate, carpaccio di verdure, intingolo d'aglio, olive taggiasche, origano",Glutine,"vegan, vegetarian"
+Margherita,Le Classiche,€6.00,"Pomodoro, mozzarella fiordilatte, basilico","Glutine, Lattosio","vegetarian, vegan"
+Pluto,Baby Pizze,€6.00,"Pomodoro, fiordilatte, würstel, patatine","Glutine, Lattosio",-
+Topolino,Baby Pizze,€4.50,"Pomodoro, fiordilatte","Glutine, Lattosio",vegetarian
+Coca Cola 0,Bevande,€3.00,Lattina 33 cl,-,-
+Coca Cola,Bevande,€3.00,Lattina 33 cl,-,-
+Coca Cola Vetro,Bevande,€4.00,Bottiglietta di vetro 33 cl,-,-
+Coca Cola 0 Vetro,Bevande,€4.00,Bottiglietta di vetro 33 cl,-,-
+Estathé Limone,Bevande,€4.00,Lattina 33 cl,-,-
+Fanta,Bevande,€3.00,Lattina 33 cl,-,-
+Acqua Naturale,Bevande,€1.00,"Bottiglietta da 0,5 cl",-,-
+Acqua Frizzante,Bevande,€1.00,"Bottiglietta da 0,5 cl",-,-
+Acqua Naturale Vetro,Bevande,€1.50,"Bottiglia di Vetro da 0,5 cl",-,-
+Acqua Frizzante Vetro,Bevande,€1.50,"Bottiglia di Vetro da 0,5 cl",-,-
+Estathé Pesca,Bevande,€3.00,Lattina 33 cl,-,-
+Sprite,Bevande,€3.00,Lattina 33 cl,-,-
+Menabrea,Birre,€4.00,33 cl,glutine,-
+Tuborg,Birre,€5.00,66 cl,glutine,-
+Ichnusa Non Filtrata,Birre,€4.00,33 cl,glutine,-
+Birra Senza Glutine,Birre,€4.50,33 cl,-,gluten-free
+Birra Analcolica,Birre,€4.50,33 cl,glutine,-
+Alba Aura Bionda,Birre artigianali,€6.50,Birra artigianale,glutine,-
+Alba IGA,Birre artigianali,€6.50,Birra artigianale,glutine,-
+Cane Pacific,Birre artigianali,€6.50,Birra artigianale,glutine,-
+Cane Pilsner,Birre artigianali,€6.50,Birra artigianale,glutine,-
+Cane Lager,Birre artigianali,€6.50,Birra artigianale,glutine,-
+Nebbiolo Tonino,Vini,€28.00,Vino rosso piemontese,solfiti,-
+Arneis Tonino,Vini,€22.00,Vino bianco piemontese,solfiti,-
+Barbera Boidina,Vini,€22.00,Vino rosso,solfiti,-
+Barbera Cascina Castlet,Vini,€26.00,Vino rosso,solfiti,-
+Spumante Orsola,Vini,€14.00,Spumante,solfiti,-
+Ribolla Gialla,Vini,€20.00,Vino bianco,solfiti,-
