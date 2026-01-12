@@ -156,6 +156,13 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                         </div>
                       )}
                       
+                      {/* Ingrediente Speciale */}
+                      {item.selectedSpecialIngredient && (
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          {item.selectedSpecialIngredient === "patate-forno" ? "Patate al forno" : item.selectedSpecialIngredient === "patatine-fritte" ? "Patatine fritte" : item.selectedSpecialIngredient}
+                        </p>
+                      )}
+                      
                       {/* Ingrediente Principale */}
                       {item.selectedMainIngredient && (
                         <p className="text-xs text-muted-foreground mt-0.5">

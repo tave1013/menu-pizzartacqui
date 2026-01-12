@@ -124,6 +124,13 @@ export default function ThankYou() {
                           </div>
                         )}
                         
+                        {/* Ingrediente Speciale */}
+                        {item.selectedSpecialIngredient && (
+                          <div className="text-xs text-muted-foreground mt-1">
+                            <div>{item.selectedSpecialIngredient === "patate-forno" ? "Patate al forno" : item.selectedSpecialIngredient === "patatine-fritte" ? "Patatine fritte" : item.selectedSpecialIngredient}</div>
+                          </div>
+                        )}
+                        
                         {/* Ingrediente Principale */}
                         {item.selectedMainIngredient && (
                           <div className="text-xs text-muted-foreground mt-1">

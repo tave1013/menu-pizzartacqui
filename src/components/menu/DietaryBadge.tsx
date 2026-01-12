@@ -1,7 +1,7 @@
-import { Leaf, Wheat, Sprout, Moon, MilkOff } from "lucide-react";
+import { Leaf, Wheat, Sprout, Moon, MilkOff, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type DietaryTag = "vegan" | "vegetarian" | "gluten-free" | "halal" | "lactose-free";
+export type DietaryTag = "vegan" | "vegetarian" | "gluten-free" | "halal" | "lactose-free" | "spicy";
 
 interface DietaryBadgeProps {
   tag: DietaryTag;
@@ -33,6 +33,11 @@ const tagConfig: Record<DietaryTag, { label: string; icon: typeof Leaf; colorCla
     label: "Senza lattosio",
     icon: MilkOff,
     colorClass: "bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-400",
+  },
+  spicy: {
+    label: "Piccante",
+    icon: Flame,
+    colorClass: "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400",
   },
 };
 

@@ -14,13 +14,14 @@ export interface CartItem {
   glutenFree: boolean;
   glutenFreePrice: number;
   selectedMainIngredient?: string; // Main ingredient selection (e.g., for Sfiziosa)
+  selectedSpecialIngredient?: string; // Special ingredient selection (e.g., for Artemisia)
 }
 
 interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
-  addItem: (item: MenuItem, quantity: number, removedIngredients: string[], selectedExtras?: string[], extrasPrice?: number, glutenFree?: boolean, glutenFreePrice?: number, selectedMainIngredient?: string) => void;
+  addItem: (item: MenuItem, quantity: number, removedIngredients: string[], selectedExtras?: string[], extrasPrice?: number, glutenFree?: boolean, glutenFreePrice?: number, selectedMainIngredient?: string, selectedSpecialIngredient?: string) => void;
   updateQuantity: (cartItemId: string, quantity: number) => void;
   removeItem: (cartItemId: string) => void;
   clearCart: () => void;
@@ -65,8 +66,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return sum + itemTotal;
   }, 0);
 
-  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], selectedExtras: string[] = [], extrasPrice: number = 0, glutenFree: boolean = false, glutenFreePrice: number = 0, selectedMainIngredient: string = "") => {
-    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${selectedExtras.sort().join(",")}-${glutenFree ? "gf" : ""}-${selectedMainIngredient}`;
+  const addItem = (menuItem: MenuItem, quantity: number, removedIngredients: string[], selectedExtras: string[] = [], extrasPrice: number = 0, glutenFree: boolean = false, glutenFreePrice: number = 0, selectedMainIngredient: string = "", selectedSpecialIngredient: string = "") => {
+    const cartItemId = `${menuItem.id}-${removedIngredients.sort().join(",")}-${selectedExtras.sort().join(",")}-${glutenFree ? "gf" : ""}-${selectedMainIngredient}-${selectedSpecialIngredient}`;
     
     // Assicurati che i prezzi siano numeri
     const safeExtrasPrice = Number(extrasPrice) || 0;
@@ -99,6 +100,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           glutenFree,
           glutenFreePrice: safeGlutenFreePrice,
           selectedMainIngredient: selectedMainIngredient || undefined,
+          selectedSpecialIngredient: selectedSpecialIngredient || undefined,
         },
       ];
     });

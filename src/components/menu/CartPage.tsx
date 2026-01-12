@@ -263,6 +263,12 @@ function buildWhatsAppMessage(
     const itemPrice = (Number(item.price) || 0 + Number(item.extrasPrice) || 0 + Number(item.glutenFreePrice) || 0) * Number(item.quantity || 1);
     message += `x${item.quantity} ${glutenFreePrefix}*${item.name.toUpperCase()}* — ${formatPrice(itemPrice)}\n`;
     
+    // Ingrediente speciale se presente
+    if (item.selectedSpecialIngredient) {
+      const specialName = item.selectedSpecialIngredient === "patate-forno" ? "Patate al forno" : item.selectedSpecialIngredient === "patatine-fritte" ? "Patatine fritte" : item.selectedSpecialIngredient;
+      message += `_${specialName}_\n`;
+    }
+    
     // Ingrediente principale se presente
     if (item.selectedMainIngredient) {
       message += `_👉 Ingrediente principale: ${item.selectedMainIngredient}_\n`;
@@ -768,6 +774,15 @@ export function CartPage({ isOpen, onClose, onOpenInfo, onEditItem }: CartPagePr
                               {item.glutenFree && (
                                 <div className="inline-block px-2 py-0.5 mt-1 bg-yellow-100 dark:bg-yellow-900/30 rounded-full text-xs font-medium text-yellow-800 dark:text-yellow-200">
                                   Senza glutine
+                                </div>
+                              )}
+                              
+                              {/* Ingrediente Speciale */}
+                              {item.selectedSpecialIngredient && (
+                                <div className="mt-1 space-y-0.5">
+                                  <p className="text-xs text-muted-foreground">
+                                    {item.selectedSpecialIngredient === "patate-forno" ? "Patate al forno" : item.selectedSpecialIngredient === "patatine-fritte" ? "Patatine fritte" : item.selectedSpecialIngredient}
+                                  </p>
                                 </div>
                               )}
                               

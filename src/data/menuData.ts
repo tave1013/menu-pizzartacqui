@@ -53,7 +53,7 @@ const quartinoBiancoSfusoImg = "/assets/food/Quartino-bianco-sfuso.png";
 const mezzoBiancoSfusoImg = "/assets/food/Mezzo-bianco-sfuso.png";
 const litroBiancoSfusoImg = "/assets/food/Litro-bianco-sfuso.png";
 
-export type DietaryTag = "vegan" | "vegetarian" | "gluten-free";
+export type DietaryTag = "vegan" | "vegetarian" | "gluten-free" | "spicy";
 
 // ═══════════════════════════════════════════════════════════════════════════
 // GESTIONE SEZIONI POPUP PER PRODOTTO E CATEGORIA
@@ -272,7 +272,7 @@ export const menuCategories: Category[] = [
       {
         id: "margherita",
         name: "Margherita",
-        desc: "Pomodoro, mozzarella fiordilatte, basilico",
+        desc: "Pomodoro, fiordilatte, basilico",
         price: 6.0,
         image: margheritaImg,
         dietaryTags: ["vegetarian"],
@@ -282,9 +282,10 @@ export const menuCategories: Category[] = [
       {
         id: "caronte",
         name: "Caronte",
-        desc: "Pomodoro, mozzarella fiordilatte, spianata calabra",
+        desc: "Pomodoro, fiordilatte, spianata piccante fuori cottura",
         price: 8.0,
         image: caronteImg,
+        dietaryTags: ["spicy"],
         allergens: ["Glutine", "Lattosio"],
         featured: true,
         featuredOrder: 1,
@@ -293,7 +294,7 @@ export const menuCategories: Category[] = [
       {
         id: "anciova",
         name: "L'anciova",
-        desc: "Pomodoro, bufala campana DOP, acciughe, origano",
+        desc: "Pomodoro, bufala, acciughe, origano",
         price: 10.0,
         image: anciovaImg,
         allergens: ["Glutine", "Lattosio", "Pesce"],
@@ -304,7 +305,7 @@ export const menuCategories: Category[] = [
       {
         id: "ai-formagi",
         name: "Ai formaggi",
-        desc: "Mozzarella fiordilatte, gorgonzola DOP, squacquerone, toma piemontese",
+        desc: "Fiordilatte, gorgonzola, squacquerone, toma piemontese",
         price: 9.5,
         image: formaggiImg,
         allergens: ["Glutine", "Lattosio"],
@@ -316,7 +317,7 @@ export const menuCategories: Category[] = [
       {
         id: "la-regina",
         name: "La Regina",
-        desc: "Pomodoro, bufala campana DOP, basilico, olio e.v.o.",
+        desc: "Pomodoro, bufala, basilico, olio e.v.o.",
         price: 9.0,
         image: reginaImg,
         allergens: ["Glutine", "Lattosio"],
@@ -337,7 +338,7 @@ export const menuCategories: Category[] = [
       {
         id: "verace",
         name: "Verace",
-        desc: "Fior di latte, provola affumicata, salsiccia, friarielli",
+        desc: "Fiordilatte, provola affumicata, salsiccia, friarielli",
         price: 10.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -346,7 +347,7 @@ export const menuCategories: Category[] = [
       {
         id: "raffinata",
         name: "Raffinata",
-        desc: "Pomodoro, mozzarella fiordilatte, in uscita prosciutto crudo brado Barabino, stracciatella di burrata, pomodorini datterini e rucola",
+        desc: "Pomodoro, fiordilatte, prosciutto crudo fuori cottura, stracciatella di burrata, pomodorini datterini e rucola",
         price: 13.0,
         image: raffinataImg,
         allergens: ["Glutine", "Lattosio"],
@@ -375,7 +376,7 @@ export const menuCategories: Category[] = [
       {
         id: "anciova",
         name: "L'anciova",
-        desc: "Pomodoro, bufala campana DOP, acciughe, origano",
+        desc: "Pomodoro, bufala, acciughe, origano",
         price: 10.0,
         image: anciovaImg,
         allergens: ["Glutine", "Lattosio", "Pesce"],
@@ -391,7 +392,7 @@ export const menuCategories: Category[] = [
       {
         id: "raffaello",
         name: "Raffaello",
-        desc: "Fior di latte, funghi porcini, prosciutto crudo (fuori cottura), burrata, polvere di porcini, basilico",
+        desc: "Fiordilatte, funghi porcini, prosciutto crudo fuori cottura, burrata, polvere di porcini, basilico",
         price: 16.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -400,7 +401,7 @@ export const menuCategories: Category[] = [
       {
         id: "bosch",
         name: "Bosch",
-        desc: "Fior di latte, funghi porcini, patate al forno sottili, salsiccia, salsa all'aglio e prezzemolo, prezzemolo",
+        desc: "Fiordilatte, funghi porcini, patate al forno sottili, salsiccia, salsa all'aglio e prezzemolo, prezzemolo",
         price: 14.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -409,7 +410,7 @@ export const menuCategories: Category[] = [
       {
         id: "artemisia",
         name: "Artemisia",
-        desc: "Fior di latte, scamorza affumicata, porchetta, patate al forno, rosmarino, maionese al tartufo",
+        desc: "Fiordilatte, scamorza affumicata, porchetta, patate al forno, rosmarino, maionese al tartufo",
         price: 15.0,
         image: "",
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
@@ -427,7 +428,7 @@ export const menuCategories: Category[] = [
       {
         id: "picasso",
         name: "Picasso",
-        desc: "Mozzarella fiordilatte, burrata, mortadella fuori cottura, crema di pistacchio, granella di pistacchio, basilico",
+        desc: "Fiordilatte, burrata, mortadella fuori cottura, crema di pistacchio, granella di pistacchio, basilico",
         price: 14.0,
         image: picassoImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
@@ -441,6 +442,7 @@ export const menuCategories: Category[] = [
         desc: "Bufala, 'nduja calabrese, peperoni, salame piccante, origano, pomodori datterini, basilico",
         price: 13.0,
         image: renoirImg,
+        dietaryTags: ["spicy"],
         allergens: ["Glutine", "Lattosio"],
         featured: true,
         featuredOrder: 6,
@@ -449,7 +451,7 @@ export const menuCategories: Category[] = [
       {
         id: "chagal",
         name: "Chagall",
-        desc: "Fiordilatte, burrata, pancetta arrostita aromatizzata, uovo all’occhio di bue, crumble croccante di pecorino, pepe",
+        desc: "Fiordilatte, burrata, pancetta arrostita aromatizzata fuori cottura, uovo all’occhio di bue, crumble croccante di pecorino, pepe",
         price: 14.0,
         image: chagallImg,
         allergens: ["Glutine", "Lattosio", "Uova"],
@@ -458,7 +460,7 @@ export const menuCategories: Category[] = [
       {
         id: "cimabue",
         name: "Cimabue",
-        desc: "Pomodoro, funghi porcini, stracciatella di burrata, prosciutto cotto fuori cottura",
+        desc: "Pomodoro, funghi porcini, stracciatella di burrata, prosciutto cotto fuori cottura, basilico",
         price: 13.0,
         image: cimabueImg,
         allergens: ["Glutine", "Lattosio"],
@@ -467,7 +469,7 @@ export const menuCategories: Category[] = [
       {
         id: "van-gogh",
         name: "Van Gogh",
-        desc: "Fiordilatte, salsiccia marinata nel vino Porto, olive, pinoli, pesto",
+        desc: "Fiordilatte, salsiccia marinata nel vino, olive, pinoli, pesto, basilico",
         price: 14.0,
         image: vanGoghImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio", "Solfiti"],
@@ -480,13 +482,13 @@ export const menuCategories: Category[] = [
         price: 13.0,
         image: daliImg,
         dietaryTags: ["vegetarian"],
-        allergens: ["Glutine", "Lattosio"],
+        allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "michelangelo",
         name: "Michelangelo",
-        desc: "Crema di patate, fagiolini, stracciatella di burrata, pesto.",
+        desc: "Crema di patate, fagiolini, stracciatella di burrata, pesto, basilico",
         price: 13.0,
         image: michelangeloImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
@@ -536,7 +538,7 @@ export const menuCategories: Category[] = [
         desc: "Vitello sottile, tradizionale salsa tonnata, capperi",
         price: 15.0,
         image: "",
-        allergens: ["Glutine", "Pesce"],
+        allergens: ["Glutine", "Pesce", "Uova"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -560,7 +562,7 @@ export const menuCategories: Category[] = [
       {
         id: "zena",
         name: "Zena",
-        desc: "Stracchino, fagiolini, pesto",
+        desc: "Stracchino, fagiolini, pesto, basilico",
         price: 10.0,
         image: zenaImg,
         dietaryTags: ["vegetarian"],
@@ -573,7 +575,7 @@ export const menuCategories: Category[] = [
         desc: "Olio, sale",
         price: 4.0,
         image: "",
-        dietaryTags: ["vegetarian"],
+        dietaryTags: ["vegetarian", "vegan"],
         allergens: ["Glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -597,7 +599,7 @@ export const menuCategories: Category[] = [
       {
         id: "rustica",
         name: "Rustica",
-        desc: "Pomodoro, fior di latte, salsiccia, peperoni, cipolle, scamorza affumicata",
+        desc: "Pomodoro, fiordilatte, salsiccia, peperoni, cipolle, scamorza affumicata, basilico",
         price: 12.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -616,7 +618,7 @@ export const menuCategories: Category[] = [
       {
         id: "piu-margherita",
         name: "Più Margherita",
-        desc: "Pomodoro, basilico in cottura, fior di latte, parmigiano, olio extravergine",
+        desc: "Pomodoro, basilico in cottura, fiordilatte, parmigiano, olio extravergine, basilico fuori cottura",
         price: 7.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -626,7 +628,7 @@ export const menuCategories: Category[] = [
       {
         id: "funghi",
         name: "Funghi",
-        desc: "Pomodoro, fior di latte, funghi champignon",
+        desc: "Pomodoro, fiordilatte, funghi champignon",
         price: 7.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -636,7 +638,7 @@ export const menuCategories: Category[] = [
       {
         id: "quattro-stagioni",
         name: "4 Stagioni",
-        desc: "Pomodoro, fior di latte, funghi champignon, carciofini, olive, prosciutto cotto fuori cottura",
+        desc: "Pomodoro, fiordilatte, funghi champignon, carciofini, olive, prosciutto cotto fuori cottura",
         price: 9.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -654,7 +656,7 @@ export const menuCategories: Category[] = [
       {
         id: "calzone",
         name: "Calzone",
-        desc: "Pomodoro, fiordilatte, prosciutto cotto",
+        desc: "Pomodoro, fiordilatte, prosciutto cotto fuori cottura",
         price: 8.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -700,7 +702,7 @@ export const menuCategories: Category[] = [
       {
         id: "marinara",
         name: "Marinara",
-        desc: "Pomodoro, intingolo d'aglio, origano",
+        desc: "Pomodoro, intingolo d'aglio, origano, basilico",
         price: 5.0,
         image: marinataImg,
         allergens: ["Glutine"],
@@ -710,7 +712,7 @@ export const menuCategories: Category[] = [
       {
         id: "la-piemontese",
         name: "La Piemontese",
-        desc: "Pomodoro, fior di latte, toma piemontese, cotto",
+        desc: "Pomodoro, fiordilatte, toma piemontese, cotto",
         price: 9.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -719,7 +721,7 @@ export const menuCategories: Category[] = [
       {
         id: "panna-speck",
         name: "Panna e Speck",
-        desc: "Mozzarella fiordilatte, panna, speck in uscita",
+        desc: "Fiordilatte, panna, speck fuori cottura",
         price: 9.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -728,7 +730,7 @@ export const menuCategories: Category[] = [
       {
         id: "prosciutto-funghi",
         name: "Prosciutto e Funghi",
-        desc: "Pomodoro, mozzarella fiordilatte, funghi champignon, prosciutto cotto Barabino fuori cottura",
+        desc: "Pomodoro, fiordilatte, funghi champignon, prosciutto cotto fuori cottura",
         price: 9.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -737,7 +739,7 @@ export const menuCategories: Category[] = [
       {
         id: "pugliese",
         name: "Pugliese",
-        desc: "Pomodoro, mozzarella fiordilatte, cipolle di Tropea",
+        desc: "Pomodoro, fiordilatte, cipolle di Tropea",
         price: 7.5,
         image: "",
         dietaryTags: ["vegetarian"],
@@ -747,7 +749,7 @@ export const menuCategories: Category[] = [
       {
         id: "siciliana",
         name: "Siciliana",
-        desc: "Pomodoro, mozzarella fiordilatte, acciughe, capperi, olive, origano",
+        desc: "Pomodoro, fiordilatte, acciughe, capperi, olive, origano",
         price: 10.0,
         image: "",
         allergens: ["Glutine", "Lattosio", "Pesce"],
@@ -756,7 +758,7 @@ export const menuCategories: Category[] = [
       {
         id: "vegetariana",
         name: "Vegetariana",
-        desc: "Pomodoro, mozzarella fiordilatte, verdure di stagione",
+        desc: "Pomodoro, fiordilatte, verdure di stagione, basilico",
         price: 8.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -786,6 +788,15 @@ export const menuCategories: Category[] = [
         id: "wurstel-patatine",
         name: "Würstel e Patatine",
         desc: "Pomodoro, fiordilatte, wurstel, patatine fritte",
+        price: 9.5,
+        image: "",
+        allergens: ["Glutine", "Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "wurstel",
+        name: "Würstel",
+        desc: "Pomodoro, fiordilatte, wurstel",
         price: 7.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -812,7 +823,7 @@ export const menuCategories: Category[] = [
       {
         id: "vegana-classica",
         name: "Vegana",
-        desc: "Crema di patate, carpaccio di verdure, intingolo d'aglio, olive taggiasche, origano",
+        desc: "Crema di patate, verdure miste, intingolo d'aglio, olive taggiasche, origano, basilico",
         price: 9.0,
         image: "",
         allergens: ["Glutine"],
@@ -822,7 +833,7 @@ export const menuCategories: Category[] = [
       {
         id: "margherita-classica",
         name: "Margherita",
-        desc: "Pomodoro, mozzarella fiordilatte, basilico",
+        desc: "Pomodoro, fiordilatte, basilico",
         price: 6.0,
         image: margheritaImg,
           allergens: ["Glutine", "Lattosio"],

@@ -188,14 +188,43 @@ const PRODUCTS_WITH_MAIN_INGREDIENTS: ProductMainIngredients[] = [
   {
     productId: "sfiziosa",
     options: [
-      { id: "prosciutto-crudo", name: "Prosciutto crudo" },
-      { id: "bresaola", name: "Bresaola" },
+      { id: "prosciutto-crudo", name: "Prosciutto crudo fuori cottura" },
+      { id: "bresaola", name: "Bresaola fuori cottura" },
     ],
   },
 ];
 
 const getMainIngredientsForProduct = (productId: string): ProductMainIngredients | undefined => {
   return PRODUCTS_WITH_MAIN_INGREDIENTS.find(p => p.productId === productId);
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SELEZIONE INGREDIENTE SPECIALE (es. per Artemisia)
+// ═══════════════════════════════════════════════════════════════════════════
+interface SpecialIngredientOption {
+  id: string;
+  name: string;
+}
+
+interface ProductSpecialIngredients {
+  productId: string;
+  title: string;
+  options: SpecialIngredientOption[];
+}
+
+const PRODUCTS_WITH_SPECIAL_INGREDIENTS: ProductSpecialIngredients[] = [
+  {
+    productId: "artemisia",
+    title: "Seleziona ingrediente",
+    options: [
+      { id: "patate-forno", name: "Patate al forno" },
+      { id: "patatine-fritte", name: "Patatine fritte" },
+    ],
+  },
+];
+
+const getSpecialIngredientsForProduct = (productId: string): ProductSpecialIngredients | undefined => {
+  return PRODUCTS_WITH_SPECIAL_INGREDIENTS.find(p => p.productId === productId);
 };
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -235,10 +264,15 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
   const [selectedExtras, setSelectedExtras] = useState<Set<string>>(new Set());
   const [glutenFreeOption, setGlutenFreeOption] = useState(false);
   const [selectedMainIngredient, setSelectedMainIngredient] = useState<string>("");
+  const [selectedSpecialIngredient, setSelectedSpecialIngredient] = useState<string>("");
 
   // Get main ingredients config for this product
   const mainIngredientsConfig = item ? getMainIngredientsForProduct(item.id) : undefined;
   const requiresMainIngredient = !readOnlyMode && mainIngredientsConfig !== undefined;
+  
+  // Get special ingredients config for this product
+  const specialIngredientsConfig = item ? getSpecialIngredientsForProduct(item.id) : undefined;
+  const requiresSpecialIngredient = !readOnlyMode && specialIngredientsConfig !== undefined;
 
   // Controlla se la categoria è esclusa dalla rimozione ingredienti
   const categoryHasIngredients = !categoryId || !CATEGORIE_SENZA_INGREDIENTI.includes(categoryId);
@@ -284,12 +318,15 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
         setGlutenFreeOption(editingCartItem.glutenFree || false);
         // Ripristina l'ingrediente principale selezionato
         setSelectedMainIngredient(editingCartItem.selectedMainIngredient || "");
+        // Ripristina l'ingrediente speciale selezionato
+        setSelectedSpecialIngredient(editingCartItem.selectedSpecialIngredient || "");
       } else {
         setQuantity(1);
         setRemovedIngredients(new Set());
         setSelectedExtras(new Set());
         setGlutenFreeOption(false);
         setSelectedMainIngredient("");
+        setSelectedSpecialIngredient("");
       }
     }
   }, [isOpen, item, editingCartItem]);
@@ -393,13 +430,23 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
       return;
     }
     
+    // Check if special ingredient is required
+    if (requiresSpecialIngredient && !selectedSpecialIngredient) {
+      toast({
+        title: specialIngredientsConfig?.title || "Seleziona ingrediente",
+        description: "Devi selezionare un'opzione per continuare",
+        duration: 2000,
+      });
+      return;
+    }
+    
     if (isEditing && editingCartItem) {
       // Remove old item and add updated one
       removeItem(editingCartItem.id);
-      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice, selectedMainIngredient);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice, selectedMainIngredient, selectedSpecialIngredient);
       // Rimosso toast per UX più fluida
     } else {
-      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice, selectedMainIngredient);
+      addItem(item, quantity, Array.from(removedIngredients), extraNames, finalExtrasPrice, glutenFreeOption, finalGlutenFreePrice, selectedMainIngredient, selectedSpecialIngredient);
       // Rimosso toast per UX più fluida
     }
     onClose();
@@ -606,6 +653,64 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                         </div>
                       </label>
                     )}
+                  </div>
+                )}
+
+                {/* Special Ingredient Selection (e.g., Artemisia) - after gluten section */}
+                {specialIngredientsConfig && (specialIngredientsConfig.options.length > 0) && (
+                  <div className={!isAvailable ? "opacity-50 grayscale" : ""}>
+                    <h3 className="text-lg font-bold text-card-foreground mb-4">
+                      {specialIngredientsConfig.title} {requiresSpecialIngredient && <span className="text-red-500">*</span>}
+                    </h3>
+                    <div className="space-y-3 border-t border-border pt-4">
+                      {specialIngredientsConfig.options.map((option) => {
+                        const isSelected = selectedSpecialIngredient === option.id;
+                        const inputId = `special-ingredient-${option.id}`;
+                        return (
+                          <label
+                            key={option.id}
+                            htmlFor={inputId}
+                            className={cn(
+                              "flex items-center justify-between",
+                              "py-4 px-2 -mx-2 rounded-lg",
+                              "cursor-pointer select-none",
+                              "min-h-[56px]",
+                              "transition-colors duration-160",
+                              "hover:bg-secondary/50 active:bg-secondary/70",
+                              isSelected && "bg-secondary/30 border border-primary/30",
+                              !isAvailable && "cursor-not-allowed opacity-50"
+                            )}
+                          >
+                            <span className="text-card-foreground flex-1 font-medium">
+                              {option.name}
+                            </span>
+                            <input
+                              type="radio"
+                              id={inputId}
+                              name="special-ingredient"
+                              checked={isSelected}
+                              onChange={() => !isAvailable ? null : setSelectedSpecialIngredient(option.id)}
+                              disabled={!isAvailable}
+                              className="sr-only"
+                              aria-label={`Scegli ${option.name}`}
+                            />
+                            <div
+                              className={cn(
+                                "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors flex-shrink-0",
+                                isSelected
+                                  ? "bg-primary border-primary"
+                                  : "border-border"
+                              )}
+                              aria-hidden="true"
+                            >
+                              {isSelected && (
+                                <div className="w-2 h-2 rounded-full bg-primary-foreground" />
+                              )}
+                            </div>
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
 
