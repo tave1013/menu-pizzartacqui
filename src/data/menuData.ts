@@ -1210,7 +1210,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "cane-lager",
-        name: "Cane di guerraLager",
+        name: "Cane di guerra Lager",
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
