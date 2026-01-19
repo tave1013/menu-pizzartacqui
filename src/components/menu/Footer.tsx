@@ -192,7 +192,7 @@ export function Footer() {
         {/* Divider e sezione legale */}
         <div className="border-t border-border mt-8 pt-6">
           {/* Link menu locale */}
-          <div className="flex justify-center mb-6">
+          <div className="flex flex-col items-center justify-center mb-6 gap-2">
             <a 
               href="https://menu.pizzartacquiterme.com/menu-locale"
               target="_blank"
@@ -202,6 +202,7 @@ export function Footer() {
               <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" />
               <span>Sfoglia menu al locale</span>
             </a>
+            <p className="text-xs text-muted-foreground text-center">Le immagini hanno esclusivamente scopo illustrativo</p>
           </div>
           
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
