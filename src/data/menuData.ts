@@ -32,8 +32,15 @@ const thePescaImg = "/assets/food/the-pesca.webp";
 const spriteImg = "/assets/food/sprite.webp";
 const birraImg = "/assets/food/birra.jpg";
 const ichnusaImg = "/assets/food/ichnusa.webp";
+const ichnusaNonFiltrataImg = "/assets/food/ichnusa-non-filtrata.webp";
 const menabreaImg = "/assets/food/menabrea.webp";
-const tuborgImg = "/assets/food/tuborg.webp";
+const menabreaAmbrataImg = "/assets/food/menabrea ambrata.webp";
+const menabreaRossaImg = "/assets/food/menabrea rossa.webp";
+const tuborgImg = "/assets/food/Tuborg.webp";
+const hoegardenImg = "/assets/food/hoegarden.webp";
+const canePacificImg = "/assets/food/pacific.webp";
+const canePilsnerImg = "/assets/food/pilsner.webp";
+const caneLagerImg = "/assets/food/lager.webp";
 const aiformaggiImg = "/assets/food/ai-formaggi.webp";
 // Birre alla spina
 const birraBiondaPiccolaImg = "/assets/food/Birra-bionda-piccola.png";
@@ -1014,7 +1021,7 @@ export const menuCategories: Category[] = [
         name: "Menabrea Ambrata",
         desc: "33 cl",
         price: 4.0,
-        image: menabreaImg,
+        image: menabreaAmbrataImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1023,7 +1030,7 @@ export const menuCategories: Category[] = [
         name: "Menabrea Rossa",
         desc: "33 cl",
         price: 4.0,
-        image: menabreaImg,
+        image: menabreaRossaImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1032,7 +1039,7 @@ export const menuCategories: Category[] = [
         name: "Ichnusa Non Filtrata",
         desc: "33 cl",
         price: 4.0,
-        image: ichnusaImg,
+        image: ichnusaNonFiltrataImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1050,7 +1057,7 @@ export const menuCategories: Category[] = [
         name: "Hoegarden",
         desc: "33 cl",
         price: 5.0,
-        image: "",
+        image: hoegardenImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1195,7 +1202,7 @@ export const menuCategories: Category[] = [
         name: "Cane di guerra Pacific",
         desc: "Birra artigianale",
         price: 6.5,
-        image: "",
+        image: canePacificImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1204,7 +1211,7 @@ export const menuCategories: Category[] = [
         name: "Cane di guerra Pilsner",
         desc: "Birra artigianale",
         price: 6.5,
-        image: "",
+        image: canePilsnerImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1213,7 +1220,7 @@ export const menuCategories: Category[] = [
         name: "Cane di guerra Lager",
         desc: "Birra artigianale",
         price: 6.5,
-        image: "",
+        image: caneLagerImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
