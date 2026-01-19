@@ -1192,7 +1192,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "cane-pacific",
-        name: "Cane Pacific",
+        name: "Cane di guerra Pacific",
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
@@ -1201,7 +1201,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "cane-pilsner",
-        name: "Cane Pilsner",
+        name: "Cane di guerra Pilsner",
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
@@ -1210,7 +1210,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "cane-lager",
-        name: "Cane Lager",
+        name: "Cane di guerraLager",
         desc: "Birra artigianale",
         price: 6.5,
         image: "",
