@@ -369,6 +369,15 @@ export const menuCategories: Category[] = [
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
+      {
+        id: "la-tonnara",
+        name: "La Tonnara",
+        desc: "Pomodoro, fior di latte, filetti di tonno sott'olio",
+        price: 9.0,
+        image: "",
+        allergens: ["Glutine", "Lattosio", "Pesce"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
     ],
   },
   {
