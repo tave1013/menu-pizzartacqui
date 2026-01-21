@@ -360,8 +360,8 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
-        id: "pro-margherita",
-        name: "Pro Margherita",
+        id: "piu-margherita",
+        name: "Più Margherita",
         desc: "Pomodoro, basilico in cottura, fior di latte, parmigiano, olio extravergine, basilico fuori cottura",
         price: 7.5,
         image: "",
