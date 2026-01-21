@@ -23,11 +23,19 @@ function normalizeString(str: string): string {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-// Get all menu items flattened (optionally filtered by excluded categories)
+// Get all menu items flattened (optionally filtered by excluded categories) - deduplicated by ID
 function getAllItems(excludedCategories: string[] = []): MenuItem[] {
-  return menuCategories
+  const itemsMap = new Map<string, MenuItem>();
+  menuCategories
     .filter((cat) => !excludedCategories.includes(cat.id))
-    .flatMap((cat) => cat.items);
+    .forEach((cat) => {
+      cat.items.forEach((item) => {
+        if (!itemsMap.has(item.id)) {
+          itemsMap.set(item.id, item);
+        }
+      });
+    });
+  return Array.from(itemsMap.values());
 }
 
 // Quick filter tags: usa le categorie reali del menu (optionally filtered)

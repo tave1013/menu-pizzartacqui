@@ -22,9 +22,17 @@ function normalizeString(str: string): string {
 }
 
 function getAllItems(excludedCategories: string[] = []): MenuItem[] {
-  return menuCategories
+  const itemsMap = new Map<string, MenuItem>();
+  menuCategories
     .filter((cat) => !excludedCategories.includes(cat.id))
-    .flatMap((cat) => cat.items);
+    .forEach((cat) => {
+      cat.items.forEach((item) => {
+        if (!itemsMap.has(item.id)) {
+          itemsMap.set(item.id, item);
+        }
+      });
+    });
+  return Array.from(itemsMap.values());
 }
 
 function getSuggestedCategories(excludedCategories: string[] = []) {

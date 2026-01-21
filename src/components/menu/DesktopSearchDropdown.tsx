@@ -19,9 +19,17 @@ function normalizeString(str: string): string {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-// Get all menu items flattened
+// Get all menu items flattened (deduplicated by ID)
 function getAllItems(): MenuItem[] {
-  return menuCategories.flatMap((cat) => cat.items);
+  const itemsMap = new Map<string, MenuItem>();
+  menuCategories.forEach((cat) => {
+    cat.items.forEach((item) => {
+      if (!itemsMap.has(item.id)) {
+        itemsMap.set(item.id, item);
+      }
+    });
+  });
+  return Array.from(itemsMap.values());
 }
 
 export function DesktopSearchDropdown({

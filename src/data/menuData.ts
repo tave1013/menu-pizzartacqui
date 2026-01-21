@@ -277,16 +277,6 @@ export const menuCategories: Category[] = [
     name: "Le Top Ten",
     items: [
       {
-        id: "margherita",
-        name: "Margherita",
-        desc: "Pomodoro, fior di latte, basilico",
-        price: 6.0,
-        image: margheritaImg,
-        dietaryTags: ["vegetarian"],
-        allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
-      {
         id: "caronte",
         name: "Caronte",
         desc: "Pomodoro, fior di latte, spianata piccante fuori cottura",
@@ -829,7 +819,7 @@ export const menuCategories: Category[] = [
       {
         id: "margherita",
         name: "Margherita",
-        desc: "Pomodoro, fior di latte, olio extra vergine, basilico",
+        desc: "Pomodoro, fior di latte, basilico",
         price: 6.0,
         image: margheritaImg,
         allergens: ["Glutine", "Lattosio"],
