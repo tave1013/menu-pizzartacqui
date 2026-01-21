@@ -33,7 +33,7 @@ export function useScrollSpy(sectionIds: string[], offset = 120) {
     };
 
     observerRef.current = new IntersectionObserver(callback, {
-      rootMargin: `-${offset}px 0px -50% 0px`,
+      rootMargin: `-${offset}px 0px -70% 0px`,
       threshold: 0,
     });
 

@@ -90,6 +90,7 @@ const BLACKLIST_PATTERNS = [
   /vino\s*(rosso|bianco|rosè)?/i,  // Vino rosso, Vino bianco
   /spumante/i,           // Spumante
   /piemontese/i,         // Vino piemontese (per vini)
+  /\(.*su richiesta.*\)/i,  // (su richiesta ...) - note informative tra parentesi
 ];
 // ═══════════════════════════════════════════════════════════════════════════
 
