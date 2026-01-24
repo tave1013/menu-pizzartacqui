@@ -579,8 +579,8 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   </div>
                 )}
 
-                {/* Gluten Free Option - visible in both modes when applicable */}
-                {isRestaurantOpen && canHaveGlutenFree && (
+                {/* Gluten Free Option - only visible in order mode (NOT in read-only/menu-locale) */}
+                {!readOnlyMode && isRestaurantOpen && canHaveGlutenFree && (
                   <div className={cn(
                     "bg-amber-50 dark:bg-amber-950/20 rounded-xl p-4 border border-amber-200 dark:border-amber-900",
                     !isAvailable && "opacity-50 grayscale"
@@ -594,66 +594,53 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                       gli stessi utilizzati per le altre pizze.
                     </p>
                     
-                    {readOnlyMode ? (
-                      // Menù Consultazione: Solo testo statico informativo
-                      <div className="flex items-center justify-between py-3 px-3 rounded-lg border border-border bg-secondary/10">
-                        <span className="text-card-foreground flex-1 font-medium">
-                          Impasto naturalmente senza glutine
-                        </span>
-                        <span className="text-muted-foreground text-sm font-semibold">
+                    <label
+                      htmlFor="gluten-free-option"
+                      className={cn(
+                        "flex items-center justify-between",
+                        "py-3 px-3 rounded-lg border border-border",
+                        "cursor-pointer select-none",
+                        "min-h-[56px]",
+                        "transition-colors duration-160",
+                        "hover:bg-secondary/50 active:bg-secondary/70",
+                        glutenFreeOption && "bg-secondary/30",
+                        !isAvailable && "cursor-not-allowed opacity-50"
+                      )}
+                    >
+                      <span className="text-card-foreground flex-1 font-medium">
+                        Impasto naturalmente senza glutine
+                      </span>
+                      
+                      <div className="flex items-center gap-3">
+                        <span className="text-muted-foreground text-sm">
                           +{formatPrice(GLUTEN_FREE_PRICE)}
                         </span>
-                      </div>
-                    ) : (
-                      // Menù Asporto: Checkbox interattiva funzionante
-                      <label
-                        htmlFor="gluten-free-option"
-                        className={cn(
-                          "flex items-center justify-between",
-                          "py-3 px-3 rounded-lg border border-border",
-                          "cursor-pointer select-none",
-                          "min-h-[56px]",
-                          "transition-colors duration-160",
-                          "hover:bg-secondary/50 active:bg-secondary/70",
-                          glutenFreeOption && "bg-secondary/30",
-                          !isAvailable && "cursor-not-allowed opacity-50"
-                        )}
-                      >
-                        <span className="text-card-foreground flex-1 font-medium">
-                          Impasto naturalmente senza glutine
-                        </span>
-                        
-                        <div className="flex items-center gap-3">
-                          <span className="text-muted-foreground text-sm">
-                            +{formatPrice(GLUTEN_FREE_PRICE)}
-                          </span>
-                          <input
-                            type="checkbox"
-                            id="gluten-free-option"
-                            checked={glutenFreeOption}
-                            onChange={() => !isAvailable ? null : setGlutenFreeOption(!glutenFreeOption)}
-                            disabled={!isAvailable}
-                            className="sr-only"
-                            aria-label="Aggiungi impasto senza glutine"
-                          />
-                          <div
-                            className={cn(
-                              "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
-                              glutenFreeOption
-                                ? "bg-primary border-primary"
-                                : "border-border"
-                            )}
-                            aria-hidden="true"
-                          >
-                            {glutenFreeOption && (
-                              <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                              </svg>
-                            )}
-                          </div>
+                        <input
+                          type="checkbox"
+                          id="gluten-free-option"
+                          checked={glutenFreeOption}
+                          onChange={() => !isAvailable ? null : setGlutenFreeOption(!glutenFreeOption)}
+                          disabled={!isAvailable}
+                          className="sr-only"
+                          aria-label="Aggiungi impasto senza glutine"
+                        />
+                        <div
+                          className={cn(
+                            "w-6 h-6 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
+                            glutenFreeOption
+                              ? "bg-primary border-primary"
+                              : "border-border"
+                          )}
+                          aria-hidden="true"
+                        >
+                          {glutenFreeOption && (
+                            <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
                         </div>
-                      </label>
-                    )}
+                      </div>
+                    </label>
                   </div>
                 )}
 
