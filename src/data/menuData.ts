@@ -276,7 +276,15 @@ export const menuCategories: Category[] = [
     id: "top-ten",
     name: "Le Top Ten",
     items: [
-      
+      {
+        id: "caronte",
+        name: "Caronte",
+        desc: "Pomodoro, fior di latte, spianata calabra",
+        price: 8.0,
+        image: caronteImg,
+        allergens: ["Glutine", "Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
+      },
       {
         id: "insuperabile",
         name: "L'insuperabile",
