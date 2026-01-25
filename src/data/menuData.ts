@@ -25,10 +25,13 @@ const wurstelPatatineImg = "/assets/food/Wurstel e patatine.webp";
 const tonnaraImg = "/assets/food/Tonnara.webp";
 const stracchinoRucolaImg = "/assets/food/Stracchino e rucola.webp";
 const sicilianaImg = "/assets/food/Siciliana.webp";
-const patatinaImg = "/assets/food/Patatine.webp";
+const patatinaImg = "/assets/food/Pizza patatine (1).webp";
 const napoliImg = "/assets/food/Napoli.webp";
 const boschImg = "/assets/food/Bosch.webp";
 const puglieseImg = "/assets/food/Pugliese.webp";
+const albaAuraBiondaImg = "/assets/food/Alba aura bionda.webp";
+const albaIgaImg = "/assets/food/Alba iga rossa.webp";
+const albaMarteRossaImg = "/assets/food/Alba marte rossa.webp";
 const artemisiaImg = "/assets/food/Artemisia.webp";
 const acquaGasataImg = "/assets/food/acqua-gasata.webp";
 const acquaNaturaleImg = "/assets/food/acqua-naturale.webp";
@@ -1179,7 +1182,7 @@ export const menuCategories: Category[] = [
         name: "Alba Aura Bionda",
         desc: "Birra artigianale",
         price: 6.5,
-        image: "",
+        image: albaAuraBiondaImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1188,7 +1191,7 @@ export const menuCategories: Category[] = [
         name: "Alba IGA",
         desc: "Birra artigianale",
         price: 6.5,
-        image: "",
+        image: albaIgaImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1197,7 +1200,7 @@ export const menuCategories: Category[] = [
         name: "Alba Marte Rossa",
         desc: "Birra artigianale",
         price: 6.5,
-        image: "",
+        image: albaMarteRossaImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
