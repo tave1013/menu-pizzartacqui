@@ -20,6 +20,15 @@ const gorgoImg = "/assets/food/Gorgo.webp";
 const crudoImg = "/assets/food/Crudo.webp";
 const marinataImg = "/assets/food/Marinara.webp";
 const speckBrieImg = "/assets/food/Speck e Brie.webp";
+const wurstelImg = "/assets/food/Wurstel.webp";
+const wurstelPatatineImg = "/assets/food/Wurstel e patatine.webp";
+const tonnaraImg = "/assets/food/Tonnara.webp";
+const stracchinoRucolaImg = "/assets/food/Stracchino e rucola.webp";
+const sicilianaImg = "/assets/food/Siciliana.webp";
+const patatinaImg = "/assets/food/Patatine.webp";
+const napoliImg = "/assets/food/Napoli.webp";
+const puglieseImg = "/assets/food/Pugliese.webp";
+const artemisiaImg = "/assets/food/Artemisia.webp";
 const acquaGasataImg = "/assets/food/acqua-gasata.webp";
 const acquaNaturaleImg = "/assets/food/acqua-naturale.webp";
 const cocaImg = "/assets/food/coca.webp";
@@ -370,7 +379,7 @@ export const menuCategories: Category[] = [
         name: "La Tonnara",
         desc: "Pomodoro, fior di latte, filetti di tonno sott'olio",
         price: 9.0,
-        image: "",
+        image: tonnaraImg,
         allergens: ["Glutine", "Lattosio", "Pesce"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -404,7 +413,7 @@ export const menuCategories: Category[] = [
         name: "Artemisia",
         desc: "Fior di latte, scamorza affumicata, porchetta, patate al forno, rosmarino, maionese al tartufo",
         price: 15.0,
-        image: "",
+        image: artemisiaImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -583,7 +592,7 @@ export const menuCategories: Category[] = [
         name: "Stracchino e Rucola",
         desc: "Fior di latte, stracchino, rucola",
         price: 8.0,
-        image: "",
+        image: stracchinoRucolaImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
@@ -733,7 +742,7 @@ export const menuCategories: Category[] = [
         name: "Pugliese",
         desc: "Pomodoro, fior di latte, cipolle di Tropea",
         price: 7.5,
-        image: "",
+        image: puglieseImg,
         dietaryTags: ["vegetarian"],
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
@@ -743,7 +752,7 @@ export const menuCategories: Category[] = [
         name: "Siciliana",
         desc: "Pomodoro, fior di latte, acciughe, capperi, olive, origano",
         price: 10.0,
-        image: "",
+        image: sicilianaImg,
         allergens: ["Glutine", "Lattosio", "Pesce"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -762,7 +771,7 @@ export const menuCategories: Category[] = [
         name: "Napoli",
         desc: "Pomodoro, fior di latte, acciughe, origano",
         price: 7.5,
-        image: "",
+        image: napoliImg,
         allergens: ["Glutine", "Lattosio", "Pesce"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -771,7 +780,7 @@ export const menuCategories: Category[] = [
         name: "Patatine",
         desc: "Pomodoro, fior di latte, patatine fritte*",
         price: 8.0,
-        image: "",
+        image: patatinaImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
@@ -781,7 +790,7 @@ export const menuCategories: Category[] = [
         name: "PataWürstel",
         desc: "Pomodoro, fior di latte, würstel, patatine fritte*",
         price: 10.0,
-        image: "",
+        image: wurstelPatatineImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -790,7 +799,7 @@ export const menuCategories: Category[] = [
         name: "Würstel",
         desc: "Pomodoro, fior di latte, wurstel",
         price: 7.5,
-        image: "",
+        image: wurstelImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
