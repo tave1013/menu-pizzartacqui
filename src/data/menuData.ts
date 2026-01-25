@@ -36,7 +36,7 @@ const ichnusaNonFiltrataImg = "/assets/food/ichnusa-non-filtrata.webp";
 const menabreaImg = "/assets/food/menabrea.webp";
 const menabreaAmbrataImg = "/assets/food/menabrea ambrata.webp";
 const menabreaRossaImg = "/assets/food/menabrea rossa.webp";
-const tuborgImg = "/assets/food/Tuborg.webp";
+const tuborgImg = "/assets/food/tuborg.webp";
 const hoegardenImg = "/assets/food/hoegarden.webp";
 const canePacificImg = "/assets/food/pacific.webp";
 const canePilsnerImg = "/assets/food/pilsner.webp";
@@ -208,7 +208,7 @@ export const restaurantInfo: RestaurantInfo = {
     { day: "Mercoledì", hours: "8:30 - 22:30" },
     { day: "Giovedì", hours: "8:30 - 22:30" },
     { day: "Venerdì", hours: "8:30 - 22:30" },
-    { day: "Sabato", hours: "8:30 - 22:30" },
+    { day: "Sabato", hours: "8:30 - 23:50" },
     { day: "Domenica", hours: "8:00 - 22:30" },
   ],
   deliveryTime: "25-40 min",
@@ -910,7 +910,7 @@ export const menuCategories: Category[] = [
         id: "coca-vetro",
         name: "Coca Cola Vetro",
         desc: "Bottiglietta di vetro 33 cl",
-        price: 4.0,
+        price: 3.0,
         image: cocaVetroImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -918,7 +918,7 @@ export const menuCategories: Category[] = [
         id: "coca-zero-vetro",
         name: "Coca Cola 0 Vetro",
         desc: "Bottiglietta di vetro 33 cl",
-        price: 4.0,
+        price: 3.0,
         image: cocaZeroVetroImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -926,7 +926,7 @@ export const menuCategories: Category[] = [
         id: "estath-limone",
         name: "Estathé Limone",
         desc: "Lattina 33 cl",
-        price: 4.0,
+        price: 3.0,
         image: theLinoneImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1183,8 +1183,17 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
+        id: "alba-marte-rossa",
+        name: "Alba Marte Rossa",
+        desc: "Birra artigianale",
+        price: 6.5,
+        image: "",
+        allergens: ["glutine"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
         id: "cane-pacific",
-        name: "Cane di guerra Pacific",
+        name: "Cane di guerra Pacific IPA",
         desc: "Birra artigianale",
         price: 6.5,
         image: canePacificImg,

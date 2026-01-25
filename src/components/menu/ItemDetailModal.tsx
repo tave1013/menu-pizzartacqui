@@ -72,6 +72,7 @@ interface ItemDetailModalProps {
 const CATEGORIE_SENZA_INGREDIENTI = [
   "bevande",    // Coca Cola, Fanta, Acqua, etc.
   "birre",      // Menabrea, Tuborg, etc.
+  "birre-artigianali",  // Alba Aura Bionda, Alba Marte Rossa, etc.
   "vini",       // Nebbiolo, Arneis, etc.
   // Aggiungi qui nuove categorie, es: "dolci", "gelati"
 ];
