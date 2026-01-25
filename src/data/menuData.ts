@@ -27,6 +27,7 @@ const stracchinoRucolaImg = "/assets/food/Stracchino e rucola.webp";
 const sicilianaImg = "/assets/food/Siciliana.webp";
 const patatinaImg = "/assets/food/Patatine.webp";
 const napoliImg = "/assets/food/Napoli.webp";
+const boschImg = "/assets/food/Bosch.webp";
 const puglieseImg = "/assets/food/Pugliese.webp";
 const artemisiaImg = "/assets/food/Artemisia.webp";
 const acquaGasataImg = "/assets/food/acqua-gasata.webp";
@@ -404,7 +405,7 @@ export const menuCategories: Category[] = [
         name: "Bosch",
         desc: "fior di latte, funghi porcini*, patate al forno sottili, salsiccia, salsa all'aglio e prezzemolo, prezzemolo",
         price: 14.0,
-        image: "",
+        image: boschImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
