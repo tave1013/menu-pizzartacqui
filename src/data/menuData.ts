@@ -29,6 +29,7 @@ const patatinaImg = "/assets/food/Pizza patatine (1).webp";
 const napoliImg = "/assets/food/Napoli.webp";
 const boschImg = "/assets/food/Bosch.webp";
 const puglieseImg = "/assets/food/Pugliese.webp";
+const rusticaImg = "/assets/food/rustica.webp";
 const albaAuraBiondaImg = "/assets/food/Alba aura bionda.webp";
 const albaIgaImg = "/assets/food/Alba iga.webp";
 const albaMarteRossaImg = "/assets/food/Alba marte rossa.webp";
@@ -614,7 +615,7 @@ export const menuCategories: Category[] = [
         name: "Rustica",
         desc: "Pomodoro, fior di latte, salsiccia, peperoni, cipolle, scamorza affumicata, basilico",
         price: 10.5,
-        image: "",
+        image: rusticaImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1267,7 +1268,7 @@ export const menuCategories: Category[] = [
         id: "barbera-boidina",
         name: "Barbera Boidina",
         desc: "75 cl | 14,5% vol.",
-        price: 22.0
+        price: 22.0,
         image: boidinaBarberaImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
