@@ -1248,7 +1248,7 @@ export const menuCategories: Category[] = [
       {
         id: "nebbiolo-tonino",
         name: "Nebbiolo Tonino",
-        desc: "Vino rosso piemontese",
+        desc: "75 cl | 14,5% vol.",
         price: 28.0,
         image: "",
         allergens: ["solfiti"],
@@ -1257,7 +1257,7 @@ export const menuCategories: Category[] = [
       {
         id: "arneis-tonino",
         name: "Arneis Tonino",
-        desc: "Vino bianco piemontese",
+        desc: "75 cl | 13,5% vol.",
         price: 22.0,
         image: "",
         allergens: ["solfiti"],
@@ -1266,8 +1266,8 @@ export const menuCategories: Category[] = [
       {
         id: "barbera-boidina",
         name: "Barbera Boidina",
-        desc: "Vino rosso",
-        price: 22.0,
+        desc: "75 cl | 14,5% vol.",
+        price: 22.0
         image: boidinaBarberaImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
@@ -1275,7 +1275,7 @@ export const menuCategories: Category[] = [
       {
         id: "barbera-cascina-castlet",
         name: "Barbera Cascina Castlet",
-        desc: "Vino rosso",
+        desc: "75 cl | 13,5% vol.",
         price: 26.0,
         image: barberaCascinaCastletImg,
         allergens: ["solfiti"],
@@ -1284,7 +1284,7 @@ export const menuCategories: Category[] = [
       {
         id: "spumante-orsola",
         name: "Spumante Orsola",
-        desc: "Spumante",
+        desc: "75 cl | 11,0% vol.",
         price: 14.0,
         image: santorsolaImg,
         allergens: ["solfiti"],
@@ -1293,7 +1293,7 @@ export const menuCategories: Category[] = [
       {
         id: "ribolla-gialla",
         name: "Ribolla Gialla",
-        desc: "Vino bianco",
+        desc: "75 cl | 11,5% vol.",
         price: 20.0,
         image: cormonsImg,
         allergens: ["solfiti"],
