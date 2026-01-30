@@ -30,7 +30,7 @@ const napoliImg = "/assets/food/Napoli.webp";
 const boschImg = "/assets/food/Bosch.webp";
 const puglieseImg = "/assets/food/Pugliese.webp";
 const albaAuraBiondaImg = "/assets/food/Alba aura bionda.webp";
-const albaIgaImg = "/assets/food/Alba iga rossa.webp";
+const albaIgaImg = "/assets/food/Alba iga.webp";
 const albaMarteRossaImg = "/assets/food/Alba marte rossa.webp";
 const artemisiaImg = "/assets/food/Artemisia.webp";
 const acquaGasataImg = "/assets/food/acqua-gasata.webp";
@@ -55,6 +55,8 @@ const canePacificImg = "/assets/food/pacific.webp";
 const canePilsnerImg = "/assets/food/pilsner.webp";
 const caneLagerImg = "/assets/food/lager.webp";
 const aiformaggiImg = "/assets/food/ai-formaggi.webp";
+const forstAnalcolicaImg = "/assets/food/Forst analcolica.webp";
+const tennetsSenzaGlutineImg = "/assets/food/Tennets senza glutine.webp";
 // Birre alla spina
 const birraBiondaPiccolaImg = "/assets/food/Birra-bionda-piccola.png";
 const birraBiondaMediaImg = "/assets/food/Birra-bionda-media.png";
@@ -72,6 +74,11 @@ const litroRossoSfusoImg = "/assets/food/Litro-rosso-sfuso.png";
 const quartinoBiancoSfusoImg = "/assets/food/Quartino-bianco-sfuso.png";
 const mezzoBiancoSfusoImg = "/assets/food/Mezzo-bianco-sfuso.png";
 const litroBiancoSfusoImg = "/assets/food/Litro-bianco-sfuso.png";
+// Vini in bottiglia
+const santorsolaImg = "/assets/food/santorsola.webp";
+const cormonsImg = "/assets/food/cormons.webp";
+const boidinaBarberaImg = "/assets/food/boidina barbera.webp";
+const barberaCascinaCastletImg = "/assets/food/barbera cascina castlet.webp";
 
 export type DietaryTag = "vegan" | "vegetarian" | "gluten-free" | "spicy";
 
@@ -296,6 +303,7 @@ export const menuCategories: Category[] = [
         price: 8.0,
         image: caronteImg,
         allergens: ["Glutine", "Lattosio"],
+        dietaryTags: ["spicy"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
@@ -1008,7 +1016,7 @@ export const menuCategories: Category[] = [
       {
         id: "menabrea",
         name: "Menabrea",
-        desc: "33 cl",
+        desc: "33 cl | 4,8% vol.",
         price: 4.0,
         image: menabreaImg,
         allergens: ["glutine"],
@@ -1017,7 +1025,7 @@ export const menuCategories: Category[] = [
       {
         id: "menabrea-ambrata",
         name: "Menabrea Ambrata",
-        desc: "33 cl",
+        desc: "33 cl | 5,0% vol.",
         price: 4.0,
         image: menabreaAmbrataImg,
         allergens: ["glutine"],
@@ -1026,7 +1034,7 @@ export const menuCategories: Category[] = [
       {
         id: "menabrea-rossa",
         name: "Menabrea Rossa",
-        desc: "33 cl",
+        desc: "33 cl | 7,5% vol.",
         price: 4.0,
         image: menabreaRossaImg,
         allergens: ["glutine"],
@@ -1035,7 +1043,7 @@ export const menuCategories: Category[] = [
       {
         id: "ichnusa-non-filtrata",
         name: "Ichnusa Non Filtrata",
-        desc: "33 cl",
+        desc: "33 cl | 5,0% vol.",
         price: 4.0,
         image: ichnusaNonFiltrataImg,
         allergens: ["glutine"],
@@ -1044,7 +1052,7 @@ export const menuCategories: Category[] = [
       {
         id: "ichnusa",
         name: "Ichnusa",
-        desc: "33 cl",
+        desc: "33 cl | 4,7% vol.",
         price: 4.0,
         image: ichnusaImg,
         allergens: ["glutine"],
@@ -1053,7 +1061,7 @@ export const menuCategories: Category[] = [
       {
         id: "hoegarden",
         name: "Hoegarden",
-        desc: "33 cl",
+        desc: "33 cl | 4,9% vol.",
         price: 5.0,
         image: hoegardenImg,
         allergens: ["glutine"],
@@ -1062,7 +1070,7 @@ export const menuCategories: Category[] = [
       {
         id: "tuborg",
         name: "Tuborg",
-        desc: "66 cl",
+        desc: "66 cl | 5,0% vol.",
         price: 5.0,
         image: tuborgImg,
         allergens: ["glutine"],
@@ -1070,20 +1078,20 @@ export const menuCategories: Category[] = [
       },
       {
         id: "birra-senza-glutine",
-        name: "Birra Senza Glutine",
-        desc: "33 cl",
+        name: "Tennets senza glutine",
+        desc: "33 cl | 5,0% vol.",
         price: 4.5,
-        image: "",
+        image: tennetsSenzaGlutineImg,
         allergens: [],
         dietaryTags: ["gluten-free"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "birra-analcolica",
-        name: "Birra Analcolica",
-        desc: "33 cl",
+        name: "Forst analcolica",
+        desc: "33 cl | 0,0% vol.",
         price: 4.5,
-        image: "",
+        image: forstAnalcolicaImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1180,7 +1188,7 @@ export const menuCategories: Category[] = [
       {
         id: "alba-aura-bionda",
         name: "Alba Aura Bionda",
-        desc: "Birra artigianale",
+        desc: "33 cl | 5,5% vol.",
         price: 6.5,
         image: albaAuraBiondaImg,
         allergens: ["glutine"],
@@ -1189,7 +1197,7 @@ export const menuCategories: Category[] = [
       {
         id: "alba-iga",
         name: "Alba IGA",
-        desc: "Birra artigianale",
+        desc: "33 cl | 7,5% vol.",
         price: 6.5,
         image: albaIgaImg,
         allergens: ["glutine"],
@@ -1198,7 +1206,7 @@ export const menuCategories: Category[] = [
       {
         id: "alba-marte-rossa",
         name: "Alba Marte Rossa",
-        desc: "Birra artigianale",
+        desc: "33 cl | 7,5% vol.",
         price: 6.5,
         image: albaMarteRossaImg,
         allergens: ["glutine"],
@@ -1207,7 +1215,7 @@ export const menuCategories: Category[] = [
       {
         id: "cane-pacific",
         name: "Cane di guerra Pacific IPA",
-        desc: "Birra artigianale",
+        desc: "33 cl | 5,5% vol.",
         price: 6.5,
         image: canePacificImg,
         allergens: ["glutine"],
@@ -1216,7 +1224,7 @@ export const menuCategories: Category[] = [
       {
         id: "cane-pilsner",
         name: "Cane di guerra Pilsner",
-        desc: "Birra artigianale",
+        desc: "33 cl | 5,0% vol.",
         price: 6.5,
         image: canePilsnerImg,
         allergens: ["glutine"],
@@ -1225,7 +1233,7 @@ export const menuCategories: Category[] = [
       {
         id: "cane-lager",
         name: "Cane di guerra Lager",
-        desc: "Birra artigianale",
+        desc: "33 cl | 5,4% vol.",
         price: 6.5,
         image: caneLagerImg,
         allergens: ["glutine"],
@@ -1260,7 +1268,7 @@ export const menuCategories: Category[] = [
         name: "Barbera Boidina",
         desc: "Vino rosso",
         price: 22.0,
-        image: "",
+        image: boidinaBarberaImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1269,7 +1277,7 @@ export const menuCategories: Category[] = [
         name: "Barbera Cascina Castlet",
         desc: "Vino rosso",
         price: 26.0,
-        image: "",
+        image: barberaCascinaCastletImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1278,7 +1286,7 @@ export const menuCategories: Category[] = [
         name: "Spumante Orsola",
         desc: "Spumante",
         price: 14.0,
-        image: "",
+        image: santorsolaImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1287,7 +1295,7 @@ export const menuCategories: Category[] = [
         name: "Ribolla Gialla",
         desc: "Vino bianco",
         price: 20.0,
-        image: "",
+        image: cormonsImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
@@ -1300,54 +1308,60 @@ export const menuCategories: Category[] = [
       {
         id: "quartino-rosso-sfuso",
         name: "Quartino Rosso Sfuso",
-        desc: "Vino rosso sfuso",
+        desc: "12,5% vol.",
         price: 3.5,
         image: quartinoRossoSfusoImg,
+        excludeExtraIngredients: true,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "mezzo-rosso-sfuso",
         name: "Mezzo Rosso Sfuso",
-        desc: "Vino rosso sfuso",
+        desc: "12,5% vol.",
         price: 5.5,
         image: mezzoRossoSfusoImg,
+        excludeExtraIngredients: true,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "litro-rosso-sfuso",
         name: "Litro Rosso Sfuso",
-        desc: "Vino rosso sfuso",
+        desc: "12,5% vol.",
         price: 10.0,
         image: litroRossoSfusoImg,
+        excludeExtraIngredients: true,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "quartino-bianco-sfuso",
         name: "Quartino Bianco Sfuso",
-        desc: "Vino bianco sfuso",
+        desc: "12,5% vol.",
         price: 3.5,
         image: quartinoBiancoSfusoImg,
+        excludeExtraIngredients: true,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "mezzo-bianco-sfuso",
         name: "Mezzo Bianco Sfuso",
-        desc: "Vino bianco sfuso",
+        desc: "12,5% vol.",
         price: 5.5,
         image: mezzoBiancoSfusoImg,
+        excludeExtraIngredients: true,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "litro-bianco-sfuso",
         name: "Litro Bianco Sfuso",
-        desc: "Vino bianco sfuso",
+        desc: "12,5% vol.",
         price: 10.0,
         image: litroBiancoSfusoImg,
+        excludeExtraIngredients: true,
         allergens: ["solfiti"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
