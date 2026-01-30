@@ -1105,7 +1105,7 @@ export const menuCategories: Category[] = [
       {
         id: "birra-bionda-piccola",
         name: "Birra Bionda Piccola",
-        desc: "Birra alla spina",
+        desc: "5,4% vol.",
         price: 3.5,
         image: birraBiondaPiccolaImg,
         allergens: ["glutine"],
@@ -1114,7 +1114,7 @@ export const menuCategories: Category[] = [
       {
         id: "birra-bionda-media",
         name: "Birra Bionda Media",
-        desc: "Birra alla spina",
+        desc: "5,4% vol.",
         price: 5.5,
         image: birraBiondaMediaImg,
         allergens: ["glutine"],
@@ -1123,7 +1123,7 @@ export const menuCategories: Category[] = [
       {
         id: "birra-rossa-piccola",
         name: "Birra Rossa Piccola",
-        desc: "Birra alla spina",
+        desc: "6,5% vol.",
         price: 4.0,
         image: birraRossaPiccolaImg,
         allergens: ["glutine"],
@@ -1132,7 +1132,7 @@ export const menuCategories: Category[] = [
       {
         id: "birra-rossa-media",
         name: "Birra Rossa Media",
-        desc: "Birra alla spina",
+        desc: "6,5% vol.",
         price: 6.0,
         image: birraRossaMediaImg,
         allergens: ["glutine"],
