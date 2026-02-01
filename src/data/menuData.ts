@@ -558,7 +558,7 @@ export const menuCategories: Category[] = [
       {
         id: "patatine",
         name: "Porzione di patatine",
-        desc: "-",
+        desc: "",
         price: 5.0,
         image: "",
         dietaryTags: ["vegetarian", "vegan"],
