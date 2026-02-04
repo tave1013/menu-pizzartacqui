@@ -931,6 +931,9 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                   <p className="text-xs text-muted-foreground mt-3">
                     *Se non disponibile fresco il prodotto sarà surgelato
                   </p>
+                  <p className="text-xs text-muted-foreground mt-3">
+                    Prezzo coperto 1,50 €
+                  </p>
                 </div>
               </div>
             </div>
