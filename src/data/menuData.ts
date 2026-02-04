@@ -80,6 +80,19 @@ const santorsolaImg = "/assets/food/santorsola.webp";
 const cormonsImg = "/assets/food/cormons.webp";
 const boidinaBarberaImg = "/assets/food/boidina barbera.webp";
 const barberaCascinaCastletImg = "/assets/food/barbera cascina castlet.webp";
+// Caffetteria
+const caffeEspressoImg = "/assets/food/Caffe.webp";
+const caffeDecaffeinatoImg = "/assets/food/Caffe decaffeinato.webp";
+const caffeMacchiatoImg = "/assets/food/Caffe macchiato.webp";
+const marocchinoImg = "/assets/food/Marocchino.webp";
+const cappuccinoImg = "/assets/food/Cappuccino.webp";
+const caffeOrzoImg = "/assets/food/Caffe orzo.webp";
+const ginsengImg = "/assets/food/Ginseng.webp";
+const caffeCorrettoImg = "/assets/food/Caffe corretto.webp";
+const caffeDoppioImg = "/assets/food/Caffe doppio.webp";
+const caffeAmericanoImg = "/assets/food/Caffe americano.webp";
+const theImg = "/assets/food/The.webp";
+const amaroImg = "/assets/food/Amaro.webp";
 
 export type DietaryTag = "vegan" | "vegetarian" | "gluten-free" | "spicy";
 
@@ -298,6 +311,18 @@ export const menuCategories: Category[] = [
     name: "Le Top Ten",
     items: [
       {
+        id: "ai-formagi",
+        name: "Ai formaggi",
+        desc: "fiordilatte, gorgonzola, stracchino, toma",
+        price: 10.0,
+        image: formaggiImg,
+        allergens: ["Glutine", "Lattosio"],
+        dietaryTags: ["vegetarian"],
+        featured: true,
+        featuredOrder: 3,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
+      },
+      {
         id: "caronte",
         name: "Caronte",
         desc: "Pomodoro, fiordilatte, spianata piccante (fuori cottura)",
@@ -305,15 +330,6 @@ export const menuCategories: Category[] = [
         image: caronteImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["spicy"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
-      },
-      {
-        id: "insuperabile",
-        name: "L'insuperabile",
-        desc: "Pomodoro, fiordilatte, prosciutto cotto fuori cottura",
-        price: 8.0,
-        image: "",
-        allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
@@ -328,15 +344,12 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
-        id: "ai-formagi",
-        name: "Ai formaggi",
-        desc: "fiordilatte, gorgonzola, stracchino, toma",
-        price: 10.0,
-        image: formaggiImg,
+        id: "insuperabile",
+        name: "L'insuperabile",
+        desc: "Pomodoro, fiordilatte, prosciutto cotto fuori cottura",
+        price: 8.0,
+        image: "",
         allergens: ["Glutine", "Lattosio"],
-        dietaryTags: ["vegetarian"],
-        featured: true,
-        featuredOrder: 3,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
@@ -350,12 +363,22 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
-        id: "verace",
-        name: "Verace",
-        desc: "fiordilatte, salsiccia, friarielli*",
-        price: 10.0,
+        id: "la-tonnara",
+        name: "La Tonnara",
+        desc: "Pomodoro, fiordilatte, filetti di tonno sott'olio, cipolle",
+        price: 9.0,
+        image: tonnaraImg,
+        allergens: ["Glutine", "Lattosio", "Pesce"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "piu-margherita",
+        name: "Più Margherita",
+        desc: "Pomodoro, basilico in cottura, fiordilatte, parmigiano, olio extravergine, basilico fuori cottura",
+        price: 7.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
+        dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -378,22 +401,12 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
-        id: "piu-margherita",
-        name: "Più Margherita",
-        desc: "Pomodoro, basilico in cottura, fiordilatte, parmigiano, olio extravergine, basilico fuori cottura",
-        price: 7.5,
+        id: "verace",
+        name: "Verace",
+        desc: "fiordilatte, salsiccia, friarielli*",
+        price: 10.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
-        dietaryTags: ["vegetarian"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
-      {
-        id: "la-tonnara",
-        name: "La Tonnara",
-        desc: "Pomodoro, fiordilatte, filetti di tonno sott'olio, cipolle",
-        price: 9.0,
-        image: tonnaraImg,
-        allergens: ["Glutine", "Lattosio", "Pesce"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -1364,6 +1377,124 @@ export const menuCategories: Category[] = [
         image: litroBiancoSfusoImg,
         excludeExtraIngredients: true,
         allergens: ["solfiti"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+    ],
+  },
+  {
+    id: "caffetteria",
+    name: "Caffetteria",
+    items: [
+      {
+        id: "caffe-espresso",
+        name: "Caffè espresso",
+        desc: "",
+        price: 1.5,
+        image: caffeEspressoImg,
+        excludeExtraIngredients: true,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "caffe-decaffeinato",
+        name: "Caffè decaffeinato",
+        desc: "",
+        price: 1.5,
+        image: caffeDecaffeinatoImg,
+        excludeExtraIngredients: true,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "caffe-macchiato",
+        name: "Caffè macchiato",
+        desc: "",
+        price: 1.5,
+        image: caffeMacchiatoImg,
+        excludeExtraIngredients: true,
+        allergens: ["Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "marocchino",
+        name: "Marocchino",
+        desc: "",
+        price: 2.0,
+        image: marocchinoImg,
+        excludeExtraIngredients: true,
+        allergens: ["Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "cappuccino",
+        name: "Cappuccino",
+        desc: "",
+        price: 2.0,
+        image: cappuccinoImg,
+        excludeExtraIngredients: true,
+        allergens: ["Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "caffe-orzo",
+        name: "Caffè d'orzo",
+        desc: "",
+        price: 2.0,
+        image: caffeOrzoImg,
+        excludeExtraIngredients: true,
+        allergens: ["Glutine"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "ginseng",
+        name: "Ginseng",
+        desc: "",
+        price: 2.0,
+        image: ginsengImg,
+        excludeExtraIngredients: true,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "caffe-corretto",
+        name: "Caffè corretto",
+        desc: "",
+        price: 2.0,
+        image: caffeCorrettoImg,
+        excludeExtraIngredients: true,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "caffe-doppio",
+        name: "Caffè doppio",
+        desc: "",
+        price: 2.0,
+        image: caffeDoppioImg,
+        excludeExtraIngredients: true,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "caffe-americano",
+        name: "Caffè americano",
+        desc: "",
+        price: 2.0,
+        image: caffeAmericanoImg,
+        excludeExtraIngredients: true,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "the-tisane",
+        name: "Thè / Tisane",
+        desc: "",
+        price: 2.0,
+        image: theImg,
+        excludeExtraIngredients: true,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "digestivi",
+        name: "Digestivi (Amaro, Grappa, Whiskey, Cognac)",
+        desc: "",
+        price: 3.5,
+        image: amaroImg,
+        excludeExtraIngredients: true,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
