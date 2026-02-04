@@ -60,7 +60,7 @@ const Index = () => {
         setIsDesktopSearchOpen(true);
       }
     }
-  }, []);
+  }, [searchQuery]);
 
   const handleItemClick = (item: MenuItem, categoryId?: string) => {
     setSelectedItem(item);
