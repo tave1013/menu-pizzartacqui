@@ -124,6 +124,8 @@ const EXCLUDED_EXTRA_CATEGORIES = [
   "bevande",              // Coca Cola, Fanta, Acqua, etc.
   "birre",                // Menabrea, Tuborg, etc.
   "birre-artigianali",    // Birre artigianali
+  "birre-alla-spina",     // Birre alla spina
+  "birre-panache",        // Birre panache/bicicletta
   "vini",                 // Nebbiolo, Arneis, etc.
   "le-focacce",           // Le focacce
   // Aggiungi qui nuove categorie da escludere, es: "dolci", "gelati"
