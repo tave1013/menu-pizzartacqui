@@ -232,8 +232,15 @@ const getSpecialIngredientsForProduct = (productId: string): ProductSpecialIngre
 };
 // ═══════════════════════════════════════════════════════════════════════════
 
+// Esclusioni ingredienti specifiche per prodotto
+const PRODUCT_INGREDIENT_BLACKLIST: Record<string, RegExp[]> = {
+  artemisia: [/patate al forno o patatine/i],
+};
+
 // Parse ingredients from description
-function parseIngredients(desc: string): string[] {
+function parseIngredients(desc: string, productId?: string): string[] {
+  const productBlacklist = productId ? PRODUCT_INGREDIENT_BLACKLIST[productId] : undefined;
+
   return desc
     .split(",")
     .map((s) => s.trim())
@@ -244,6 +251,13 @@ function parseIngredients(desc: string): string[] {
       // Filtra se contiene pattern della blacklist
       for (const pattern of BLACKLIST_PATTERNS) {
         if (pattern.test(s)) return false;
+      }
+
+      // Filtra pattern specifici per prodotto
+      if (productBlacklist) {
+        for (const pattern of productBlacklist) {
+          if (pattern.test(s)) return false;
+        }
       }
       
       return true;
@@ -297,7 +311,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
 
   const ingredients = useMemo(() => {
     if (!item || !categoryHasIngredients) return [];
-    return parseIngredients(item.desc);
+    return parseIngredients(item.desc, item.id);
   }, [item, categoryHasIngredients]);
 
   const isEditing = !!editingCartItem;

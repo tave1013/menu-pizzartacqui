@@ -419,7 +419,7 @@ export const menuCategories: Category[] = [
       {
         id: "artemisia",
         name: "Artemisia",
-        desc: "fiordilatte, scamorza affumicata, porchetta, patate al forno / patatine fritte, rosmarino, maionese al tartufo",
+        desc: "fiordilatte, scamorza affumicata, porchetta, patate al forno o patatine fritte, rosmarino, maionese al tartufo",
         price: 15.0,
         image: artemisiaImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
