@@ -324,7 +324,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "caronte",
-        name: "Caronte",
+        name: "La Caronte",
         desc: "Pomodoro, fiordilatte, spianata piccante (fuori cottura)",
         price: 8.0,
         image: caronteImg,
@@ -383,7 +383,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "raffinata",
-        name: "Raffinata",
+        name: "La Raffinata",
         desc: "Pomodoro, fiordilatte, prosciutto crudo fuori cottura, stracciatella di burrata, pomodorini e rucola",
         price: 13.0,
         image: raffinataImg,
@@ -392,7 +392,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "stracciata",
-        name: "Stracciata",
+        name: "La Stracciata",
         desc: "Pomodoro, stracciatella di burrata, basilico, olio E.V.O.",
         price: 9.0,
         image: "",
@@ -402,7 +402,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "verace",
-        name: "Verace",
+        name: "La Verace",
         desc: "fiordilatte, salsiccia, friarielli*",
         price: 10.0,
         image: "",
@@ -419,7 +419,7 @@ export const menuCategories: Category[] = [
       {
         id: "artemisia",
         name: "Artemisia",
-        desc: "fiordilatte, scamorza affumicata, porchetta, patate al forno, rosmarino, maionese al tartufo",
+        desc: "fiordilatte, scamorza affumicata, porchetta, patate al forno / patatine fritte, rosmarino, maionese al tartufo",
         price: 15.0,
         image: artemisiaImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
