@@ -1465,7 +1465,7 @@ export const menuCategories: Category[] = [
         id: "caffe-doppio",
         name: "Caffè doppio",
         desc: "",
-        price: 2.0,
+        price: 3.0,
         image: caffeDoppioImg,
         excludeExtraIngredients: true,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
