@@ -634,7 +634,7 @@ export const menuCategories: Category[] = [
       {
         id: "capricciosa",
         name: "Capricciosa",
-        desc: "Pomodoro, fiordilatte, funghi champignon*, carciofini, olive, prosciutto cotto fuori cottura",
+        desc: "Pomodoro, fiordilatte, funghi champignon, carciofini, olive, prosciutto cotto fuori cottura",
         price: 10.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -643,7 +643,7 @@ export const menuCategories: Category[] = [
       {
         id: "contadina",
         name: "Contadina",
-        desc: "Pomodoro, fiordilatte, funghi champignon*, salsiccia, cipolle, olive",
+        desc: "Pomodoro, fiordilatte, funghi champignon, salsiccia, cipolle, olive",
         price: 10.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -661,7 +661,7 @@ export const menuCategories: Category[] = [
       {
         id: "funghi",
         name: "Funghi",
-        desc: "Pomodoro, fiordilatte, funghi champignon*",
+        desc: "Pomodoro, fiordilatte, funghi champignon",
         price: 7.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -767,7 +767,7 @@ export const menuCategories: Category[] = [
       {
         id: "prosciutto-funghi",
         name: "Prosciutto e Funghi",
-        desc: "Pomodoro, fiordilatte, funghi champignon*, prosciutto cotto fuori cottura",
+        desc: "Pomodoro, fiordilatte, funghi champignon, prosciutto cotto fuori cottura",
         price: 9.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -786,7 +786,7 @@ export const menuCategories: Category[] = [
       {
         id: "quattro-stagioni",
         name: "4 Stagioni",
-        desc: "Pomodoro, fiordilatte, funghi champignon*, carciofini, olive, prosciutto cotto fuori cottura",
+        desc: "Pomodoro, fiordilatte, funghi champignon, carciofini, olive, prosciutto cotto fuori cottura",
         price: 8.5,
         image: "",
         allergens: ["Glutine", "Lattosio"],
