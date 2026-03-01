@@ -1230,7 +1230,7 @@ export const menuCategories: Category[] = [
       {
         id: "alba-aura-bionda",
         name: "Alba Aura Bionda",
-        desc: "33 cl | 5,5% vol.",
+        desc: "33 cl | 5,5% vol.\nUna bionda artigianale fresca e beverina. Si distingue per le sue note maltate equilibrate e un finale pulito, ideale per chi cerca semplicità e qualità.",
         price: 6.5,
         image: albaAuraBiondaImg,
         allergens: ["glutine"],
