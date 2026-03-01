@@ -881,7 +881,7 @@ export const menuCategories: Category[] = [
       {
         id: "pluto",
         name: "Pluto",
-        desc: "Pomodoro, fiordilatte, würstel, patatine",
+        desc: "Pomodoro, fiordilatte, würstel, patatine fritte*",
         price: 6.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -903,6 +903,7 @@ export const menuCategories: Category[] = [
   {
     id: "dolci",
     name: "Dolci",
+    description:"Chiedere al personale di sala i dolci disponibili.",
     items: [
       {
         id: "dolci",
@@ -1011,7 +1012,7 @@ export const menuCategories: Category[] = [
       {
         id: "acqua-naturale-vetro",
         name: "Acqua Naturale Vetro",
-        desc: "Bottiglia di Vetro da 0,5 cl",
+        desc: "Bottiglia di Vetro da 0,4 cl",
         price: 1.5,
         image: acquaNaturaleImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
@@ -1019,7 +1020,7 @@ export const menuCategories: Category[] = [
       {
         id: "acqua-frizzante-vetro",
         name: "Acqua Frizzante Vetro",
-        desc: "Bottiglia di Vetro da 0,5 cl",
+        desc: "Bottiglia di Vetro da 0,4 cl",
         price: 1.5,
         image: acquaGasataImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },

@@ -128,6 +128,7 @@ const EXCLUDED_EXTRA_CATEGORIES = [
   "birre-panache",        // Birre panache/bicicletta
   "vini",                 // Nebbiolo, Arneis, etc.
   "antipasti",            // Antipasti
+  "dolci",                // Dolci (no ingredienti extra)
   // Aggiungi qui nuove categorie da escludere, es: "dolci", "gelati"
 ];
 
