@@ -105,7 +105,7 @@ const BLACKLIST_PATTERNS = [
 // ESCLUSIONE PER CATEGORIA:
 // const EXCLUDED_EXTRA_CATEGORIES = [
 //   "bevande",              // Non ha ingredienti extra
-//   "le-focacce",           // Non ha ingredienti extra
+//   "antipasti",            // Non ha ingredienti extra
 // ];
 //
 // ESCLUSIONE PER PRODOTTO SINGOLO:
@@ -127,7 +127,7 @@ const EXCLUDED_EXTRA_CATEGORIES = [
   "birre-alla-spina",     // Birre alla spina
   "birre-panache",        // Birre panache/bicicletta
   "vini",                 // Nebbiolo, Arneis, etc.
-  "le-focacce",           // Le focacce
+  "antipasti",            // Antipasti
   // Aggiungi qui nuove categorie da escludere, es: "dolci", "gelati"
 ];
 
@@ -172,11 +172,11 @@ const INGREDIENTI_EXTRA: ExtraIngredient[] = [
 // ═══════════════════════════════════════════════════════════════════════════
 const GLUTEN_FREE_PRICE = 3.50;
 const PIZZA_CATEGORIES = ["top-ten", "pizart", "le-classiche", "baby-pizze"]; // Categorie pizze
-const EXCLUDED_CATEGORIES = ["le-focacce"]; // Categorie escluse
+const EXCLUDED_CATEGORIES = ["antipasti"]; // Categorie escluse
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════════════════════
-// INGREDIENTI PRINCIPALI (ad es. per Focacce)
+// INGREDIENTI PRINCIPALI (ad es. per Antipasti)
 // ═══════════════════════════════════════════════════════════════════════════
 interface MainIngredientOption {
   id: string;
@@ -606,16 +606,14 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                       Intollerante al glutine?
                     </h3>
                     <p className="text-[14px] text-muted-foreground italic mb-4 leading-relaxed">
-                      Attenzione: non siamo certificati gluten-free. Pur adottando tutte le accortezze possibili, 
-                      in ambiente di lavoro possono verificarsi contaminazioni. Ingredienti e condimenti sono 
-                      gli stessi utilizzati per le altre pizze.
+                      (Lavorato in ambiente con contaminazione, non certificato senza glutine, non garantito per celiaci)
                     </p>
                     
                     {readOnlyMode ? (
                       // Menù Locale: Solo testo statico con prezzo (NON selezionabile)
                       <div className="flex items-center justify-between py-3 px-3 rounded-lg border border-border bg-secondary/10">
                         <span className="text-card-foreground flex-1 font-medium">
-                          Impasto naturalmente senza glutine
+                          Impasto con farine prive di glutine
                         </span>
                         <span className="text-muted-foreground text-sm font-semibold">
                           +{formatPrice(GLUTEN_FREE_PRICE)}
@@ -637,7 +635,7 @@ export function ItemDetailModal({ item, isOpen, onClose, editingCartItem, catego
                         )}
                       >
                         <span className="text-card-foreground flex-1 font-medium">
-                          Impasto naturalmente senza glutine
+                          Impasto con farine prive di glutine
                         </span>
                         
                         <div className="flex items-center gap-3">

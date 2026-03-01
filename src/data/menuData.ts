@@ -50,6 +50,8 @@ const ichnusaNonFiltrataImg = "/assets/food/ichnusa-non-filtrata.webp";
 const menabreaImg = "/assets/food/menabrea.webp";
 const menabreaAmbrataImg = "/assets/food/menabrea ambrata.webp";
 const menabreaRossaImg = "/assets/food/menabrea rossa.webp";
+const menabreaWeissImg = "/assets/food/menabrea weiss.webp";
+const menabreaStrongImg = "/assets/food/menabrea strong.webp";
 const tuborgImg = "/assets/food/tuborg.webp";
 const hoegardenImg = "/assets/food/hoegarden.webp";
 const canePacificImg = "/assets/food/pacific.webp";
@@ -108,8 +110,8 @@ export type DietaryTag = "vegan" | "vegetarian" | "gluten-free" | "spicy";
 //    - EXCLUDED_EXTRA_CATEGORIES: esclude "Ingredienti Extra" dalla categoria
 //    - CATEGORIE_SENZA_INGREDIENTI: esclude "Rimuovi Ingredienti" dalla categoria
 //
-//    Esempio aggiunto: "le-focacce" è stata esclusa da EXCLUDED_EXTRA_CATEGORIES
-//    quindi tutti i prodotti in "Le Focacce" non mostreranno "Ingredienti Extra"
+//    Esempio aggiunto: "antipasti" è stata esclusa da EXCLUDED_EXTRA_CATEGORIES
+//    quindi tutti i prodotti in "Antipasti" non mostreranno "Ingredienti Extra"
 //
 // 2️⃣ ESCLUSIONE PER PRODOTTO SINGOLO (nel MenuItem qui in menuData.ts):
 //
@@ -309,17 +311,29 @@ export const menuCategories: Category[] = [
   {
     id: "top-ten",
     name: "Le Top Ten",
+    description: "Le pizze più richieste di PizzArt, i nostri “classici moderni”: scelte ogni giorno, una garanzia!",
     items: [
       {
         id: "ai-formagi",
         name: "Ai formaggi",
-        desc: "fiordilatte, gorgonzola, stracchino, toma",
-        price: 10.0,
+        desc: "Fiordilatte, gorgonzola, stracchino, toma",
+        price: 9.5,
         image: formaggiImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         featured: true,
         featuredOrder: 3,
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
+      },
+      {
+        id: "anciova",
+        name: "L'anciova",
+        desc: "Pomodoro, mozzarella di bufala, acciughe, origano",
+        price: 10.0,
+        image: anciovaImg,
+        allergens: ["Glutine", "Lattosio", "Pesce"],
+        featured: true,
+        featuredOrder: 2,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
@@ -333,31 +347,39 @@ export const menuCategories: Category[] = [
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
       {
-        id: "anciova",
-        name: "L'anciova",
-        desc: "Pomodoro, bufala, acciughe, origano",
-        price: 10.0,
-        image: anciovaImg,
-        allergens: ["Glutine", "Lattosio", "Pesce"],
-        featured: true,
-        featuredOrder: 2,
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
-      },
-      {
         id: "insuperabile",
         name: "L'insuperabile",
-        desc: "Pomodoro, fiordilatte, prosciutto cotto fuori cottura",
+        desc: "Pomodoro, fiordilatte, prosciutto cotto (fuori cottura)",
         price: 8.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3914272540" },
       },
+       {
+        id: "raffinata",
+        name: "La Raffinata",
+        desc: "Pomodoro, fiordilatte, prosciutto crudo (fuori cottura), stracciatella di burrata, pomodorini, rucola",
+        price: 13.0,
+        image: raffinataImg,
+        allergens: ["Glutine", "Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
       {
         id: "la-regina",
         name: "La Regina",
-        desc: "Pomodoro, bufala, basilico, olio e.v.o.",
+        desc: "Pomodoro, mozzarella di bufala, basilico, olio e.v.o.",
         price: 9.0,
         image: reginaImg,
+        allergens: ["Glutine", "Lattosio"],
+        dietaryTags: ["vegetarian"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+       {
+        id: "stracciata",
+        name: "La Stracciata",
+        desc: "Pomodoro, stracciatella di burrata, basilico, olio extravergine.",
+        price: 9.0,
+        image: "",
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
@@ -371,6 +393,15 @@ export const menuCategories: Category[] = [
         allergens: ["Glutine", "Lattosio", "Pesce"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
+       {
+        id: "verace",
+        name: "La Verace",
+        desc: "Fiordilatte, salsiccia, friarielli*",
+        price: 10.0,
+        image: "",
+        allergens: ["Glutine", "Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
       {
         id: "piu-margherita",
         name: "Più Margherita",
@@ -381,54 +412,26 @@ export const menuCategories: Category[] = [
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
-      {
-        id: "raffinata",
-        name: "La Raffinata",
-        desc: "Pomodoro, fiordilatte, prosciutto crudo fuori cottura, stracciatella di burrata, pomodorini e rucola",
-        price: 13.0,
-        image: raffinataImg,
-        allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
-      {
-        id: "stracciata",
-        name: "La Stracciata",
-        desc: "Pomodoro, stracciatella di burrata, basilico, olio E.V.O.",
-        price: 9.0,
-        image: "",
-        allergens: ["Glutine", "Lattosio"],
-        dietaryTags: ["vegetarian"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
-      {
-        id: "verace",
-        name: "La Verace",
-        desc: "fiordilatte, salsiccia, friarielli*",
-        price: 10.0,
-        image: "",
-        allergens: ["Glutine", "Lattosio"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
     ],
   },
   {
     id: "pizart",
     name: "Pizzart",
-      description: "Pizze artistiche, con abbinamenti saporiti e particolari",
+    description: "Pizze ispirate ai grandi artisti. Sapori studiati che diventano piccole opere da gustare.",
     items: [
       {
         id: "artemisia",
         name: "Artemisia",
-        desc: "fiordilatte, scamorza affumicata, porchetta, patate al forno o patatine fritte, rosmarino, maionese al tartufo",
+        desc: "Fiordilatte, scamorza affumicata, porchetta, patate al forno o patatine fritte, ciuffi di rosmarino, maionese al tartufo",
         price: 15.0,
         image: artemisiaImg,
-        allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
+        allergens: ["Glutine", "Lattosio", "Uova"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
         id: "bosch",
         name: "Bosch",
-        desc: "fiordilatte, funghi porcini*, patate al forno sottili, salsiccia, salsa all'aglio e prezzemolo, prezzemolo",
+        desc: "Fiordilatte, funghi porcini*, patate al forno sottili, salsiccia, salsa di prezzemolo e aglio, prezzemolo fresco",
         price: 14.0,
         image: boschImg,
         allergens: ["Glutine", "Lattosio"],
@@ -437,7 +440,7 @@ export const menuCategories: Category[] = [
       {
         id: "chagal",
         name: "Chagall",
-        desc: "fiordilatte, burrata, pancetta arrostita aromatizzata fuori cottura, uovo all'occhio di bue, crumble croccante di pecorino, pepe",
+        desc: "Fiordilatte, burrata, pancetta arrostita aromatizzata, uovo all'occhio di bue, crumble croccante di pecorino, polvere di pepe",
         price: 14.0,
         image: chagallImg,
         allergens: ["Glutine", "Lattosio", "Uova"],
@@ -446,29 +449,29 @@ export const menuCategories: Category[] = [
       {
         id: "cimabue",
         name: "Cimabue",
-        desc: "Pomodoro, funghi porcini*, stracciatella di burrata, prosciutto cotto fuori cottura, basilico",
+        desc: "Pomodoro, funghi porcini*, stracciatella di burrata, prosciutto cotto (fuori cottura), basilico",
         price: 13.0,
         image: cimabueImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
+       {
+        id: "da-vinci",
+        name: "Da Vinci",
+        desc: "Fiordilatte, stracciata, gamberetti*, rucola, emulsione agli agrumi, glassa di aceto balsamico",
+        price: 15.0,
+        image: daVinciImg,
+        allergens: ["Glutine", "Lattosio", "Crostacei"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
       {
         id: "dali",
         name: "Dalì",
-        desc: "fiordilatte, toma, gorgonzola, pere caramellate, noci",
+        desc: "Fiordilatte, toma piemontese, gorgonzola, pere caramellate, noci",
         price: 13.0,
         image: "",
         dietaryTags: ["vegetarian"],
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
-      {
-        id: "da-vinci",
-        name: "Da Vinci",
-        desc: "fiordilatte, stracciata,  gamberetti*, rucola, emulsione agli agrumi, glassa di aceto balsamico",
-        price: 15.0,
-        image: daVinciImg,
-        allergens: ["Glutine", "Lattosio", "Crostacei"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -486,7 +489,7 @@ export const menuCategories: Category[] = [
       {
         id: "monet",
         name: "Monet",
-        desc: "Pomodoro, crema di pomodori secchi, cipolle di Tropea, burrata, acciughe del Cantabrico, olive, intingolo d'aglio, origano, basilico",
+        desc: "Pomodoro, crema di pomodori secchi, cipolle, burrata, acciughe del Cantabrico, olive, intingolo d'aglio, origano, basilico",
         price: 16.0,
         image: monetImg,
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
@@ -495,7 +498,7 @@ export const menuCategories: Category[] = [
       {
         id: "picasso",
         name: "Picasso",
-        desc: "fiordilatte, burrata, mortadella fuori cottura, crema di pistacchio, granella di pistacchio, basilico",
+        desc: "Fiordilatte, burrata, mortadella (fuori cottura), crema di pistacchi, granella di pistacchi, basilico",
         price: 14.0,
         image: picassoImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
@@ -506,7 +509,7 @@ export const menuCategories: Category[] = [
       {
         id: "raffaello",
         name: "Raffaello",
-        desc: "fiordilatte, funghi porcini*, prosciutto crudo fuori cottura, burrata, polvere di porcini*, basilico",
+        desc: "Fiordilatte, funghi porcini*, prosciutto crudo (fuori cottura), burrata, polvere di porcini, basilico",
         price: 16.0,
         image: "",
         allergens: ["Glutine", "Lattosio"],
@@ -515,7 +518,7 @@ export const menuCategories: Category[] = [
       {
         id: "renoir",
         name: "Renoir",
-        desc: "Bufala, 'nduja, peperoni, spianata piccante, origano, pomodori, basilico",
+        desc: "Bufala, 'nduja piccante, peperoni, spianata piccante (fuori cottura), origano, pomodori, basilico",
         price: 13.0,
         image: renoirImg,
         dietaryTags: ["spicy"],
@@ -527,7 +530,7 @@ export const menuCategories: Category[] = [
       {
         id: "van-gogh",
         name: "Van Gogh",
-        desc: "fiordilatte, salsiccia marinata nel vino, olive, pinoli, pesto, basilico",
+        desc: "Fiordilatte, salsiccia marinata nel vino, olive, pinoli, pesto, basilico",
         price: 14.0,
         image: vanGoghImg,
         allergens: ["Glutine", "Lattosio", "Frutta a guscio", "Solfiti"],
@@ -536,9 +539,20 @@ export const menuCategories: Category[] = [
     ],
   },
   {
-    id: "le-focacce",
-    name: "Le Focacce",
+    id: "antipasti",
+    name: "Antipasti",
+    description: "Impasto leggero, gusti autentici e genuini.",
     items: [
+      {
+        id: "focaccia-bianca",
+        name: "Focaccia Bianca",
+        desc: "Olio, sale.",
+        price: 4.0,
+        image: "",
+        dietaryTags: ["vegan"],
+        allergens: ["Glutine"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
       {
         id: "fugassa-sottile-al-formaggio",
         name: "Fugassa Sottile al Formaggio",
@@ -551,39 +565,30 @@ export const menuCategories: Category[] = [
       },
       {
         id: "pataccia",
-        name: "Pataccia - Focaccia tonda",
+        name: "Pataccia",
         desc: "Patate al forno sottili, rosmarino, olio extravergine",
         price: 6.0,
         image: "",
         allergens: ["Glutine"],
-        dietaryTags: ["vegetarian", "vegan"],
+        dietaryTags: ["vegan"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
-      {
-        id: "focaccia-tonnaro",
-        name: "Focaccia Tonnarò",
-        desc: "Vitello sottile, tradizionale salsa tonnata, capperi",
-        price: 15.0,
-        image: "",
-        allergens: ["Glutine", "Pesce", "Uova"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
-      {
-        id: "patatine",
-        name: "Porzione di patatine",
-        desc: "",
-        price: 5.0,
-        image: "",
-        dietaryTags: ["vegetarian", "vegan"],
-        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
-      },
-      {
+       {
         id: "sfiziosa",
         name: "Sfiziosa",
         desc: "Rucola, scaglie di grana, pomodorini",
         price: 10.5,
         image: sfiziosaImg,
         allergens: ["Glutine", "Lattosio"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "focaccia-tonnaro",
+        name: "Tonnarò",
+        desc: "Vitello sottile, tradizionale salsa tonnata, capperi",
+        price: 15.0,
+        image: "",
+        allergens: ["Glutine", "Pesce", "Uova"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
       {
@@ -596,14 +601,13 @@ export const menuCategories: Category[] = [
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
-      {
-        id: "focaccia-bianca",
-        name: "Focaccia Bianca",
-        desc: "Olio, sale, (con origano o rosmarino su richiesta)",
-        price: 4.0,
+        {
+        id: "patatine",
+        name: "Porzione di patatine fritte*",
+        desc: "",
+        price: 5.0,
         image: "",
-        dietaryTags: ["vegetarian", "vegan"],
-        allergens: ["Glutine"],
+        dietaryTags: ["vegan"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -611,7 +615,7 @@ export const menuCategories: Category[] = [
   {
     id: "le-classiche",
     name: "Le Classiche",
-    description: "Le nostre deliziose pizze classiche, le più famose e conosciute in Italia e nel resto del mondo. Abbinamenti sfiziosi che ne non tramontano mai!",
+    description: "Pizze intramontabili, come i grandi capolavori: parlano a tutti, ti fanno sempre sentire a casa e conquistano ogni palato.",
     items: [
       {
         id: "bismark",
@@ -872,7 +876,7 @@ export const menuCategories: Category[] = [
   {
     id: "baby-pizze",
     name: "Baby Pizze",
-    description: "Pizze baby con forme particolari e simpatiche",
+    description: "Con le forme di personaggi dei cartoni animati per i più piccini!",
     items: [
       {
         id: "pluto",
@@ -891,6 +895,21 @@ export const menuCategories: Category[] = [
         image: "",
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+    ],
+  },
+  // categoria dolci aggiunta per menu locale (solo consultazione)
+  {
+    id: "dolci",
+    name: "Dolci",
+    items: [
+      {
+        id: "dolci",
+        name: "Dolci",
+        desc: "",
+        price: 5.0,
+        image: "",
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },
     ],
@@ -1051,6 +1070,24 @@ export const menuCategories: Category[] = [
         desc: "33 cl | 7,5% vol.",
         price: 4.0,
         image: menabreaRossaImg,
+        allergens: ["glutine"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "menabrea-weiss",
+        name: "Menabrea Weiss",
+        desc: "33 cl | 5,2% vol.",
+        price: 4.0,
+        image: menabreaWeissImg,
+        allergens: ["glutine"],
+        contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
+      },
+      {
+        id: "menabrea-strong",
+        name: "Menabrea Strong",
+        desc: "33 cl | 8,0% vol.",
+        price: 4.0,
+        image: menabreaStrongImg,
         allergens: ["glutine"],
         contact: { tel: "+39 3914272540", mail: "info@pizzartacquiterme.com" },
       },

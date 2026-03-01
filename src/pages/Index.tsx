@@ -23,7 +23,8 @@ import { Footer } from "@/components/menu/Footer";
 import ReviewBanner from "@/components/menu/ReviewBanner";
 
 // Categorie da escludere dal menu asporto (solo consultazione locale)
-const TAKEAWAY_EXCLUDED_CATEGORIES = ["birre-alla-spina", "birre-panache", "vini-sfusi", "caffetteria"];
+// Aggiunta "dolci" affinché venga mostrata solo nel menu al locale
+const TAKEAWAY_EXCLUDED_CATEGORIES = ["birre-alla-spina", "birre-panache", "vini-sfusi", "caffetteria", "dolci"];
 
 const ItemDetailModal = lazy(() =>
   import("@/components/menu/ItemDetailModal").then((mod) => ({

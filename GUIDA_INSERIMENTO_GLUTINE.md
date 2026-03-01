@@ -18,7 +18,7 @@ L'opzione viene mostrata automaticamente per le seguenti categorie:
 ## Categorie Escluse
 
 L'opzione **NON viene mostrata** per:
-- **Le Focacce** (`le-focacce`)
+- **Antipasti** (`antipasti`)
 
 ---
 
@@ -126,7 +126,7 @@ Totale = (Prezzo Base + Extra + Senza Glutine) × Quantità
 Le categorie pizza e le esclusioni sono definite in:
 ```typescript
 const PIZZA_CATEGORIES = ["top-ten", "pizart", "le-classiche", "baby-pizze"];
-const EXCLUDED_CATEGORIES = ["le-focacce"];
+const EXCLUDED_CATEGORIES = ["antipasti"];
 const GLUTEN_FREE_PRICE = 3.00;
 ```
 
@@ -154,8 +154,8 @@ Per escludere un singolo prodotto, aggiungi `excludeGlutenFree: true`:
 2. Verifica che la categoria non sia in `EXCLUDED_CATEGORIES`
 3. Verifica che il prodotto non abbia `excludeGlutenFree: true`
 
-### L'opzione appare per le focacce
-1. Verifica che `"le-focacce"` sia in `EXCLUDED_CATEGORIES`
+### L'opzione appare per gli antipasti
+1. Verifica che `"antipasti"` sia in `EXCLUDED_CATEGORIES`
 
 ### Il prezzo non si aggiorna
 1. Verifica che `GLUTEN_FREE_PRICE` sia definito correttamente
