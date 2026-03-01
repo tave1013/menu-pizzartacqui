@@ -234,7 +234,7 @@ export const restaurantInfo: RestaurantInfo = {
   reviewCount: 405,
   priceRange: "€€€",
   cuisine: "Pizzeria ad Acqui Terme",
-  address: "Via Guglielmo Marconi, 18, 15011 Acqui Terme (AL)",
+  address: "Via Guglielmo Marconi, 18, 15011 Acqui Terme",
   coordinates: { lat: 44.6765, lng: 8.4659 },
   heroImage: "",
   openingHours: "18:30 - 22:30",
@@ -1230,7 +1230,7 @@ export const menuCategories: Category[] = [
       {
         id: "alba-aura-bionda",
         name: "Alba Aura Bionda",
-        desc: "33 cl | 5,5% vol.\nUna bionda artigianale fresca e beverina. Si distingue per le sue note maltate equilibrate e un finale pulito, ideale per chi cerca semplicità e qualità.",
+        desc: "33 cl | 5,5% vol. ",
         price: 6.5,
         image: albaAuraBiondaImg,
         allergens: ["glutine"],
