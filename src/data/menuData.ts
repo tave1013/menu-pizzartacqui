@@ -39,6 +39,7 @@ const funghiImg = "/assets/food/Funghi.webp";
 const insuperabileImg = "/assets/food/Insuperabile.webp";
 const pannaSpeckImg = "/assets/food/Panna e speck.webp";
 const piemonteseImg = "/assets/food/Piemontese.webp";
+const piuMargheritaImg = "/assets/food/piu-margherita.webp";
 const plutoImg = "/assets/food/Pluto.webp";
 const porzionePatatineImg = "/assets/food/Porzione di patatine.webp";
 const proMarinaraImg = "/assets/food/Pro marinara.webp";
@@ -427,7 +428,7 @@ export const menuCategories: Category[] = [
         name: "Più Margherita",
         desc: "Pomodoro, basilico in cottura, fiordilatte, parmigiano, olio extravergine, basilico fuori cottura",
         price: 7.5,
-        image: "/assets/food/Piu\u0300 Margherita.webp",
+        image: piuMargheritaImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
