@@ -30,6 +30,25 @@ const napoliImg = "/assets/food/Napoli.webp";
 const boschImg = "/assets/food/Bosch.webp";
 const puglieseImg = "/assets/food/Pugliese.webp";
 const rusticaImg = "/assets/food/rustica.webp";
+const quattroStagioniImg = "/assets/food/4 stagioni.webp";
+const calzoneImg = "/assets/food/Calzone.webp";
+const capricciosaImg = "/assets/food/Capricciosa.webp";
+const focacciaBiancaImg = "/assets/food/Focaccia bianca.webp";
+const fugassaSottileAlFormaggioImg = "/assets/food/Fugassa sottile al formaggio.webp";
+const funghiImg = "/assets/food/Funghi.webp";
+const insuperabileImg = "/assets/food/Insuperabile.webp";
+const pannaSpeckImg = "/assets/food/Panna e speck.webp";
+const piemonteseImg = "/assets/food/Piemontese.webp";
+const piuMargheritaImg = "/assets/food/Più Margherita.webp";
+const plutoImg = "/assets/food/Pluto.webp";
+const porzionePatatineImg = "/assets/food/Porzione di patatine.webp";
+const proMarinaraImg = "/assets/food/Pro marinara.webp";
+const prosciuttoFunghiImg = "/assets/food/Prosciutto funghi.webp";
+const raffaelloImg = "/assets/food/Raffaello.webp";
+const salsicciaImg = "/assets/food/Salsiccia.webp";
+const topolinoImg = "/assets/food/Topolino.webp";
+const veganaImg = "/assets/food/Vegana.webp";
+const vegetarianaImg = "/assets/food/Vegetariana.webp";
 const albaAuraBiondaImg = "/assets/food/Alba aura bionda.webp";
 const albaIgaImg = "/assets/food/Alba iga.webp";
 const albaMarteRossaImg = "/assets/food/Alba marte rossa.webp";
@@ -82,6 +101,8 @@ const santorsolaImg = "/assets/food/santorsola.webp";
 const cormonsImg = "/assets/food/cormons.webp";
 const boidinaBarberaImg = "/assets/food/boidina barbera.webp";
 const barberaCascinaCastletImg = "/assets/food/barbera cascina castlet.webp";
+const nebbioloToninoImg = "/assets/food/Nebbiolo D'alba.png";
+const arneisToninoImg = "/assets/food/Roero Arneis.png";
 // Caffetteria
 const caffeEspressoImg = "/assets/food/Caffe.webp";
 const caffeDecaffeinatoImg = "/assets/food/Caffe decaffeinato.webp";
@@ -351,7 +372,7 @@ export const menuCategories: Category[] = [
         name: "L'insuperabile",
         desc: "Pomodoro, fiordilatte, prosciutto cotto (fuori cottura)",
         price: 8.0,
-        image: "",
+        image: insuperabileImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com", whatsapp: "+39 3669904236" },
       },
@@ -407,7 +428,7 @@ export const menuCategories: Category[] = [
         name: "Più Margherita",
         desc: "Pomodoro, basilico in cottura, fiordilatte, parmigiano, olio extravergine, basilico fuori cottura",
         price: 7.5,
-        image: "",
+        image: piuMargheritaImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -511,7 +532,7 @@ export const menuCategories: Category[] = [
         name: "Raffaello",
         desc: "Fiordilatte, funghi porcini*, prosciutto crudo (fuori cottura), burrata, polvere di porcini, basilico",
         price: 16.0,
-        image: "",
+        image: raffaelloImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -548,7 +569,7 @@ export const menuCategories: Category[] = [
         name: "Focaccia Bianca",
         desc: "Olio, sale.",
         price: 4.0,
-        image: "",
+        image: focacciaBiancaImg,
         dietaryTags: ["vegan"],
         allergens: ["Glutine"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -558,7 +579,7 @@ export const menuCategories: Category[] = [
         name: "Fugassa Sottile al Formaggio",
         desc: "Stracchino (su richiesta se le condizioni di lavoro lo permettono)",
         price: 12.0,
-        image: "",
+        image: fugassaSottileAlFormaggioImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -606,7 +627,7 @@ export const menuCategories: Category[] = [
         name: "Porzione di patatine fritte*",
         desc: "",
         price: 5.0,
-        image: "",
+        image: porzionePatatineImg,
         dietaryTags: ["vegan"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -622,7 +643,7 @@ export const menuCategories: Category[] = [
         name: "4 Stagioni",
         desc: "Pomodoro, fiordilatte, funghi champignon, carciofini, olive, prosciutto cotto (fuori cottura)",
         price: 9.0,
-        image: "",
+        image: quattroStagioniImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -640,7 +661,7 @@ export const menuCategories: Category[] = [
         name: "Calzone",
         desc: "Pomodoro, fiordilatte, prosciutto cotto",
         price: 8.0,
-        image: "",
+        image: calzoneImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -649,7 +670,7 @@ export const menuCategories: Category[] = [
         name: "Capricciosa",
         desc: "Pomodoro, fiordilatte, funghi champignon, carciofini, olive, prosciutto cotto fuori cottura",
         price: 10.0,
-        image: "",
+        image: capricciosaImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -658,7 +679,7 @@ export const menuCategories: Category[] = [
         name: "Contadina",
         desc: "Pomodoro, fiordilatte, champignon, salsiccia, cipolle, olive, basilico",
         price: 12.0,
-        image: "",
+        image: "/assets/food/Contadina.webp",
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -676,7 +697,7 @@ export const menuCategories: Category[] = [
         name: "Funghi",
         desc: "Pomodoro, fiordilatte, champignon",
         price: 7.5,
-        image: "",
+        image: funghiImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -725,7 +746,7 @@ export const menuCategories: Category[] = [
         name: "Panna e Speck",
         desc: "fiordilatte, panna, speck (fuori cottura)",
         price: 9.0,
-        image: "",
+        image: pannaSpeckImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -753,7 +774,7 @@ export const menuCategories: Category[] = [
         name: "Piemontese",
         desc: "Pomodoro, fiordilatte, toma piemontese, prosciutto cotto (fuori cottura)",
         price: 9.0,
-        image: "",
+        image: piemonteseImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -762,7 +783,7 @@ export const menuCategories: Category[] = [
         name: "Pro Marinara",
         desc: "Crema di pomodori secchi, pomodoro, olive, intingolo d'aglio, origano, basilico",
         price: 8.0,
-        image: "",
+        image: proMarinaraImg,
         allergens: ["Glutine"],
         dietaryTags: ["vegan"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -772,7 +793,7 @@ export const menuCategories: Category[] = [
         name: "Prosciutto e Funghi",
         desc: "Pomodoro, fiordilatte, champignon, prosciutto cotto (fuori cottura)",
         price: 8.5,
-        image: "",
+        image: prosciuttoFunghiImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -800,7 +821,7 @@ export const menuCategories: Category[] = [
         name: "Salsiccia",
         desc: "Pomodoro, fiordilatte, salsiccia",
         price: 8.5,
-        image: "",
+        image: salsicciaImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -837,7 +858,7 @@ export const menuCategories: Category[] = [
         name: "Vegetariana",
         desc: "Pomodoro, fiordilatte, melanzane, peperoni, zucchine basilico",
         price: 8.5,
-        image: "",
+        image: vegetarianaImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -847,7 +868,7 @@ export const menuCategories: Category[] = [
         name: "Vegana",
         desc: "Crema di patate, verdure, intingolo d'aglio, olive taggiasche, origano, basilico",
         price: 9.0,
-        image: "",
+        image: veganaImg,
         allergens: ["Glutine"],
         dietaryTags: ["vegan",],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -873,7 +894,7 @@ export const menuCategories: Category[] = [
         name: "Pluto",
         desc: "Pomodoro, fiordilatte, würstel, patatine fritte*",
         price: 6.0,
-        image: "",
+        image: plutoImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -882,7 +903,7 @@ export const menuCategories: Category[] = [
         name: "Topolino",
         desc: "Pomodoro, fiordilatte",
         price: 4.5,
-        image: "",
+        image: topolinoImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -1292,7 +1313,7 @@ export const menuCategories: Category[] = [
         name: "Nebbiolo Tonino",
         desc: "75 cl | 14,5% vol.",
         price: 28.0,
-        image: "",
+        image: nebbioloToninoImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -1301,7 +1322,7 @@ export const menuCategories: Category[] = [
         name: "Arneis Tonino",
         desc: "75 cl | 13,5% vol.",
         price: 22.0,
-        image: "",
+        image: arneisToninoImg,
         allergens: ["solfiti"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
