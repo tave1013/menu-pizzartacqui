@@ -14,6 +14,7 @@ const vanGoghImg = "/assets/food/van-gogh.webp";
 const daliImg = "/assets/food/Dalì.webp";
 const michelangeloImg = "/assets/food/Michelangelo.webp";
 const daVinciImg = "/assets/food/da-vinci.webp";
+const dolciImg = "/assets/food/Dolci.webp";
 const sfiziosaImg = "/assets/food/Sfiziosa.webp";
 const zenaImg = "/assets/food/Zena.webp";
 const gorgoImg = "/assets/food/Gorgo.webp";
@@ -921,7 +922,7 @@ export const menuCategories: Category[] = [
         name: "Dolci",
         desc: "",
         price: 5.0,
-        image: "",
+        image: dolciImg,
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
     ],
