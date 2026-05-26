@@ -585,16 +585,6 @@ export const menuCategories: Category[] = [
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
-      {
-        id: "pataccia",
-        name: "Pataccia",
-        desc: "Patate al forno sottili, rosmarino, olio extravergine",
-        price: 6.0,
-        image: "",
-        allergens: ["Glutine"],
-        dietaryTags: ["vegan"],
-        contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
-      },
        {
         id: "sfiziosa",
         name: "Sfiziosa",
