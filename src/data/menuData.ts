@@ -1,7 +1,7 @@
 const veraceImg = "/assets/food/Verace.webp";
 const bismarkImg = "/assets/food/Bismark.webp";
 const tonnaroImg = "/assets/food/Tonnarò.webp";
-const daliConNociImg = "/assets/food/Dalì-con-noci.webp";
+const daliConNociImg = "/assets/food/dalì-con-noci.webp";
 // Percorsi pubblici per le immagini
 const margheritaImg = "/assets/food/Margherita.webp";
 const caronteImg = "/assets/food/Caronte.webp";
