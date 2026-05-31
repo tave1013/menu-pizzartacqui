@@ -1,3 +1,7 @@
+const veraceImg = "/assets/food/Verace.webp";
+const bismarkImg = "/assets/food/Bismark.webp";
+const tonnaroImg = "/assets/food/Tonnarò.webp";
+const daliConNociImg = "/assets/food/Dalì-con-noci.webp";
 // Percorsi pubblici per le immagini
 const margheritaImg = "/assets/food/Margherita.webp";
 const caronteImg = "/assets/food/Caronte.webp";
@@ -12,6 +16,7 @@ const chagallImg = "/assets/food/Chagall.webp";
 const cimabueImg = "/assets/food/Cimabue.webp";
 const vanGoghImg = "/assets/food/van-gogh.webp";
 const daliImg = "/assets/food/Dalì.webp";
+const stracciataImg = "/assets/food/Stracciata.webp";
 const michelangeloImg = "/assets/food/Michelangelo.webp";
 const daVinciImg = "/assets/food/da-vinci.webp";
 const dolciImg = "/assets/food/Dolci.webp";
@@ -401,7 +406,7 @@ export const menuCategories: Category[] = [
         name: "La Stracciata",
         desc: "Pomodoro, stracciatella di burrata, basilico, olio extravergine.",
         price: 9.0,
-        image: "",
+        image: stracciataImg,
         allergens: ["Glutine", "Lattosio"],
         dietaryTags: ["vegetarian"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -420,7 +425,7 @@ export const menuCategories: Category[] = [
         name: "La Verace",
         desc: "Fiordilatte, salsiccia, friarielli*",
         price: 10.0,
-        image: "",
+        image: veraceImg,
         allergens: ["Glutine", "Lattosio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -491,7 +496,7 @@ export const menuCategories: Category[] = [
         name: "Dalì",
         desc: "Fiordilatte, toma piemontese, gorgonzola, pere caramellate, noci",
         price: 13.0,
-        image: "",
+        image: daliConNociImg,
         dietaryTags: ["vegetarian"],
         allergens: ["Glutine", "Lattosio", "Frutta a guscio"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
@@ -599,7 +604,7 @@ export const menuCategories: Category[] = [
         name: "Tonnarò",
         desc: "Vitello sottile, tradizionale salsa tonnata, capperi",
         price: 15.0,
-        image: "",
+        image: tonnaroImg,
         allergens: ["Glutine", "Pesce", "Uova"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
@@ -643,7 +648,7 @@ export const menuCategories: Category[] = [
         name: "Bismark",
         desc: "Pomodoro, fiordilatte, uovo, prosciutto cotto (fuori cottura)",
         price: 9.0,
-        image: "",
+        image: bismarkImg,
         allergens: ["Glutine", "Lattosio", "Uova"],
         contact: { tel: "+39 3669904236", mail: "info@pizzartacquiterme.com" },
       },
