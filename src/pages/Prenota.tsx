@@ -20,6 +20,7 @@ interface BookingData {
   adults: number;
   children: number;
   seats: number; // seggiolini
+  location: "Salette interne" | "Dehor esterno";
   time: string;
   notes: string;
   firstName: string;
@@ -41,6 +42,7 @@ interface PendingBooking {
     adulti: number;
     bambini: number;
     seggiolini: number;
+    location: "Salette interne" | "Dehor esterno";
     note: string;
     nome: string;
     cognome: string;
@@ -150,6 +152,7 @@ export default function Prenota() {
     adults: 1,
     children: 0,
     seats: 0,
+    location: "Salette interne",
     time: "",
     notes: "",
     firstName: "",
@@ -227,7 +230,7 @@ export default function Prenota() {
   }, [bookingData.date, now]);
 
   const canProceedStep1 = !!bookingData.date && !isDayClosed(bookingData.date);
-  const canProceedStep2 = bookingData.adults >= 1 && !!bookingData.time;
+  const canProceedStep2 = bookingData.adults >= 1 && !!bookingData.time && !!bookingData.location;
   const canProceedStep3 = 
     bookingData.firstName.trim() && 
     bookingData.lastName.trim() && 
@@ -279,6 +282,7 @@ export default function Prenota() {
 
   🗓️ Data: ${formatDateItalian(bookingData.date)}
   🕒 Orario: ${bookingData.time}
+  📍 Location: ${bookingData.location}
   👥 Persone: ${bookingData.adults} adulti${childrenLine}${seggioliniLine}${notesLine}
 
   👤 *Nome:* ${bookingData.firstName} ${bookingData.lastName}
@@ -306,6 +310,7 @@ export default function Prenota() {
         adulti: bookingData.adults,
         bambini: bookingData.children,
         seggiolini: bookingData.seats,
+        location: bookingData.location,
         note: bookingData.notes,
         nome: bookingData.firstName,
         cognome: bookingData.lastName,
@@ -316,9 +321,9 @@ export default function Prenota() {
     };
     
     localStorage.setItem("prenotazioneInAttesa", JSON.stringify(pendingData));
-    
+
     window.open(whatsappUrl, '_blank');
-    
+
     toast("WhatsApp aperto. Premi Invia per completare la richiesta.", {
       duration: 4000,
     });
@@ -355,6 +360,7 @@ export default function Prenota() {
         adults: payload.adulti,
         children: payload.bambini,
         seats: payload.seggiolini || 0,
+        location: payload.location || "Salette interne",
         time: payload.orario,
         notes: payload.note,
         firstName: payload.nome,
@@ -580,6 +586,32 @@ export default function Prenota() {
                   >
                     <Plus className="w-4 h-4" />
                   </Button>
+                </div>
+              </div>
+
+              {/* Location selector */}
+              <div className="space-y-3">
+                <Label className="text-base font-medium">Location</Label>
+                <div className="flex flex-row items-start justify-start gap-2 sm:gap-3">
+                  {(["Salette interne", "Dehor esterno"] as const).map((option) => {
+                    const isSelected = bookingData.location === option;
+                    return (
+                      <button
+                        key={option}
+                        type="button"
+                        onClick={() => setBookingData(prev => ({ ...prev, location: option }))}
+                        className={cn(
+                          "w-full max-w-[220px] rounded-lg border px-4 py-3 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                          isSelected
+                            ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                            : "border-border bg-muted/60 text-foreground hover:bg-muted"
+                        )}
+                        aria-pressed={isSelected}
+                      >
+                        {option}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 

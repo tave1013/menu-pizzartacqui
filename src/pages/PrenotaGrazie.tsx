@@ -10,6 +10,8 @@ interface ConfirmedBooking {
   orario: string;
   adulti: number;
   bambini: number;
+  seggiolini?: number;
+  location?: "Sala interna" | "Dehor esterno";
   note: string;
   nome: string;
   cognome: string;
@@ -129,11 +131,23 @@ export default function PrenotaGrazie() {
                 <span className="font-medium text-foreground">{booking.orario}</span>
               </div>
               <div className="flex justify-between">
+                <span className="text-muted-foreground">Location:</span>
+                <span className="font-medium text-foreground">{booking.location || "Sala interna"}</span>
+              </div>
+              <div className="flex justify-between">
                 <span className="text-muted-foreground">Persone:</span>
                 <span className="font-medium text-foreground">
                   {booking.adulti} adulti{booking.bambini > 0 && ` + ${booking.bambini} bambini`}
                 </span>
               </div>
+              {booking.seggiolini && (
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Seggiolini:</span>
+                  <span className="font-medium text-foreground">
+                    {booking.seggiolini} seggiolini
+                  </span>
+                </div>
+              )}
               {booking.note && (
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Note:</span>
