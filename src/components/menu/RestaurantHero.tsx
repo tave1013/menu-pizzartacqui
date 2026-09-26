@@ -1,6 +1,6 @@
 import { Star, Clock, MapPin, Info, Calendar } from "lucide-react";
 import { RestaurantInfo } from "@/data/menuData";
-const heroImage = "/assets/Copertina%20menu%20digitale%20PizzArt.webp";
+const heroImage = "/assets/pizzart-hero-2026.webp";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { InfoModal } from "./InfoModal";
