@@ -31,7 +31,7 @@ export function ClosedBanner() {
         className="py-4 px-4"
       >
         <div className="container">
-          <div className="bg-amber-100/80 dark:bg-amber-950/40 backdrop-blur-sm rounded-2xl border border-amber-300/60 dark:border-amber-800/60 py-3 px-4 flex items-center gap-3">
+          <div className="inline-flex items-center gap-3 bg-amber-100/80 dark:bg-amber-950/40 backdrop-blur-sm rounded-2xl border border-amber-300/60 dark:border-amber-800/60 py-3 px-4">
             <div className="flex-shrink-0">
               <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
             </div>
