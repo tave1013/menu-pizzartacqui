@@ -103,7 +103,7 @@ const MenuBase = () => {
   return (
     <ReadOnlyModeProvider readOnly={true}>
       <VacationBanner />
-      <div className="min-h-screen bg-background pt-8">
+      <div className="min-h-screen bg-background">
         <title>Menu — Versione base | {restaurantInfo.name}</title>
         <meta
           name="description"
