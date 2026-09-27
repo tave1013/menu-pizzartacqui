@@ -216,7 +216,7 @@ export interface Category {
 
 export interface DayHours {
   day: string;
-  hours: string;
+  hours?: string;
   closed?: boolean;
 }
 
@@ -267,11 +267,11 @@ export const restaurantInfo: RestaurantInfo = {
   openingHours: "18:30 - 22:30",
   weeklyHours: [
     { day: "Lunedì", hours: "8:30 - 22:30" },
-    { day: "Martedì", hours:"8:30 - 22:30" },
-    { day: "Mercoledì", hours: "8:30 - 22:30" },
-    { day: "Giovedì", hours: "8:30 - 22:30" },
-    { day: "Venerdì", hours: "8:30 - 22:30" },
-    { day: "Sabato", hours: "8:30 - 23:50" },
+    { day: "Martedì", closed: true },
+    { day: "Mercoledì", hours: "18:30 - 22:30" },
+    { day: "Giovedì", hours: "18:30 - 22:30" },
+    { day: "Venerdì", hours: "18:30 - 22:45" },
+    { day: "Sabato", hours: "18:30 - 22:45" },
     { day: "Domenica", hours: "8:00 - 22:30" },
   ],
   deliveryTime: "25-40 min",
