@@ -68,6 +68,16 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
 
   const isOpen = useMemo(() => isCurrentlyOpen(todayHours), [todayHours]);
 
+  // Check if we're in vacation period
+  const isVacation = useMemo(() => {
+    const today = new Date();
+    const vacationStart = new Date('2026-09-14');
+    const vacationEnd = new Date('2026-09-30');
+    return today >= vacationStart && today <= vacationEnd;
+  }, []);
+
+  const statusText = isVacation ? "CHIUSO PER FERIE" : (isOpen ? "Aperto" : "Chiuso");
+
   return (
     <>
       <header className="relative">
@@ -93,17 +103,23 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
               </h1>
               <span
                 className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
-                  isOpen
+                  isVacation
+                    ? "bg-red-500/20 text-red-600 dark:text-red-400"
+                    : isOpen
                     ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
                     : "bg-destructive/15 text-destructive"
                 }`}
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
-                    isOpen ? "bg-emerald-500" : "bg-destructive"
+                    isVacation
+                      ? "bg-red-500"
+                      : isOpen
+                      ? "bg-emerald-500"
+                      : "bg-destructive"
                   }`}
                 />
-                {isOpen ? "Aperto" : "Chiuso"}
+                {statusText}
               </span>
             </div>
 
@@ -130,7 +146,7 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
                 className="flex items-center gap-1.5 hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
               >
                 <Clock className="w-4 h-4" />
-                <span>{todayHours.closed ? "Chiuso oggi" : todayHours.hours}</span>
+                <span>{todayHours.closed ? "Chiuso" : todayHours.hours}</span>
               </button>
             </div>
 

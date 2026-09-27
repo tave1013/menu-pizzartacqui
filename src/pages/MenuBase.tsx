@@ -16,6 +16,7 @@ import { InfoModal } from "@/components/menu/InfoModal";
 import { FeaturedCarousel } from "@/components/menu/FeaturedCarousel";
 import { Footer } from "@/components/menu/Footer";
 import ReviewBanner from "@/components/menu/ReviewBanner";
+import { VacationBanner } from "@/components/menu/VacationBanner";
 
 const ItemDetailModal = lazy(() =>
   import("@/components/menu/ItemDetailModal").then((mod) => ({
@@ -101,7 +102,8 @@ const MenuBase = () => {
 
   return (
     <ReadOnlyModeProvider readOnly={true}>
-      <div className="min-h-screen bg-background">
+      <VacationBanner />
+      <div className="min-h-screen bg-background pt-16">
         <title>Menu — Versione base | {restaurantInfo.name}</title>
         <meta
           name="description"
