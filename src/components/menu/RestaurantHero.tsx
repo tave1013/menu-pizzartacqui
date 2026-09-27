@@ -15,7 +15,15 @@ function getTodayHours(weeklyHours: RestaurantInfo["weeklyHours"]) {
   return weeklyHours[italianDayIndex];
 }
 
-function isCurrentlyOpen(todayHours: { hours: string; closed?: boolean }): boolean {
+function getTomorrowHours(weeklyHours: RestaurantInfo["weeklyHours"]) {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const dayIndex = tomorrow.getDay();
+  const italianDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+  return weeklyHours[italianDayIndex];
+}
+
+function isCurrentlyOpen(todayHours: { hours?: string; closed?: boolean }): boolean {
   if (todayHours.closed) return false;
 
   const hoursStr = (todayHours.hours || "").trim();
@@ -66,6 +74,11 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
     [info.weeklyHours]
   );
 
+  const tomorrowHours = useMemo(
+    () => getTomorrowHours(info.weeklyHours),
+    [info.weeklyHours]
+  );
+
   const isOpen = useMemo(() => isCurrentlyOpen(todayHours), [todayHours]);
 
   // Check if we're in vacation period
@@ -77,6 +90,18 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
   }, []);
 
   const statusText = isVacation ? "CHIUSO PER FERIE" : (isOpen ? "Aperto" : "Chiuso");
+
+  // Get today's hours display - show actual hours or "Chiuso"
+  const todayHoursDisplay = useMemo(() => {
+    if (todayHours.closed) return "Chiuso";
+    return todayHours.hours || "";
+  }, [todayHours]);
+
+  // Get tomorrow's status for info text
+  const tomorrowStatus = useMemo(() => {
+    if (tomorrowHours.closed) return "Chiuso domani";
+    return "";
+  }, [tomorrowHours]);
 
   return (
     <>
@@ -146,7 +171,10 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
                 className="flex items-center gap-1.5 hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
               >
                 <Clock className="w-4 h-4" />
-                <span>{todayHours.closed ? "Chiuso" : todayHours.hours}</span>
+                <span className={todayHours.closed ? "text-gray-400" : "text-muted-foreground"}>
+                  {todayHoursDisplay}
+                </span>
+                {tomorrowStatus && <span className="text-xs text-gray-400 ml-1">· {tomorrowStatus}</span>}
               </button>
             </div>
 
