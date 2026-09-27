@@ -28,25 +28,23 @@ export function ClosedBanner() {
         animate={prefersReduced ? undefined : { opacity: 1, y: 0 }}
         exit={prefersReduced ? undefined : { opacity: 0, y: -10 }}
         transition={{ duration: 0.2 }}
-        className="bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-900/50"
+        className="flex items-center justify-center py-4 px-4"
       >
-        <div className="container py-3">
-          <div className="flex items-center gap-3">
-            <div className="flex-shrink-0">
-              <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-amber-800 dark:text-amber-200">
-                Siamo chiusi al momento.
-              </p>
-              <p className="text-sm text-amber-700 dark:text-amber-300">
-                {showCountdown ? (
-                  <>Si apre tra {minutesUntilOpen} minuti.</>
-                ) : (
-                  getSubtitle()
-                )}
-              </p>
-            </div>
+        <div className="bg-amber-100/80 dark:bg-amber-950/40 backdrop-blur-sm rounded-2xl border border-amber-300/60 dark:border-amber-800/60 py-3 px-4 flex items-center gap-3 max-w-full w-full sm:w-auto">
+          <div className="flex-shrink-0">
+            <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-amber-800 dark:text-amber-200">
+              Siamo chiusi al momento.
+            </p>
+            <p className="text-sm text-amber-700 dark:text-amber-300">
+              {showCountdown ? (
+                <>Si apre tra {minutesUntilOpen} minuti.</>
+              ) : (
+                getSubtitle()
+              )}
+            </p>
           </div>
         </div>
       </motion.div>
