@@ -149,6 +149,14 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
 
   const openStatus = useMemo(() => isCurrentlyOpen(restaurantInfo.weeklyHours), [restaurantInfo.weeklyHours]);
   const upcomingHolidays = useMemo(() => getUpcomingHolidays(), []);
+  
+  // Check if currently on vacation
+  const isVacation = useMemo(() => {
+    const today = new Date();
+    const vacationStart = new Date('2026-09-14');
+    const vacationEnd = new Date('2026-09-30');
+    return today >= vacationStart && today <= vacationEnd;
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -286,8 +294,13 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                               )}
                             </td>
                             <td className="py-2.5 px-3 text-right">
-                              {/* Se c'è una festività, mostra l'orario festivo */}
-                              {holidayForThisDay ? (
+                              {/* Durante le ferie mostra "Chiuso" in rosso */}
+                              {isVacation ? (
+                                <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-500/15 text-red-600 dark:text-red-400 rounded-md">
+                                  Chiuso
+                                </span>
+                              ) : holidayForThisDay ? (
+                                /* Se c'è una festività, mostra l'orario festivo */
                                 holidayForThisDay.closed ? (
                                   <div className="space-y-0.5">
                                     <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-500/15 text-red-600 dark:text-red-400 rounded-md">
