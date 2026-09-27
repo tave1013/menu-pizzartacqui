@@ -174,7 +174,6 @@ export function RestaurantHero({ info }: RestaurantHeroProps) {
                 <span className={todayHours.closed ? "text-gray-400" : "text-muted-foreground"}>
                   {todayHoursDisplay}
                 </span>
-                {tomorrowStatus && <span className="text-xs text-gray-400 ml-1">· {tomorrowStatus}</span>}
               </button>
             </div>
 
