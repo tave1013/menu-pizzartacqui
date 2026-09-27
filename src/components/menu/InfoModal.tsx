@@ -248,7 +248,12 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                     <h3 className="font-semibold text-card-foreground">Orari</h3>
                   </div>
                   {/* Open/Closed Status Badge */}
-                  {openStatus.isOpen ? (
+                  {isVacation ? (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium bg-red-500/15 text-red-600 rounded-full">
+                      <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
+                      Chiuso per ferie
+                    </span>
+                  ) : openStatus.isOpen ? (
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium bg-green-500/15 text-green-600 rounded-full">
                       <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                       Aperto ora · chiude alle {openStatus.closingTime}
@@ -285,13 +290,6 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
                               isToday ? "text-primary" : "text-card-foreground"
                             )}>
                               {dayData.day}
-                              {isToday && <span className="text-xs ml-1.5 text-primary/70">(oggi)</span>}
-                              {/* Mostra nome festività tra parentesi - stile sobrio */}
-                              {holidayForThisDay && (
-                                <span className="text-xs ml-1.5 text-primary font-medium">
-                                  ({holidayForThisDay.name})
-                                </span>
-                              )}
                             </td>
                             <td className="py-2.5 px-3 text-right">
                               {/* Durante le ferie mostra "Chiuso" in rosso */}
