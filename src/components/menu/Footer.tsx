@@ -36,6 +36,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
   const { totalItems } = useCart();
   const { readOnlyMode } = useReadOnlyMode();
+
+  const isVacation = (() => {
+    const today = new Date();
+    const vacationStart = new Date('2026-09-14');
+    const vacationEnd = new Date('2026-10-08');
+    return today >= vacationStart && today <= vacationEnd;
+  })();
   
   // Se c'è il carrello visibile e NON siamo in read-only mode, aggiungi padding extra
   const hasCartBar = !readOnlyMode && totalItems > 0;
@@ -119,9 +126,9 @@ export function Footer() {
                   <span className="text-muted-foreground">{schedule.day}</span>
                   <span className={cn(
                     "font-medium",
-                    schedule.closed ? "text-destructive" : "text-card-foreground"
+                    isVacation || schedule.closed ? "text-destructive" : "text-card-foreground"
                   )}>
-                    {schedule.closed ? "Chiuso" : schedule.hours.replace(",", "")}
+                    {isVacation || schedule.closed ? "Chiuso" : schedule.hours?.replace(",", "")}
                   </span>
                 </li>
               ))}
