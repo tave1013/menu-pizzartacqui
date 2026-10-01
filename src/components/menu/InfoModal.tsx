@@ -154,7 +154,7 @@ export function InfoModal({ isOpen, onClose, restaurantInfo }: InfoModalProps) {
   const isVacation = useMemo(() => {
     const today = new Date();
     const vacationStart = new Date('2026-09-14');
-    const vacationEnd = new Date('2026-09-30');
+    const vacationEnd = new Date('2026-10-08');
     return today >= vacationStart && today <= vacationEnd;
   }, []);
 

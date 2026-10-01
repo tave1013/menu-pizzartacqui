@@ -342,6 +342,14 @@ export const SPECIAL_OPENING_HOURS: SpecialHoliday[] = [
   { date: '2026-09-28', name: 'Chiuso per ferie', closed: true },
   { date: '2026-09-29', name: 'Chiuso per ferie', closed: true },
   { date: '2026-09-30', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-01', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-02', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-03', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-04', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-05', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-06', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-07', name: 'Chiuso per ferie', closed: true },
+  { date: '2026-10-08', name: 'Chiuso per ferie', closed: true },
   
   // Novembre
   { date: '2026-11-01', name: 'Tutti i Santi', closed: true },

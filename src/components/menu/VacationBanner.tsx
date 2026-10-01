@@ -7,7 +7,7 @@ export function VacationBanner() {
   useEffect(() => {
     const today = new Date();
     const vacationStart = new Date('2026-09-14');
-    const vacationEnd = new Date('2026-09-30');
+    const vacationEnd = new Date('2026-10-08');
 
     if (today >= vacationStart && today <= vacationEnd) {
       setIsVacation(true);
